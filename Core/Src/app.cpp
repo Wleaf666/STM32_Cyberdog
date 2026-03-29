@@ -1,15 +1,24 @@
 #include "app.hpp"
 #include "main.h"
+#include "cmsis_os2.h"
+
 // 以后所有的 C++ 头文件（比如你的 static_arena.hpp）都在这里尽情 include！
+uint32_t test_count = 0;
+
+void task_test(void *argument)
+{
+    for (;;)
+    {
+        (*(uint32_t*)argument)++;
+        HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
+        osDelay(500);
+    }
+}
 
 void App_Main()
 {
     // 🎉 欢迎来到纯正的 C++17 世界！
     // 以后你的 FreeRTOS 任务创建、类的实例化、机器狗逻辑，全部写在这个函数里。
-
-    while (1)
-    {
-        HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
-        HAL_Delay(250);
-    }
+    osThreadAttr_t task_test_attr = {.priority = osPriorityNormal};
+    osThreadNew(task_test, &test_count, &task_test_attr);
 }

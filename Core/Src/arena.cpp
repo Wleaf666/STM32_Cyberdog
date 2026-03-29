@@ -5,7 +5,7 @@
 #include <cstdio>
 
 // 定义一个 16KB 的静态分配器放在 .bss 区
-static StaticArena<16 * 1024> g_boot_arena;
+static StaticArena<6 * 1024> g_boot_arena;
 
 void *operator new(const std::size_t size)
 {

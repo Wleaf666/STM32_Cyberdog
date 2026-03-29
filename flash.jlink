@@ -1,0 +1,5 @@
+h
+loadfile build/Debug/STM32_CyberDog.elf
+r
+g
+q

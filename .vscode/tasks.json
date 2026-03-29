@@ -1,0 +1,20 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "🔥 一键烧录 (J-Link)",
+            "type": "shell",
+            // 注意：如果你的电脑提示找不到 JLink.exe，请把这里改成你的绝对路径
+            // 例如："command": "C:/Program Files/SEGGER/JLink/JLink.exe",
+            "command": "D:/Jlink/JLink.exe", 
+            "args": [
+                "-device", "STM32F103C8", // 指定芯片
+                "-if", "SWD",             // 指定接口
+                "-speed", "4000",         // 烧录速度 4MHz
+                "-autoconnect", "1",      // 自动连接
+                "-CommanderScript", "${workspaceFolder}/flash.jlink" // 调用刚才写的纸条
+            ],
+            "problemMatcher": []
+        }
+    ]
+}
