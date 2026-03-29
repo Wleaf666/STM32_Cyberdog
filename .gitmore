@@ -1,0 +1,10 @@
+# CMake build 目录
+build/
+out/
+
+# CubeMX 临时文件
+.mxproject
+*.bak
+
+# IDE 配置文件 (VSCode)
+.vscode/
