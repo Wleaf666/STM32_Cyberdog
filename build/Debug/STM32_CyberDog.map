@@ -240,8 +240,6 @@ Discarded input sections
                 0x00000000       0x50 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.obj
  .text.HAL_GetTickFreq
                 0x00000000       0x14 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.obj
- .text.HAL_Delay
-                0x00000000       0x48 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.obj
  .text.HAL_SuspendTick
                 0x00000000       0x1c cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.obj
  .text.HAL_ResumeTick
@@ -532,8 +530,6 @@ Discarded input sections
                 0x00000000      0x178 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.obj
  .text.HAL_GPIO_ReadPin
                 0x00000000       0x2e cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.obj
- .text.HAL_GPIO_TogglePin
-                0x00000000       0x32 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.obj
  .text.HAL_GPIO_LockPin
                 0x00000000       0x4e cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.obj
  .text.HAL_GPIO_EXTI_IRQHandler
@@ -1787,10 +1783,77 @@ Discarded input sections
  .debug_macro   0x00000000      0x1e5 CMakeFiles/STM32_CyberDog.dir/Core/Src/arena.cpp.obj
  .debug_macro   0x00000000       0x16 CMakeFiles/STM32_CyberDog.dir/Core/Src/arena.cpp.obj
  .group         0x00000000        0xc CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .group         0x00000000        0xc CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .group         0x00000000        0xc CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .group         0x00000000        0xc CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .group         0x00000000        0xc CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .group         0x00000000        0xc CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .group         0x00000000        0xc CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .group         0x00000000        0xc CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .group         0x00000000        0xc CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .group         0x00000000        0xc CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .group         0x00000000        0xc CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .group         0x00000000        0xc CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .group         0x00000000        0xc CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .group         0x00000000        0xc CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .group         0x00000000        0xc CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .group         0x00000000        0xc CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .group         0x00000000        0xc CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .group         0x00000000        0xc CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .group         0x00000000        0xc CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .group         0x00000000        0xc CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .group         0x00000000        0xc CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .group         0x00000000        0xc CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .group         0x00000000        0xc CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .group         0x00000000        0xc CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .group         0x00000000        0xc CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .group         0x00000000        0xc CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .group         0x00000000        0xc CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .group         0x00000000        0xc CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .group         0x00000000        0xc CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .group         0x00000000        0xc CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .group         0x00000000        0xc CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .group         0x00000000        0xc CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .group         0x00000000        0xc CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .group         0x00000000        0xc CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .group         0x00000000        0xc CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
  .text          0x00000000        0x0 CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
  .data          0x00000000        0x0 CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
  .bss           0x00000000        0x0 CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
  .debug_macro   0x00000000      0xc16 CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .debug_macro   0x00000000      0x20f CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .debug_macro   0x00000000       0x2e CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .debug_macro   0x00000000       0x22 CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .debug_macro   0x00000000       0x1c CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .debug_macro   0x00000000       0x22 CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .debug_macro   0x00000000       0x56 CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .debug_macro   0x00000000       0x51 CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .debug_macro   0x00000000      0x103 CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .debug_macro   0x00000000       0x6a CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .debug_macro   0x00000000      0x1df CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .debug_macro   0x00000000       0x1c CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .debug_macro   0x00000000       0x22 CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .debug_macro   0x00000000       0xbd CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .debug_macro   0x00000000     0xe09e CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .debug_macro   0x00000000       0x6d CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .debug_macro   0x00000000     0x34a2 CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .debug_macro   0x00000000      0x197 CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .debug_macro   0x00000000       0x5c CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .debug_macro   0x00000000      0x5bc CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .debug_macro   0x00000000      0x289 CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .debug_macro   0x00000000      0x1cb CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .debug_macro   0x00000000      0x114 CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .debug_macro   0x00000000      0x1b2 CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .debug_macro   0x00000000       0x27 CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .debug_macro   0x00000000      0x136 CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .debug_macro   0x00000000      0x1bc CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .debug_macro   0x00000000       0x34 CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .debug_macro   0x00000000       0x3c CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .debug_macro   0x00000000       0x57 CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .debug_macro   0x00000000       0x87 CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .debug_macro   0x00000000      0x240 CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .debug_macro   0x00000000      0x140 CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .debug_macro   0x00000000       0x83 CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
  .text          0x00000000        0x0 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-exit.o)
  .data          0x00000000        0x0 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-exit.o)
  .bss           0x00000000        0x0 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-exit.o)
@@ -2071,7 +2134,7 @@ LOAD D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtn.o
                 0x08000000                g_pfnVectors
                 0x0800010c                        . = ALIGN (0x4)
 
-.text           0x0800010c     0x111c
+.text           0x0800010c     0x11ac
                 0x0800010c                        . = ALIGN (0x4)
  *(.text)
  *(.text*)
@@ -2098,233 +2161,240 @@ LOAD D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtn.o
  .text.HAL_GetTick
                 0x08000254       0x14 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.obj
                 0x08000254                HAL_GetTick
+ .text.HAL_Delay
+                0x08000268       0x48 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.obj
+                0x08000268                HAL_Delay
  .text.HAL_RCC_OscConfig
-                0x08000268      0x504 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj
-                0x08000268                HAL_RCC_OscConfig
+                0x080002b0      0x504 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj
+                0x080002b0                HAL_RCC_OscConfig
  .text.HAL_RCC_ClockConfig
-                0x0800076c      0x1d4 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj
-                0x0800076c                HAL_RCC_ClockConfig
+                0x080007b4      0x1d4 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj
+                0x080007b4                HAL_RCC_ClockConfig
  .text.HAL_RCC_GetSysClockFreq
-                0x08000940       0xa8 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj
-                0x08000940                HAL_RCC_GetSysClockFreq
+                0x08000988       0xa8 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj
+                0x08000988                HAL_RCC_GetSysClockFreq
  .text.RCC_Delay
-                0x080009e8       0x3c cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj
+                0x08000a30       0x3c cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj
  .text.HAL_GPIO_Init
-                0x08000a24      0x308 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.obj
-                0x08000a24                HAL_GPIO_Init
+                0x08000a6c      0x308 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.obj
+                0x08000a6c                HAL_GPIO_Init
  .text.HAL_GPIO_WritePin
-                0x08000d2c       0x30 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.obj
-                0x08000d2c                HAL_GPIO_WritePin
+                0x08000d74       0x30 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.obj
+                0x08000d74                HAL_GPIO_WritePin
+ .text.HAL_GPIO_TogglePin
+                0x08000da4       0x32 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.obj
+                0x08000da4                HAL_GPIO_TogglePin
+ *fill*         0x08000dd6        0x2 
  .text.__NVIC_SetPriorityGrouping
-                0x08000d5c       0x48 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.obj
+                0x08000dd8       0x48 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.obj
  .text.__NVIC_GetPriorityGrouping
-                0x08000da4       0x1c cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.obj
+                0x08000e20       0x1c cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.obj
  .text.__NVIC_SetPriority
-                0x08000dc0       0x54 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.obj
+                0x08000e3c       0x54 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.obj
  .text.NVIC_EncodePriority
-                0x08000e14       0x64 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.obj
+                0x08000e90       0x64 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.obj
  .text.SysTick_Config
-                0x08000e78       0x44 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.obj
+                0x08000ef4       0x44 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.obj
  .text.HAL_NVIC_SetPriorityGrouping
-                0x08000ebc       0x16 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.obj
-                0x08000ebc                HAL_NVIC_SetPriorityGrouping
+                0x08000f38       0x16 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.obj
+                0x08000f38                HAL_NVIC_SetPriorityGrouping
  .text.HAL_NVIC_SetPriority
-                0x08000ed2       0x38 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.obj
-                0x08000ed2                HAL_NVIC_SetPriority
+                0x08000f4e       0x38 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.obj
+                0x08000f4e                HAL_NVIC_SetPriority
  .text.HAL_SYSTICK_Config
-                0x08000f0a       0x18 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.obj
-                0x08000f0a                HAL_SYSTICK_Config
- .text.main     0x08000f22       0x18 CMakeFiles/STM32_CyberDog.dir/Core/Src/main.c.obj
-                0x08000f22                main
+                0x08000f86       0x18 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.obj
+                0x08000f86                HAL_SYSTICK_Config
+ .text.main     0x08000f9e       0x18 CMakeFiles/STM32_CyberDog.dir/Core/Src/main.c.obj
+                0x08000f9e                main
  .text.SystemClock_Config
-                0x08000f3a       0x8a CMakeFiles/STM32_CyberDog.dir/Core/Src/main.c.obj
-                0x08000f3a                SystemClock_Config
+                0x08000fb6       0x8a CMakeFiles/STM32_CyberDog.dir/Core/Src/main.c.obj
+                0x08000fb6                SystemClock_Config
  .text.Error_Handler
-                0x08000fc4        0xc CMakeFiles/STM32_CyberDog.dir/Core/Src/main.c.obj
-                0x08000fc4                Error_Handler
+                0x08001040        0xc CMakeFiles/STM32_CyberDog.dir/Core/Src/main.c.obj
+                0x08001040                Error_Handler
  .text.MX_GPIO_Init
-                0x08000fd0       0x98 CMakeFiles/STM32_CyberDog.dir/Core/Src/gpio.c.obj
-                0x08000fd0                MX_GPIO_Init
+                0x0800104c       0x98 CMakeFiles/STM32_CyberDog.dir/Core/Src/gpio.c.obj
+                0x0800104c                MX_GPIO_Init
  .text.NMI_Handler
-                0x08001068        0x8 CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_it.c.obj
-                0x08001068                NMI_Handler
+                0x080010e4        0x8 CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_it.c.obj
+                0x080010e4                NMI_Handler
  .text.HardFault_Handler
-                0x08001070        0x8 CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_it.c.obj
-                0x08001070                HardFault_Handler
+                0x080010ec        0x8 CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_it.c.obj
+                0x080010ec                HardFault_Handler
  .text.MemManage_Handler
-                0x08001078        0x8 CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_it.c.obj
-                0x08001078                MemManage_Handler
+                0x080010f4        0x8 CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_it.c.obj
+                0x080010f4                MemManage_Handler
  .text.BusFault_Handler
-                0x08001080        0x8 CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_it.c.obj
-                0x08001080                BusFault_Handler
+                0x080010fc        0x8 CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_it.c.obj
+                0x080010fc                BusFault_Handler
  .text.UsageFault_Handler
-                0x08001088        0x8 CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_it.c.obj
-                0x08001088                UsageFault_Handler
+                0x08001104        0x8 CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_it.c.obj
+                0x08001104                UsageFault_Handler
  .text.SVC_Handler
-                0x08001090        0xc CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_it.c.obj
-                0x08001090                SVC_Handler
+                0x0800110c        0xc CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_it.c.obj
+                0x0800110c                SVC_Handler
  .text.DebugMon_Handler
-                0x0800109c        0xc CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_it.c.obj
-                0x0800109c                DebugMon_Handler
+                0x08001118        0xc CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_it.c.obj
+                0x08001118                DebugMon_Handler
  .text.PendSV_Handler
-                0x080010a8        0xc CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_it.c.obj
-                0x080010a8                PendSV_Handler
+                0x08001124        0xc CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_it.c.obj
+                0x08001124                PendSV_Handler
  .text.SysTick_Handler
-                0x080010b4        0xc CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_it.c.obj
-                0x080010b4                SysTick_Handler
+                0x08001130        0xc CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_it.c.obj
+                0x08001130                SysTick_Handler
  .text.HAL_MspInit
-                0x080010c0       0x64 CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_hal_msp.c.obj
-                0x080010c0                HAL_MspInit
+                0x0800113c       0x64 CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_hal_msp.c.obj
+                0x0800113c                HAL_MspInit
  .text.Reset_Handler
-                0x08001124       0x48 CMakeFiles/STM32_CyberDog.dir/startup_stm32f103xb.s.obj
-                0x08001124                Reset_Handler
+                0x080011a0       0x48 CMakeFiles/STM32_CyberDog.dir/startup_stm32f103xb.s.obj
+                0x080011a0                Reset_Handler
  .text.Default_Handler
-                0x0800116c        0x2 CMakeFiles/STM32_CyberDog.dir/startup_stm32f103xb.s.obj
-                0x0800116c                RTC_Alarm_IRQHandler
-                0x0800116c                EXTI2_IRQHandler
-                0x0800116c                TIM1_CC_IRQHandler
-                0x0800116c                PVD_IRQHandler
-                0x0800116c                EXTI3_IRQHandler
-                0x0800116c                EXTI0_IRQHandler
-                0x0800116c                I2C2_EV_IRQHandler
-                0x0800116c                ADC1_2_IRQHandler
-                0x0800116c                SPI1_IRQHandler
-                0x0800116c                TAMPER_IRQHandler
-                0x0800116c                DMA1_Channel4_IRQHandler
-                0x0800116c                USART3_IRQHandler
-                0x0800116c                RTC_IRQHandler
-                0x0800116c                DMA1_Channel7_IRQHandler
-                0x0800116c                CAN1_RX1_IRQHandler
-                0x0800116c                TIM4_IRQHandler
-                0x0800116c                I2C1_EV_IRQHandler
-                0x0800116c                DMA1_Channel6_IRQHandler
-                0x0800116c                TIM3_IRQHandler
-                0x0800116c                RCC_IRQHandler
-                0x0800116c                TIM1_TRG_COM_IRQHandler
-                0x0800116c                DMA1_Channel1_IRQHandler
-                0x0800116c                Default_Handler
-                0x0800116c                EXTI15_10_IRQHandler
-                0x0800116c                EXTI9_5_IRQHandler
-                0x0800116c                SPI2_IRQHandler
-                0x0800116c                DMA1_Channel5_IRQHandler
-                0x0800116c                EXTI4_IRQHandler
-                0x0800116c                USB_LP_CAN1_RX0_IRQHandler
-                0x0800116c                USB_HP_CAN1_TX_IRQHandler
-                0x0800116c                DMA1_Channel3_IRQHandler
-                0x0800116c                TIM1_UP_IRQHandler
-                0x0800116c                WWDG_IRQHandler
-                0x0800116c                TIM2_IRQHandler
-                0x0800116c                TIM1_BRK_IRQHandler
-                0x0800116c                EXTI1_IRQHandler
-                0x0800116c                USART2_IRQHandler
-                0x0800116c                I2C2_ER_IRQHandler
-                0x0800116c                DMA1_Channel2_IRQHandler
-                0x0800116c                CAN1_SCE_IRQHandler
-                0x0800116c                FLASH_IRQHandler
-                0x0800116c                USART1_IRQHandler
-                0x0800116c                I2C1_ER_IRQHandler
-                0x0800116c                USBWakeUp_IRQHandler
+                0x080011e8        0x2 CMakeFiles/STM32_CyberDog.dir/startup_stm32f103xb.s.obj
+                0x080011e8                RTC_Alarm_IRQHandler
+                0x080011e8                EXTI2_IRQHandler
+                0x080011e8                TIM1_CC_IRQHandler
+                0x080011e8                PVD_IRQHandler
+                0x080011e8                EXTI3_IRQHandler
+                0x080011e8                EXTI0_IRQHandler
+                0x080011e8                I2C2_EV_IRQHandler
+                0x080011e8                ADC1_2_IRQHandler
+                0x080011e8                SPI1_IRQHandler
+                0x080011e8                TAMPER_IRQHandler
+                0x080011e8                DMA1_Channel4_IRQHandler
+                0x080011e8                USART3_IRQHandler
+                0x080011e8                RTC_IRQHandler
+                0x080011e8                DMA1_Channel7_IRQHandler
+                0x080011e8                CAN1_RX1_IRQHandler
+                0x080011e8                TIM4_IRQHandler
+                0x080011e8                I2C1_EV_IRQHandler
+                0x080011e8                DMA1_Channel6_IRQHandler
+                0x080011e8                TIM3_IRQHandler
+                0x080011e8                RCC_IRQHandler
+                0x080011e8                TIM1_TRG_COM_IRQHandler
+                0x080011e8                DMA1_Channel1_IRQHandler
+                0x080011e8                Default_Handler
+                0x080011e8                EXTI15_10_IRQHandler
+                0x080011e8                EXTI9_5_IRQHandler
+                0x080011e8                SPI2_IRQHandler
+                0x080011e8                DMA1_Channel5_IRQHandler
+                0x080011e8                EXTI4_IRQHandler
+                0x080011e8                USB_LP_CAN1_RX0_IRQHandler
+                0x080011e8                USB_HP_CAN1_TX_IRQHandler
+                0x080011e8                DMA1_Channel3_IRQHandler
+                0x080011e8                TIM1_UP_IRQHandler
+                0x080011e8                WWDG_IRQHandler
+                0x080011e8                TIM2_IRQHandler
+                0x080011e8                TIM1_BRK_IRQHandler
+                0x080011e8                EXTI1_IRQHandler
+                0x080011e8                USART2_IRQHandler
+                0x080011e8                I2C2_ER_IRQHandler
+                0x080011e8                DMA1_Channel2_IRQHandler
+                0x080011e8                CAN1_SCE_IRQHandler
+                0x080011e8                FLASH_IRQHandler
+                0x080011e8                USART1_IRQHandler
+                0x080011e8                I2C1_ER_IRQHandler
+                0x080011e8                USBWakeUp_IRQHandler
  .text._ZN11StaticArenaILj16384EEC2Ev
-                0x0800116e       0x20 CMakeFiles/STM32_CyberDog.dir/Core/Src/arena.cpp.obj
-                0x0800116e                StaticArena<16384u>::StaticArena()
-                0x0800116e                StaticArena<16384u>::StaticArena()
- *fill*         0x0800118e        0x2 
+                0x080011ea       0x20 CMakeFiles/STM32_CyberDog.dir/Core/Src/arena.cpp.obj
+                0x080011ea                StaticArena<16384u>::StaticArena()
+                0x080011ea                StaticArena<16384u>::StaticArena()
+ *fill*         0x0800120a        0x2 
  .text._Z41__static_initialization_and_destruction_0v
-                0x08001190       0x14 CMakeFiles/STM32_CyberDog.dir/Core/Src/arena.cpp.obj
+                0x0800120c       0x14 CMakeFiles/STM32_CyberDog.dir/Core/Src/arena.cpp.obj
  .text._GLOBAL__sub_I__Znwj
-                0x080011a4        0xa CMakeFiles/STM32_CyberDog.dir/Core/Src/arena.cpp.obj
+                0x08001220        0xa CMakeFiles/STM32_CyberDog.dir/Core/Src/arena.cpp.obj
+ *fill*         0x0800122a        0x2 
  .text.App_Main
-                0x080011ae        0x8 CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
-                0x080011ae                App_Main
- .text.memset   0x080011b6       0x10 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-memset.o)
-                0x080011b6                memset
- *fill*         0x080011c6        0x2 
+                0x0800122c       0x1c CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+                0x0800122c                App_Main
+ .text.memset   0x08001248       0x10 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-memset.o)
+                0x08001248                memset
  .text.__libc_init_array
-                0x080011c8       0x48 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-init.o)
-                0x080011c8                __libc_init_array
+                0x08001258       0x48 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-init.o)
+                0x08001258                __libc_init_array
  *(.glue_7)
- .glue_7        0x08001210        0x0 linker stubs
+ .glue_7        0x080012a0        0x0 linker stubs
  *(.glue_7t)
- .glue_7t       0x08001210        0x0 linker stubs
+ .glue_7t       0x080012a0        0x0 linker stubs
  *(.eh_frame)
- .eh_frame      0x08001210        0x0 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtbegin.o
+ .eh_frame      0x080012a0        0x0 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtbegin.o
  *(.init)
- .init          0x08001210        0x4 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crti.o
-                0x08001210                _init
- .init          0x08001214        0x8 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtn.o
+ .init          0x080012a0        0x4 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crti.o
+                0x080012a0                _init
+ .init          0x080012a4        0x8 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtn.o
  *(.fini)
- .fini          0x0800121c        0x4 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crti.o
-                0x0800121c                _fini
- .fini          0x08001220        0x8 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtn.o
-                0x08001228                        . = ALIGN (0x4)
-                0x08001228                        _etext = .
+ .fini          0x080012ac        0x4 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crti.o
+                0x080012ac                _fini
+ .fini          0x080012b0        0x8 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtn.o
+                0x080012b8                        . = ALIGN (0x4)
+                0x080012b8                        _etext = .
 
-.vfp11_veneer   0x08001228        0x0
- .vfp11_veneer  0x08001228        0x0 linker stubs
+.vfp11_veneer   0x080012b8        0x0
+ .vfp11_veneer  0x080012b8        0x0 linker stubs
 
-.v4_bx          0x08001228        0x0
- .v4_bx         0x08001228        0x0 linker stubs
+.v4_bx          0x080012b8        0x0
+ .v4_bx         0x080012b8        0x0 linker stubs
 
-.iplt           0x08001228        0x0
- .iplt          0x08001228        0x0 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtbegin.o
+.iplt           0x080012b8        0x0
+ .iplt          0x080012b8        0x0 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtbegin.o
 
-.rodata         0x08001228       0x24
-                0x08001228                        . = ALIGN (0x4)
+.rodata         0x080012b8       0x24
+                0x080012b8                        . = ALIGN (0x4)
  *(.rodata)
  *(.rodata*)
  .rodata.AHBPrescTable
-                0x08001228       0x10 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Core/Src/system_stm32f1xx.c.obj
-                0x08001228                AHBPrescTable
+                0x080012b8       0x10 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Core/Src/system_stm32f1xx.c.obj
+                0x080012b8                AHBPrescTable
  .rodata.aPLLMULFactorTable.1
-                0x08001238       0x10 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj
+                0x080012c8       0x10 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj
  .rodata.aPredivFactorTable.0
-                0x08001248        0x2 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj
-                0x0800124c                        . = ALIGN (0x4)
- *fill*         0x0800124a        0x2 
+                0x080012d8        0x2 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj
+                0x080012dc                        . = ALIGN (0x4)
+ *fill*         0x080012da        0x2 
 
-.ARM.extab      0x0800124c        0x0
-                0x0800124c                        . = ALIGN (0x4)
+.ARM.extab      0x080012dc        0x0
+                0x080012dc                        . = ALIGN (0x4)
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x0800124c                        . = ALIGN (0x4)
+                0x080012dc                        . = ALIGN (0x4)
 
-.ARM            0x0800124c        0x0
-                0x0800124c                        . = ALIGN (0x4)
-                0x0800124c                        __exidx_start = .
+.ARM            0x080012dc        0x0
+                0x080012dc                        . = ALIGN (0x4)
+                0x080012dc                        __exidx_start = .
  *(.ARM.exidx*)
-                0x0800124c                        __exidx_end = .
-                0x0800124c                        . = ALIGN (0x4)
+                0x080012dc                        __exidx_end = .
+                0x080012dc                        . = ALIGN (0x4)
 
-.preinit_array  0x0800124c        0x0
-                0x0800124c                        . = ALIGN (0x4)
-                0x0800124c                        PROVIDE (__preinit_array_start = .)
+.preinit_array  0x080012dc        0x0
+                0x080012dc                        . = ALIGN (0x4)
+                0x080012dc                        PROVIDE (__preinit_array_start = .)
  *(.preinit_array*)
-                0x0800124c                        PROVIDE (__preinit_array_end = .)
-                0x0800124c                        . = ALIGN (0x4)
+                0x080012dc                        PROVIDE (__preinit_array_end = .)
+                0x080012dc                        . = ALIGN (0x4)
 
-.init_array     0x0800124c        0x8
-                0x0800124c                        . = ALIGN (0x4)
-                0x0800124c                        PROVIDE (__init_array_start = .)
+.init_array     0x080012dc        0x8
+                0x080012dc                        . = ALIGN (0x4)
+                0x080012dc                        PROVIDE (__init_array_start = .)
  *(SORT_BY_NAME(.init_array.*))
  *(.init_array*)
- .init_array    0x0800124c        0x4 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtbegin.o
- .init_array    0x08001250        0x4 CMakeFiles/STM32_CyberDog.dir/Core/Src/arena.cpp.obj
-                0x08001254                        PROVIDE (__init_array_end = .)
-                0x08001254                        . = ALIGN (0x4)
+ .init_array    0x080012dc        0x4 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtbegin.o
+ .init_array    0x080012e0        0x4 CMakeFiles/STM32_CyberDog.dir/Core/Src/arena.cpp.obj
+                0x080012e4                        PROVIDE (__init_array_end = .)
+                0x080012e4                        . = ALIGN (0x4)
 
-.fini_array     0x08001254        0x4
-                0x08001254                        . = ALIGN (0x4)
+.fini_array     0x080012e4        0x4
+                0x080012e4                        . = ALIGN (0x4)
                 [!provide]                        PROVIDE (__fini_array_start = .)
  *(SORT_BY_NAME(.fini_array.*))
  *(.fini_array*)
- .fini_array    0x08001254        0x4 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtbegin.o
+ .fini_array    0x080012e4        0x4 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtbegin.o
                 [!provide]                        PROVIDE (__fini_array_end = .)
-                0x08001258                        . = ALIGN (0x4)
-                0x08001258                        _sidata = LOADADDR (.data)
+                0x080012e8                        . = ALIGN (0x4)
+                0x080012e8                        _sidata = LOADADDR (.data)
 
-.rel.dyn        0x08001258        0x0
- .rel.iplt      0x08001258        0x0 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtbegin.o
+.rel.dyn        0x080012e8        0x0
+ .rel.iplt      0x080012e8        0x0 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtbegin.o
 
-.data           0x20000000        0xc load address 0x08001258
+.data           0x20000000        0xc load address 0x080012e8
                 0x20000000                        . = ALIGN (0x4)
                 0x20000000                        _sdata = .
  *(.data)
@@ -2344,16 +2414,16 @@ LOAD D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtn.o
  *fill*         0x20000009        0x3 
 
 .tm_clone_table
-                0x2000000c        0x0 load address 0x08001264
+                0x2000000c        0x0 load address 0x080012f4
  .tm_clone_table
                 0x2000000c        0x0 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtbegin.o
  .tm_clone_table
                 0x2000000c        0x0 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtend.o
 
-.igot.plt       0x2000000c        0x0 load address 0x08001264
+.igot.plt       0x2000000c        0x0 load address 0x080012f4
  .igot.plt      0x2000000c        0x0 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtbegin.o
 
-.tdata          0x2000000c        0x0 load address 0x08001264
+.tdata          0x2000000c        0x0 load address 0x080012f4
  *(.tdata .tdata.* .gnu.linkonce.td.*)
                 0x2000000c                        . = ALIGN (0x4)
                 0x2000000c                        _edata = .
@@ -2370,7 +2440,7 @@ LOAD D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtn.o
                 [!provide]                        PROVIDE (__data_source_end = __tdata_source_end)
                 [!provide]                        PROVIDE (__data_source_size = (__data_source_end - __data_source))
 
-.tbss           0x2000000c        0x0 load address 0x08001264
+.tbss           0x2000000c        0x0 load address 0x080012f4
                 0x2000000c                        _sbss = .
                 0x2000000c                        __bss_start__ = _sbss
  *(.tbss .tbss.*)
@@ -2387,7 +2457,7 @@ LOAD D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtn.o
                 [!provide]                        PROVIDE (__arm32_tls_tcb_offset = MAX (0x8, __tls_align))
                 [!provide]                        PROVIDE (__arm64_tls_tcb_offset = MAX (0x10, __tls_align))
 
-.bss            0x2000000c     0x4024 load address 0x08001264
+.bss            0x2000000c     0x4024 load address 0x080012f4
  *(.bss)
  *(.bss*)
  .bss.completed.1
@@ -2408,7 +2478,7 @@ LOAD D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtn.o
                 [!provide]                        PROVIDE (__bss_size = (__bss_end - __bss_start))
 
 ._user_heap_stack
-                0x20004030      0x600 load address 0x08001264
+                0x20004030      0x600 load address 0x080012f4
                 0x20004030                        . = ALIGN (0x8)
                 [!provide]                        PROVIDE (end = .)
                 0x20004030                        PROVIDE (_end = .)
@@ -2478,7 +2548,7 @@ LOAD linker stubs
  .comment       0x00000046       0x47 CMakeFiles/STM32_CyberDog.dir/Core/Src/arena.cpp.obj
  .comment       0x00000046       0x47 CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
 
-.debug_info     0x00000000     0x39cf
+.debug_info     0x00000000     0x3af1
  .debug_info    0x00000000      0x222 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Core/Src/system_stm32f1xx.c.obj
  .debug_info    0x00000222      0x704 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.obj
  .debug_info    0x00000926      0x7d5 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj
@@ -2490,9 +2560,9 @@ LOAD linker stubs
  .debug_info    0x0000278f      0x1f1 CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_hal_msp.c.obj
  .debug_info    0x00002980       0x30 CMakeFiles/STM32_CyberDog.dir/startup_stm32f103xb.s.obj
  .debug_info    0x000029b0      0xfe2 CMakeFiles/STM32_CyberDog.dir/Core/Src/arena.cpp.obj
- .debug_info    0x00003992       0x3d CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .debug_info    0x00003992      0x15f CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
 
-.debug_abbrev   0x00000000     0x12a2
+.debug_abbrev   0x00000000     0x134a
  .debug_abbrev  0x00000000      0x13f cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Core/Src/system_stm32f1xx.c.obj
  .debug_abbrev  0x0000013f      0x201 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.obj
  .debug_abbrev  0x00000340      0x2b3 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj
@@ -2504,7 +2574,7 @@ LOAD linker stubs
  .debug_abbrev  0x00000df0       0xdb CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_hal_msp.c.obj
  .debug_abbrev  0x00000ecb       0x24 CMakeFiles/STM32_CyberDog.dir/startup_stm32f103xb.s.obj
  .debug_abbrev  0x00000eef      0x386 CMakeFiles/STM32_CyberDog.dir/Core/Src/arena.cpp.obj
- .debug_abbrev  0x00001275       0x2d CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .debug_abbrev  0x00001275       0xd5 CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
 
 .debug_aranges  0x00000000      0x460
  .debug_aranges
@@ -2559,7 +2629,7 @@ LOAD linker stubs
  .debug_rnglists
                 0x00000303       0x13 CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
 
-.debug_macro    0x00000000    0x1812c
+.debug_macro    0x00000000    0x18fd1
  .debug_macro   0x00000000      0x184 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Core/Src/system_stm32f1xx.c.obj
  .debug_macro   0x00000184      0xacc cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Core/Src/system_stm32f1xx.c.obj
  .debug_macro   0x00000c50       0x2e cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Core/Src/system_stm32f1xx.c.obj
@@ -2624,9 +2694,10 @@ LOAD linker stubs
  .debug_macro   0x00017ecf       0x16 CMakeFiles/STM32_CyberDog.dir/Core/Src/arena.cpp.obj
  .debug_macro   0x00017ee5      0x115 CMakeFiles/STM32_CyberDog.dir/Core/Src/arena.cpp.obj
  .debug_macro   0x00017ffa      0x11d CMakeFiles/STM32_CyberDog.dir/Core/Src/arena.cpp.obj
- .debug_macro   0x00018117       0x15 CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .debug_macro   0x00018117      0x197 CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .debug_macro   0x000182ae      0xd23 CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
 
-.debug_line     0x00000000     0x41b6
+.debug_line     0x00000000     0x45bc
  .debug_line    0x00000000      0x50d cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Core/Src/system_stm32f1xx.c.obj
  .debug_line    0x0000050d      0x73e cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.obj
  .debug_line    0x00000c4b      0xbf7 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj
@@ -2638,24 +2709,24 @@ LOAD linker stubs
  .debug_line    0x000037d2      0x48f CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_hal_msp.c.obj
  .debug_line    0x00003c61       0x78 CMakeFiles/STM32_CyberDog.dir/startup_stm32f103xb.s.obj
  .debug_line    0x00003cd9      0x452 CMakeFiles/STM32_CyberDog.dir/Core/Src/arena.cpp.obj
- .debug_line    0x0000412b       0x8b CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .debug_line    0x0000412b      0x491 CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
 
-.debug_str      0x00000000    0x84440
- .debug_str     0x00000000    0x84440 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Core/Src/system_stm32f1xx.c.obj
+.debug_str      0x00000000    0x8444f
+ .debug_str     0x00000000    0x8444f cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Core/Src/system_stm32f1xx.c.obj
                               0x7ade9 (size before relaxing)
- .debug_str     0x00084440    0x7b51c cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.obj
- .debug_str     0x00084440    0x7b218 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj
- .debug_str     0x00084440    0x7b16f cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.obj
- .debug_str     0x00084440    0x7b468 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.obj
- .debug_str     0x00084440    0x7aefe CMakeFiles/STM32_CyberDog.dir/Core/Src/main.c.obj
- .debug_str     0x00084440    0x7ae36 CMakeFiles/STM32_CyberDog.dir/Core/Src/gpio.c.obj
- .debug_str     0x00084440    0x7add3 CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_it.c.obj
- .debug_str     0x00084440    0x7adbe CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_hal_msp.c.obj
- .debug_str     0x00084440       0x72 CMakeFiles/STM32_CyberDog.dir/startup_stm32f103xb.s.obj
- .debug_str     0x00084440     0xc6bd CMakeFiles/STM32_CyberDog.dir/Core/Src/arena.cpp.obj
- .debug_str     0x00084440     0x34a9 CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .debug_str     0x0008444f    0x7b51c cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.obj
+ .debug_str     0x0008444f    0x7b218 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj
+ .debug_str     0x0008444f    0x7b16f cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.obj
+ .debug_str     0x0008444f    0x7b468 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.obj
+ .debug_str     0x0008444f    0x7aefe CMakeFiles/STM32_CyberDog.dir/Core/Src/main.c.obj
+ .debug_str     0x0008444f    0x7ae36 CMakeFiles/STM32_CyberDog.dir/Core/Src/gpio.c.obj
+ .debug_str     0x0008444f    0x7add3 CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_it.c.obj
+ .debug_str     0x0008444f    0x7adbe CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_hal_msp.c.obj
+ .debug_str     0x0008444f       0x72 CMakeFiles/STM32_CyberDog.dir/startup_stm32f103xb.s.obj
+ .debug_str     0x0008444f     0xc6bd CMakeFiles/STM32_CyberDog.dir/Core/Src/arena.cpp.obj
+ .debug_str     0x0008444f    0x7b3f4 CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
 
-.debug_frame    0x00000000      0xe90
+.debug_frame    0x00000000      0xe94
  .debug_frame   0x00000000       0x58 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Core/Src/system_stm32f1xx.c.obj
  .debug_frame   0x00000058      0x334 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.obj
  .debug_frame   0x0000038c      0x218 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj
@@ -2666,9 +2737,9 @@ LOAD linker stubs
  .debug_frame   0x00000bb4      0x104 CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_it.c.obj
  .debug_frame   0x00000cb8       0x38 CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_hal_msp.c.obj
  .debug_frame   0x00000cf0      0x12c CMakeFiles/STM32_CyberDog.dir/Core/Src/arena.cpp.obj
- .debug_frame   0x00000e1c       0x28 CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
- .debug_frame   0x00000e44       0x20 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-memset.o)
- .debug_frame   0x00000e64       0x2c D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-init.o)
+ .debug_frame   0x00000e1c       0x2c CMakeFiles/STM32_CyberDog.dir/Core/Src/app.cpp.obj
+ .debug_frame   0x00000e48       0x20 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-memset.o)
+ .debug_frame   0x00000e68       0x2c D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-init.o)
 
 .debug_line_str
                 0x00000000       0x56

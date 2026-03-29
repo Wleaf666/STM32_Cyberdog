@@ -1,4 +1,5 @@
 #include "app.hpp"
+#include "main.h"
 // 以后所有的 C++ 头文件（比如你的 static_arena.hpp）都在这里尽情 include！
 
 void App_Main()
@@ -8,6 +9,7 @@ void App_Main()
 
     while (1)
     {
-        // 你的 C++ 主循环
+        HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
+        HAL_Delay(250);
     }
 }
