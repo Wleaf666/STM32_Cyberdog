@@ -1,0 +1,8 @@
+{
+	"InstallScripts" : 
+	[
+		"D:/Project/STM32_CyberDog/build/Debug/cmake_install.cmake",
+		"D:/Project/STM32_CyberDog/build/Debug/cmake/stm32cubemx/cmake_install.cmake"
+	],
+	"Parallel" : false
+}
