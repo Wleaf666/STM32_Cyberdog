@@ -34,21 +34,15 @@ bool MPU6050::Init()
     data = 0x03;
     HAL_I2C_Mem_Write(hi2c, MPU_ADDR, REG_DLPF_CFG, 1, &data, 1, 100);
 
+    this->lastTick = osKernelGetTickCount();
+
     return true;
 }
 
 void MPU6050::Update()
 {
     uint8_t data_buffer[14] = {0};
-    // HAL_I2C_Mem_Read(hi2c, MPU_ADDR, REG_DATA, 1, data_buffer, 14, 100);
-
-    HAL_StatusTypeDef status = HAL_I2C_Mem_Read(hi2c, 0xD0, 0x3B, 1, data_buffer, 14, 100);
-
-    if (status != HAL_OK)
-    {
-        // 如果 I2C 断了或者被干扰了，立刻放弃本次更新
-        return;
-    }
+    HAL_I2C_Mem_Read(hi2c, MPU_ADDR, REG_DATA, 1, data_buffer, 14, 100);
 
     int16_t RawAccleX = (int16_t)((data_buffer[0] << 8) | data_buffer[1]);
     int16_t RawAccleY = ((int16_t)(data_buffer[2] << 8) | data_buffer[3]);
@@ -73,7 +67,15 @@ void MPU6050::Update()
     float accelPitch = atan2(this->accelX, sqrt(this->accelX * this->accelX + this->accelY * this->accelY + this->accelZ * this->accelZ)) *57.29578f;
     float accelRoll = atan2(this->accelY, this->accelZ) * 57.29578f;
 
-    float dt = 0.02f;
+    uint32_t currentTick = osKernelGetTickCount();
+    uint32_t deltaTick = currentTick - lastTick;
+
+    float dt = (float)deltaTick / (float)osKernelGetTickFreq();
+
+    if(dt<=0.0f||dt>0.1f)
+    {
+        dt = 0.2f;
+    }
 
     this->pitch = 0.98f * (this->pitch + this->gyroY * dt) + 0.02f * accelPitch;
     this->roll = 0.98f * (this->roll + this->gyroX * dt) + 0.02f * accelRoll;

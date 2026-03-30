@@ -14,6 +14,8 @@ private:
 
     float pitch, roll, yaw;
 
+    uint32_t lastTick;
+
 public:
     MPU6050(I2C_HandleTypeDef *_hi2c):hi2c(_hi2c){};
 
