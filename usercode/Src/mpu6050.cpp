@@ -40,17 +40,25 @@ bool MPU6050::Init()
 void MPU6050::Update()
 {
     uint8_t data_buffer[14] = {0};
-    HAL_I2C_Mem_Read(hi2c, MPU_ADDR, REG_DATA, 1, data_buffer, 14, 100);
+    // HAL_I2C_Mem_Read(hi2c, MPU_ADDR, REG_DATA, 1, data_buffer, 14, 100);
 
-    uint16_t RawAccleX = (data_buffer[0] << 8) | data_buffer[1];
-    uint16_t RawAccleY = (data_buffer[2] << 8) | data_buffer[3];
-    uint16_t RawAccleZ = (data_buffer[4] << 8) | data_buffer[5];
+    HAL_StatusTypeDef status = HAL_I2C_Mem_Read(hi2c, 0xD0, 0x3B, 1, data_buffer, 14, 100);
 
-    uint16_t RawTemperature = (data_buffer[6] << 8) | data_buffer[7];
+    if (status != HAL_OK)
+    {
+        // 如果 I2C 断了或者被干扰了，立刻放弃本次更新
+        return;
+    }
 
-    uint16_t RawGyroX = (data_buffer[8] << 8) | data_buffer[9];
-    uint16_t RawGyroY = (data_buffer[10] << 8) | data_buffer[11];
-    uint16_t RawGyroZ = (data_buffer[12] << 8) | data_buffer[13];
+    int16_t RawAccleX = (int16_t)((data_buffer[0] << 8) | data_buffer[1]);
+    int16_t RawAccleY = ((int16_t)(data_buffer[2] << 8) | data_buffer[3]);
+    int16_t RawAccleZ = ((int16_t)(data_buffer[4] << 8) | data_buffer[5]);
+
+    int16_t RawTemperature = ((int16_t)(data_buffer[6] << 8) | data_buffer[7]);
+
+    int16_t RawGyroX = ((int16_t)(data_buffer[8] << 8) | data_buffer[9]);
+    int16_t RawGyroY = ((int16_t)(data_buffer[10] << 8) | data_buffer[11]);
+    int16_t RawGyroZ = ((int16_t)(data_buffer[12] << 8) | data_buffer[13]);
 
     this->accelX = RawAccleX / 8192.0f;
     this->accelY = RawAccleY / 8192.0f;
