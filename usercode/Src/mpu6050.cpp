@@ -60,7 +60,7 @@ void MPU6050::Update()
     this->gyroY = RawGyroY / 32.8f;
     this->gyroZ = RawGyroZ / 32.8f;
 
-    this->temptreture = RawTemperature / 340.0f + 36.53;
+    this->temptreture = RawTemperature / 340.0f + 35;
 
     float accelPitch = atan2(this->accelX, sqrt(this->accelX * this->accelX + this->accelY * this->accelY + this->accelZ * this->accelZ)) *57.29578f;
     float accelRoll = atan2(this->accelY, this->accelZ) * 57.29578f;
@@ -68,7 +68,7 @@ void MPU6050::Update()
     float dt = 0.02f;
 
     this->pitch = 0.98f * (this->pitch + this->gyroY * dt) + 0.02f * accelPitch;
-    this->pitch = 0.98f * (this->roll + this->gyroX * dt) + 0.02f * accelRoll;
+    this->roll = 0.98f * (this->roll + this->gyroX * dt) + 0.02f * accelRoll;
 
     this->yaw = this->yaw + this->gyroZ * dt;
 }
