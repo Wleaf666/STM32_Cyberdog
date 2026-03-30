@@ -1,16 +1,20 @@
 #include "app.hpp"
 #include "main.h"
 #include "cmsis_os2.h"
+#include "mpu6050.hpp"
+#include "i2c.h"
 
 // 以后所有的 C++ 头文件（比如你的 static_arena.hpp）都在这里尽情 include！
 uint32_t test_count = 0;
 uint32_t test_count1 = 0;
 
+MPU6050 dogImu(&hi2c1);
+
 void task_test(void *argument)
 {
     for (;;)
     {
-        (*(uint32_t*)argument)++;
+        (*(uint32_t *)argument)++;
         HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
         osDelay(500);
     }
@@ -22,7 +26,8 @@ void task_test1(void *argument)
     {
         (*(uint32_t *)argument)++;
         // HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
-        osDelay(100);
+        dogImu.Update();
+        osDelay(20);
     }
 }
 
@@ -34,4 +39,5 @@ void App_Main()
     osThreadNew(task_test, &test_count, &task_test_attr);
     osThreadAttr_t task_test_attr1 = {.priority = osPriorityNormal};
     osThreadNew(task_test1, &test_count1, &task_test_attr1);
+    dogImu.Init();
 }
