@@ -43,13 +43,13 @@
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 73,
+				"line" : 82,
 				"parent" : 0
 			},
 			{
 				"command" : 2,
 				"file" : 0,
-				"line" : 60,
+				"line" : 68,
 				"parent" : 0
 			},
 			{
@@ -61,7 +61,7 @@
 			{
 				"command" : 3,
 				"file" : 0,
-				"line" : 54,
+				"line" : 63,
 				"parent" : 0
 			}
 		]
@@ -115,6 +115,10 @@
 				{
 					"backtrace" : 5,
 					"path" : "D:/Project/STM32_CyberDog/Core/Inc"
+				},
+				{
+					"backtrace" : 5,
+					"path" : "D:/Project/STM32_CyberDog/usercode/Inc"
 				},
 				{
 					"backtrace" : 3,
@@ -199,6 +203,10 @@
 					"path" : "D:/Project/STM32_CyberDog/Core/Inc"
 				},
 				{
+					"backtrace" : 5,
+					"path" : "D:/Project/STM32_CyberDog/usercode/Inc"
+				},
+				{
 					"backtrace" : 3,
 					"path" : "D:/Project/STM32_CyberDog/cmake/stm32cubemx/../../Core/Inc"
 				},
@@ -264,6 +272,10 @@
 				{
 					"backtrace" : 5,
 					"path" : "D:/Project/STM32_CyberDog/Core/Inc"
+				},
+				{
+					"backtrace" : 5,
+					"path" : "D:/Project/STM32_CyberDog/usercode/Inc"
 				},
 				{
 					"backtrace" : 3,
@@ -487,13 +499,13 @@
 		{
 			"backtrace" : 7,
 			"compileGroupIndex" : 2,
-			"path" : "Core/Src/arena.cpp",
+			"path" : "usercode/src/app.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 7,
 			"compileGroupIndex" : 2,
-			"path" : "Core/Src/app.cpp",
+			"path" : "usercode/src/arena.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
