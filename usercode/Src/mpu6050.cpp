@@ -14,25 +14,31 @@ bool MPU6050::Init()
 {
     uint8_t check;
     uint8_t data;
-
-    HAL_I2C_Mem_Read(hi2c, MPU_ADDR, REG_WHO_AM_I, 1, &check, 1, 100);
-    if (check != 0x68)
+    if (i2cMutex != nullptr && osMutexAcquire(i2cMutex, osWaitForever) == osOK)
     {
-        return false;
+        HAL_I2C_Mem_Read(hi2c, MPU_ADDR, REG_WHO_AM_I, 1, &check, 1, 100);
+        if (check != 0x68)
+        {
+            return false;
+            osMutexRelease(i2cMutex);
+        }
+        data = 0x01;
+        HAL_I2C_Mem_Write(hi2c, MPU_ADDR, REG_PWR_MGMT_1, 1, &data, 1, 100);
+        osDelay(50);
+
+        data = 0x08;
+        HAL_I2C_Mem_Write(hi2c, MPU_ADDR, REG_ACCEL_CFG, 1, &data, 1, 100);
+
+        data = 0x10;
+        HAL_I2C_Mem_Write(hi2c, MPU_ADDR, REG_GYRO_CFG, 1, &data, 1, 100);
+
+        data = 0x03;
+        HAL_I2C_Mem_Write(hi2c, MPU_ADDR, REG_DLPF_CFG, 1, &data, 1, 100);
+
+        osMutexRelease(i2cMutex);
     }
 
-    data = 0x01;
-    HAL_I2C_Mem_Write(hi2c, MPU_ADDR, REG_PWR_MGMT_1, 1, &data, 1, 100);
-    osDelay(50);
-
-    data = 0x08;
-    HAL_I2C_Mem_Write(hi2c, MPU_ADDR, REG_ACCEL_CFG, 1, &data, 1, 100);
-
-    data = 0x10;
-    HAL_I2C_Mem_Write(hi2c, MPU_ADDR, REG_GYRO_CFG, 1, &data, 1, 100);
-
-    data = 0x03;
-    HAL_I2C_Mem_Write(hi2c, MPU_ADDR, REG_DLPF_CFG, 1, &data, 1, 100);
+        
 
     this->lastTick = osKernelGetTickCount();
 
@@ -42,7 +48,13 @@ bool MPU6050::Init()
 void MPU6050::Update()
 {
     uint8_t data_buffer[14] = {0};
-    HAL_I2C_Mem_Read(hi2c, MPU_ADDR, REG_DATA, 1, data_buffer, 14, 100);
+    if (i2cMutex != nullptr && osMutexAcquire(i2cMutex, osWaitForever) == osOK)
+    {
+        HAL_I2C_Mem_Read(hi2c, MPU_ADDR, REG_DATA, 1, data_buffer, 14, 100);
+
+        osMutexRelease(i2cMutex);
+    }
+
 
     int16_t RawAccleX = (int16_t)((data_buffer[0] << 8) | data_buffer[1]);
     int16_t RawAccleY = (int16_t)((data_buffer[2] << 8) | data_buffer[3]);

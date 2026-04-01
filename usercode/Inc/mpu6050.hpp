@@ -1,6 +1,8 @@
 #pragma once
 #include "main.h" 
 #include "cstdint"
+#include "cmsis_os2.h"
+
 class MPU6050
 {
 private:
@@ -16,8 +18,10 @@ private:
 
     uint32_t lastTick;
 
+    osMutexId_t i2cMutex;
+
 public:
-    MPU6050(I2C_HandleTypeDef *_hi2c):hi2c(_hi2c){};
+    MPU6050(I2C_HandleTypeDef *_hi2c,osMutexId_t _i2cMutex=nullptr):hi2c(_hi2c),i2cMutex(_i2cMutex){}
 
     bool Init();
 
