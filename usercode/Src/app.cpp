@@ -3,6 +3,8 @@
 #include "cmsis_os2.h"
 #include "mpu6050.hpp"
 #include "i2c.h"
+#include "hc05.hpp"
+#include "usart.h"
 
 // 以后所有的 C++ 头文件（比如你的 static_arena.hpp）都在这里尽情 include！
 uint32_t test_count = 0;
@@ -12,7 +14,16 @@ osMutexId_t i2c1_mutex = osMutexNew(NULL);
 
 MPU6050 dogImu(&hi2c1,i2c1_mutex);
 
-void task_test(void *argument)
+osMutexId_t uart_mutex = osMutexNew(NULL);
+
+HC05 blueTooth(&huart1, uart_mutex);
+
+void HC05_RxCallback_Wrapper(UART_HandleTypeDef *huart)
+{
+    blueTooth.onRxCpltCallback();
+}
+
+    void task_test(void *argument)
 {
     for (;;)
     {

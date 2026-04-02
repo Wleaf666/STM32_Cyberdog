@@ -7,11 +7,11 @@ OpenDocument="tasks.c", FilePath="D:/Project/STM32_CyberDog/Middlewares/Third_Pa
 OpenDocument="stm32f1xx_hal.c", FilePath="D:/Project/STM32_CyberDog/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c", Line=293
 OpenDocument="main.c", FilePath="D:/Project/STM32_CyberDog/Core/Src/main.c", Line=54
 OpenToolbar="Debug", Floating=0, x=0, y=0
-OpenWindow="Registers 1", DockArea=RIGHT, x=0, y=1, w=300, h=709, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0, FilteredItems=[], RefreshRate=1
-OpenWindow="Source Files", DockArea=LEFT, x=0, y=0, w=567, h=265, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0
-OpenWindow="Disassembly", DockArea=RIGHT, x=0, y=0, w=300, h=246, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0
+OpenWindow="Registers 1", DockArea=RIGHT, x=0, y=1, w=300, h=701, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0, FilteredItems=[], RefreshRate=1
+OpenWindow="Source Files", DockArea=LEFT, x=0, y=0, w=567, h=272, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0
+OpenWindow="Disassembly", DockArea=RIGHT, x=0, y=0, w=300, h=254, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0
 OpenWindow="Memory 1", DockArea=BOTTOM, x=1, y=0, w=1277, h=328, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0, EditorAddress=0x0
-OpenWindow="Watched Data 1", DockArea=LEFT, x=0, y=1, w=567, h=690, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0
+OpenWindow="Watched Data 1", DockArea=LEFT, x=0, y=1, w=567, h=683, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0
 OpenWindow="Console", DockArea=BOTTOM, x=0, y=0, w=1282, h=328, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0
 TableHeader="Source Files", SortCol="File", SortOrder="ASCENDING", VisibleCols=["File";"Status";"Size";"#Insts";"Path"], ColWidths=[233;100;100;100;700]
 TableHeader="Power Sampling", SortCol="Index", SortOrder="ASCENDING", VisibleCols=["Index";"Time";"Ch 0"], ColWidths=[100;100;100]
