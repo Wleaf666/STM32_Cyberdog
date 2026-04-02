@@ -8,7 +8,9 @@
 uint32_t test_count = 0;
 uint32_t test_count1 = 0;
 
-MPU6050 dogImu(&hi2c1);
+osMutexId_t i2c1_mutex = osMutexNew(NULL);
+
+MPU6050 dogImu(&hi2c1,i2c1_mutex);
 
 void task_test(void *argument)
 {
