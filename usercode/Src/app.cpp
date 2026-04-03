@@ -12,17 +12,18 @@ osMessageQueueId_t my_hc05_queue;
 uint32_t test_count = 0;
 uint32_t test_count1 = 0;
 
-osMutexId_t i2c1_mutex = osMutexNew(NULL);
 
-MPU6050 dogImu(&hi2c1, i2c1_mutex);
-
-osMutexId_t uart_mutex = osMutexNew(NULL);
-
-HC05 blueTooth(&huart1, uart_mutex);
+osMutexId_t i2c1_mutex = nullptr;
+osMutexId_t uart_mutex = nullptr;
+MPU6050 *dogImu = nullptr;
+HC05 *blueTooth = nullptr;
 
 void HC05_RxCallback_Wrapper(UART_HandleTypeDef *huart)
 {
-    blueTooth.onRxCpltCallback();
+    if(blueTooth!=nullptr)
+    {
+        blueTooth->onRxCpltCallback();
+    }
 }
 
 // void task_test1(void *argument)
@@ -42,9 +43,9 @@ void task_bluetooth_test(void *argument)
     for (;;)
     {
         (*(uint32_t *)argument)++;
-        if (blueTooth.getCommand(cmd))
+        if (blueTooth->getCommand(cmd))
         {
-            blueTooth.sendString("Got a Valid Packet!\r\n");
+            blueTooth->sendString("Got a Valid Packet!\r\n");
 
             HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
         }
@@ -67,11 +68,19 @@ void App_Main()
 
     // osThreadAttr_t task_test_attr1 = {.priority = osPriorityNormal};
     // osThreadNew(task_test1, &test_count1, &task_test_attr1);
+
+    i2c1_mutex = osMutexNew(NULL);
+    uart_mutex = osMutexNew(NULL);
+
+    dogImu = new MPU6050(&hi2c1, i2c1_mutex);
+    blueTooth = new HC05(&huart1, uart_mutex);
+
     osThreadAttr_t task_bluetooth_test_attr = {.priority = osPriorityNormal};
+    my_hc05_queue = osMessageQueueNew(64, sizeof(uint8_t), NULL);
     osThreadNew(task_bluetooth_test, &test_count, &task_bluetooth_test_attr);
 
-    my_hc05_queue = osMessageQueueNew(64, sizeof(uint8_t), NULL);
+
     // dogImu.Init();
     // blueTooth.Init(hc05RxQueueHandle);
-    blueTooth.Init(my_hc05_queue);
+    blueTooth->Init(my_hc05_queue);
 }

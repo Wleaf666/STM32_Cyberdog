@@ -21,10 +21,10 @@ class HC05
         osMutexId_t txMutex;
         osMessageQueueId_t rxQueue;
 
-        std::vector<uint8_t> rxBufffer;
+        std::vector<uint8_t> rxBuffer;
         uint8_t rxByte;
 
-        bool parasePacket(const std::vector<uint8_t> &packet, RobotCommand &out_cmd);
+        bool parsePacket(const std::vector<uint8_t> &packet, RobotCommand &out_cmd);
 
     public:
         HC05(UART_HandleTypeDef *_huart,osMutexId_t _txMutex):huart(_huart),txMutex(_txMutex){}

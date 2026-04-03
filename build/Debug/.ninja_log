@@ -47,3 +47,6 @@
 43	624	7968387926828785	CMakeFiles/STM32_CyberDog.dir/Core/Src/usart.c.obj	1fa4df7bdc9073c4
 313	648	7968387929527320	cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.obj	30a29f6ebb266e91
 234	876	7968387928737329	CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj	b53b54dd5eba3b26
+6	374	7969058929203552	CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj	81a0b8cea8688fab
+25	383	7969058929403558	CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj	b53b54dd5eba3b26
+383	606	7969058932975003	STM32_CyberDog.elf	4a405fbf88756fec

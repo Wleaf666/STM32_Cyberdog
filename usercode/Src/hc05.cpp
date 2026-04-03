@@ -6,7 +6,7 @@
 bool HC05::Init(osMessageQueueId_t _rxQueue)
 {
     rxQueue = _rxQueue;
-    rxBufffer.reserve(64);
+    rxBuffer.reserve(64);
 
     if (HAL_UART_RegisterCallback(huart, HAL_UART_RX_COMPLETE_CB_ID, HC05_RxCallback_Wrapper) !=HAL_OK)
     {
@@ -48,33 +48,33 @@ void HC05::onRxCpltCallback()
 bool HC05::getCommand(RobotCommand &cmd)
 {
     uint8_t byte;
-    while (osMessageQueueGet(rxQueue, &byte, NULL, 1) == osOK)
+    while (osMessageQueueGet(rxQueue, &byte, NULL, 0) == osOK)
     {
-        rxBufffer.push_back(byte);
+        rxBuffer.push_back(byte);
 
-        if (rxBufffer.front() != 0xAA)
+        if (rxBuffer.front() != 0xAA)
         {
-            rxBufffer.clear();
+            rxBuffer.clear();
             continue;
         }
 
         if (byte == 0x55)
         {
-            bool valid = parasePacket(rxBufffer, cmd);
-            rxBufffer.clear();
+            bool valid = parsePacket(rxBuffer, cmd);
+            rxBuffer.clear();
             return valid;
         }
 
-        if (rxBufffer.size() > 64)
+        if (rxBuffer.size() > 64)
         {
-            rxBufffer.clear();
+            rxBuffer.clear();
         }
         
     }
     return false;
 }
 
-bool HC05::parasePacket(const std::vector<uint8_t> &packet, RobotCommand &out_cmd)
+bool HC05::parsePacket(const std::vector<uint8_t> &packet, RobotCommand &out_cmd)
 {
 
     return true;
