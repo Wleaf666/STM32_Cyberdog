@@ -54,11 +54,6 @@ const osThreadAttr_t defaultTask_attributes = {
   .stack_size = 128 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
-/* Definitions for hc05RxQueue */
-osMessageQueueId_t hc05RxQueueHandle;
-const osMessageQueueAttr_t hc05RxQueue_attributes = {
-  .name = "hc05RxQueue"
-};
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -90,10 +85,6 @@ void MX_FREERTOS_Init(void) {
   /* USER CODE BEGIN RTOS_TIMERS */
   /* start timers, add new ones, ... */
   /* USER CODE END RTOS_TIMERS */
-
-  /* Create the queue(s) */
-  /* creation of hc05RxQueue */
-  hc05RxQueueHandle = osMessageQueueNew (64, sizeof(uint8_t), &hc05RxQueue_attributes);
 
   /* USER CODE BEGIN RTOS_QUEUES */
   /* add queues, ... */

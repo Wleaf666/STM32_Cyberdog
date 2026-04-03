@@ -39,10 +39,10 @@ void HC05::onRxCpltCallback()
 {
     if (rxQueue != nullptr)
     {
-        osMessageQueuePut(rxQueue, &rxByte, 0, 1);
+        osMessageQueuePut(rxQueue, &rxByte, 0, 0);
     }
 
-    HAL_UART_Receive_IT(huart, &rxByte, 1);
+    HAL_UART_Receive_IT(huart, &rxByte,1);
 }
 
 bool HC05::getCommand(RobotCommand &cmd)
@@ -69,10 +69,13 @@ bool HC05::getCommand(RobotCommand &cmd)
         {
             rxBufffer.clear();
         }
-        return false;
+        
     }
+    return false;
 }
 
 bool HC05::parasePacket(const std::vector<uint8_t> &packet, RobotCommand &out_cmd)
 {
+
+    return true;
 }
