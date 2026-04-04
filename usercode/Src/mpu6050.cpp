@@ -17,6 +17,7 @@ bool MPU6050::Init()
         device_ready = false;
         return false;
     }
+    device_ready = true;
     uint8_t check;
     uint8_t data;
     if (i2cMutex != nullptr && osMutexAcquire(i2cMutex, osWaitForever) == osOK)

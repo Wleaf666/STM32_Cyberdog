@@ -17,6 +17,7 @@ bool PCA9685::Init(float frequency)
         device_ready = false;
         return false;
     }
+    device_ready = true;
 
     writeRegister(PCA9685_MODE1, 0x20);
     osDelay(5);

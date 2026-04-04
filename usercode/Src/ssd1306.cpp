@@ -1,4 +1,5 @@
 #include "ssd1306.hpp"
+#include "font.hpp"
 
 
 SSD1306::SSD1306(I2C_HandleTypeDef *_hi2c, osMutexId_t _i2cMutex, uint8_t _address)
@@ -36,6 +37,7 @@ bool SSD1306::Init()
         device_ready = false;
         return false;
     }
+    device_ready = true;
     // 等待屏幕上电稳定
     osDelay(100);
 
@@ -128,5 +130,50 @@ void SSD1306::Update()
             HAL_I2C_Mem_Write(hi2c, address, 0x40, 1, &buffer[i * 128], 128, 100);
         }
         osMutexRelease(i2cMutex);
+    }
+}
+
+void SSD1306::DrawChar(int16_t x,int16_t y,char c)
+{
+    if (c < 32 || c > 126)
+        return;
+
+    // 2. 计算在字典里的页码（因为我们的字典是从空格 ASCII:32 开始的）
+    uint8_t index = c - 32;
+
+    // 3. 把这个字母的 6 列像素一列一列画出来
+    for (uint8_t i = 0; i < 6; i++)
+    {
+        uint8_t line = Font6x8[index][i]; // 拿出第 i 列的 8 个像素
+
+        for (uint8_t j = 0; j < 8; j++)
+        {
+            // 判断这一个列中的 8 个 bit，如果是 1 就点亮，0 就跳过
+            if (line & (1 << j))
+            {
+                DrawPixel(x + i, y + j, true);
+            }
+        }
+    }
+}
+void SSD1306::DrawString(int16_t x, int16_t y, const char *str)
+{
+    // 只要字符串没结束（遇到 '\0'）
+    while (*str)
+    {
+        // 画当前字母
+        DrawChar(x, y, *str);
+
+        // 光标向右移动 6 个像素，准备画下一个字母
+        x += 6;
+
+        // 如果一行写满了，自动换行到下一行 (字高 8 像素，稍微留点间距所以 +10)
+        if (x > 128 - 6)
+        {
+            x = 0;
+            y += 10;
+        }
+
+        str++; // 指向下一个字符
     }
 }

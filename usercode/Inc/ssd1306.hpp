@@ -30,6 +30,10 @@ public:
     void DrawImage(const uint8_t *image_data);
 
     void DrawPixel(int16_t x, int16_t y, bool color);
-    
+
+    void DrawChar(int16_t x, int16_t y, char c);
+
+    void DrawString(int16_t x, int16_t y, const char *str);
+
     void Update();
 };

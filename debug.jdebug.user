@@ -1,23 +1,19 @@
 
-
-Breakpoint=D:/Project/STM32_CyberDog/usercode/src/app.cpp:1051:1, State=BP_STATE_DISABLED
-Breakpoint=D:/Project/STM32_CyberDog/usercode/src/app.cpp:1122:20, State=BP_STATE_DISABLED
-OpenDocument="tasks.c", FilePath="D:/Project/STM32_CyberDog/Middlewares/Third_Party/FreeRTOS/Source/tasks.c", Line=3395
+OpenDocument="tasks.c", FilePath="D:/Project/STM32_CyberDog/Middlewares/Third_Party/FreeRTOS/Source/tasks.c", Line=3623
 OpenDocument="cmsis_os2.c", FilePath="D:/Project/STM32_CyberDog/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.c", Line=1776
 OpenDocument="stm32f1xx_hal_uart.c", FilePath="D:/Project/STM32_CyberDog/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c", Line=3649
 OpenDocument="hc05.cpp", FilePath="D:/Project/STM32_CyberDog/usercode/src/hc05.cpp", Line=26
-OpenDocument="", FilePath="", Line=0
 OpenDocument="mpu6050.hpp", FilePath="D:/Project/STM32_CyberDog/usercode/Inc/mpu6050.hpp", Line=0
-OpenDocument="app.cpp", FilePath="D:/Project/STM32_CyberDog/usercode/src/app.cpp", Line=1074
-OpenDocument="stm32f1xx_hal_i2c.c", FilePath="D:/Project/STM32_CyberDog/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.c", Line=7597
-OpenDocument="stm32f1xx_hal.c", FilePath="D:/Project/STM32_CyberDog/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c", Line=293
-OpenDocument="main.c", FilePath="D:/Project/STM32_CyberDog/Core/Src/main.c", Line=55
+OpenDocument="app.cpp", FilePath="D:/Project/STM32_CyberDog/usercode/src/app.cpp", Line=54
+OpenDocument="stm32f1xx_hal_i2c.c", FilePath="D:/Project/STM32_CyberDog/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.c", Line=7613
+OpenDocument="stm32f1xx_hal.c", FilePath="D:/Project/STM32_CyberDog/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c", Line=290
+OpenDocument="main.c", FilePath="D:/Project/STM32_CyberDog/Core/Src/main.c", Line=54
 OpenToolbar="Debug", Floating=0, x=0, y=0
-OpenWindow="Registers 1", DockArea=RIGHT, x=0, y=1, w=300, h=679, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0, FilteredItems=[], RefreshRate=1
-OpenWindow="Source Files", DockArea=LEFT, x=0, y=0, w=567, h=292, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0
-OpenWindow="Disassembly", DockArea=RIGHT, x=0, y=0, w=300, h=276, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0
+OpenWindow="Registers 1", DockArea=RIGHT, x=0, y=1, w=300, h=672, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0, FilteredItems=[], RefreshRate=1
+OpenWindow="Source Files", DockArea=LEFT, x=0, y=0, w=567, h=298, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0
+OpenWindow="Disassembly", DockArea=RIGHT, x=0, y=0, w=300, h=283, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0
 OpenWindow="Memory 1", DockArea=BOTTOM, x=1, y=0, w=1277, h=328, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0, EditorAddress=0x0
-OpenWindow="Watched Data 1", DockArea=LEFT, x=0, y=1, w=567, h=663, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0
+OpenWindow="Watched Data 1", DockArea=LEFT, x=0, y=1, w=567, h=657, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0
 OpenWindow="Console", DockArea=BOTTOM, x=0, y=0, w=1282, h=328, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0
 TableHeader="Source Files", SortCol="File", SortOrder="ASCENDING", VisibleCols=["File";"Status";"Size";"#Insts";"Path"], ColWidths=[233;100;100;100;700]
 TableHeader="Power Sampling", SortCol="Index", SortOrder="ASCENDING", VisibleCols=["Index";"Time";"Ch 0"], ColWidths=[100;100;100]
