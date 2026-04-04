@@ -12,6 +12,12 @@ PCA9685::PCA9685(I2C_HandleTypeDef *_hi2c, uint8_t _address, osMutexId_t _i2cMut
 
 bool PCA9685::Init(float frequency)
 {
+    if (HAL_I2C_IsDeviceReady(hi2c,address, 3, 10) != HAL_OK)
+    {
+        device_ready = false;
+        return false;
+    }
+
     writeRegister(PCA9685_MODE1, 0x20);
     osDelay(5);
 

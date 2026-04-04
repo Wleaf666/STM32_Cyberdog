@@ -31,6 +31,11 @@ void SSD1306::WriteData(uint8_t *data, uint16_t size)
 
 bool SSD1306::Init()
 {
+    if (HAL_I2C_IsDeviceReady(hi2c, address, 3, 10) != HAL_OK)
+    {
+        device_ready = false;
+        return false;
+    }
     // 等待屏幕上电稳定
     osDelay(100);
 
@@ -103,6 +108,8 @@ void SSD1306::DrawPixel(int16_t x, int16_t y, bool color)
 
 void SSD1306::Update()
 {
+    if(!device_ready)
+        return;
     if (i2cMutex != nullptr && osMutexAcquire(i2cMutex, osWaitForever) == osOK)
     {
         for (uint8_t i = 0; i < 8; i++)

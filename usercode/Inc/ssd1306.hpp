@@ -11,6 +11,7 @@ private:
     osMutexId_t i2cMutex;
     uint8_t address;
 
+    bool device_ready;
 
     uint8_t buffer[1024];
 

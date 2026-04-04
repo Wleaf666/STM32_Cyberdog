@@ -12,6 +12,11 @@
 
 bool MPU6050::Init()
 {
+    if(HAL_I2C_IsDeviceReady(hi2c,MPU_ADDR,3,10)!=HAL_OK)
+    {
+        device_ready = false;
+        return false;
+    }
     uint8_t check;
     uint8_t data;
     if (i2cMutex != nullptr && osMutexAcquire(i2cMutex, osWaitForever) == osOK)
@@ -47,6 +52,8 @@ bool MPU6050::Init()
 
 void MPU6050::Update()
 {
+    if(!device_ready)
+        return;
     uint8_t data_buffer[14] = {0};
     if (i2cMutex != nullptr && osMutexAcquire(i2cMutex, osWaitForever) == osOK)
     {

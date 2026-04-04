@@ -20,6 +20,8 @@ private:
 
     osMutexId_t i2cMutex;
 
+    bool device_ready;
+
 public:
     MPU6050(I2C_HandleTypeDef *_hi2c,osMutexId_t _i2cMutex=nullptr):hi2c(_hi2c),i2cMutex(_i2cMutex){}
 
