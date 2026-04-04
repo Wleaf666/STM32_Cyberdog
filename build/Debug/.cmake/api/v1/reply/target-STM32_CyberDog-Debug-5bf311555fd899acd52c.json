@@ -327,7 +327,8 @@
 				12,
 				13,
 				14,
-				15
+				15,
+				16
 			]
 		}
 	],
@@ -409,7 +410,8 @@
 				12,
 				13,
 				14,
-				15
+				15,
+				16
 			]
 		},
 		{
@@ -423,7 +425,6 @@
 			"name" : "Object Libraries",
 			"sourceIndexes" : 
 			[
-				16,
 				17,
 				18,
 				19,
@@ -448,7 +449,8 @@
 				38,
 				39,
 				40,
-				41
+				41,
+				42
 			]
 		}
 	],
@@ -548,6 +550,12 @@
 			"backtrace" : 7,
 			"compileGroupIndex" : 2,
 			"path" : "usercode/src/pca9685.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 7,
+			"compileGroupIndex" : 2,
+			"path" : "usercode/src/ssd1306.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
