@@ -328,7 +328,8 @@
 				13,
 				14,
 				15,
-				16
+				16,
+				17
 			]
 		}
 	],
@@ -411,7 +412,8 @@
 				13,
 				14,
 				15,
-				16
+				16,
+				17
 			]
 		},
 		{
@@ -425,7 +427,6 @@
 			"name" : "Object Libraries",
 			"sourceIndexes" : 
 			[
-				17,
 				18,
 				19,
 				20,
@@ -450,7 +451,8 @@
 				39,
 				40,
 				41,
-				42
+				42,
+				43
 			]
 		}
 	],
@@ -556,6 +558,12 @@
 			"backtrace" : 7,
 			"compileGroupIndex" : 2,
 			"path" : "usercode/src/ssd1306.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 7,
+			"compileGroupIndex" : 2,
+			"path" : "usercode/src/su03t.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
