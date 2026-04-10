@@ -8,6 +8,7 @@
 #include "ssd1306.hpp"
 #include "stdio.h"
 #include "su03t.hpp"
+#include "pca9685.hpp"
 
 osMessageQueueId_t my_hc05_queue;
 osMessageQueueId_t my_su03t_queue = nullptr;
@@ -15,7 +16,7 @@ osMessageQueueId_t my_su03t_queue = nullptr;
 // 以后所有的 C++ 头文件（比如你的 static_arena.hpp）都在这里尽情 include！
 uint32_t test_count = 0;
 uint32_t test_count1 = 0;
-
+char last_voice_cmd[32] = "Voice: None";
 
 osMutexId_t i2c1_mutex = nullptr;
 osMutexId_t uart_mutex = nullptr;
@@ -25,7 +26,7 @@ MPU6050 *dogImu = nullptr;
 HC05 *blueTooth = nullptr;
 SSD1306 *oled = nullptr;
 SU03T *voiceModule = nullptr;
-
+PCA9685 *pca9685 = nullptr;
 
 void HC05_RxCallback_Wrapper(UART_HandleTypeDef *huart)
 {
@@ -51,32 +52,27 @@ void task_voice_handler(void *argument)
 
         if (cmd != VoiceCmd::NONE)
         {
-            oled->Clear();
-            oled->DrawString(0, 48, "Voice Command:");
-
             switch (cmd)
             {
             case VoiceCmd::WAKE_UP:
-                oled->DrawString(0, 64, "Status: Awake");
+                sprintf(last_voice_cmd, "Voice: Awake");
                 break;
             case VoiceCmd::FORWARD:
-                oled->DrawString(0, 64, "Action: Forward");
+                sprintf(last_voice_cmd, "Voice: Forward");
                 break;
             case VoiceCmd::SIT_DOWN:
-                oled->DrawString(0, 64, "Action: Sit Down");
+                sprintf(last_voice_cmd, "Voice: Sit Down");
                 break;
             default:
-                oled->DrawString(0, 64, "Unknown CMD");
+                sprintf(last_voice_cmd, "Voice: Unknown");
                 break;
             }
-            oled->Update();
         }
-        oled->DrawString(0, 48, "NO Command:");
-        osDelay(20); // 必须有 Delay，让出 CPU
+        osDelay(20);
     }
 }
 
-void task_test1(void *argument)
+void task_Mpu6050(void *argument)
 {
     for (;;)
     {
@@ -98,6 +94,7 @@ void task_bluetooth_test(void *argument)
             blueTooth->sendString("Got a Valid Packet!\r\n");
 
             HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
+            voiceModule->playVoice(VoicePlay::BEEP);
         }
         // uint8_t raw_byte;
         // if (osMessageQueueGet(my_hc05_queue, &raw_byte, NULL, 0) == osOK)
@@ -115,49 +112,86 @@ void task_bluetooth_test(void *argument)
 
 void task_display(void *argument)
 {
-    char debug_buf[32];
+    char dog_pitch[32];
     for (;;)
     {
         oled->Clear();
-
         oled->DrawString(0, 0, "CyberDog Status:");
 
-        sprintf(debug_buf , "Count: %lu", test_count1);
-        oled->DrawString(0, 16, debug_buf);
+        // 画 IMU 数据
+        sprintf(dog_pitch, "Pitch:%d", (int16_t)dogImu->GetPitch());
+        oled->DrawString(0, 16, dog_pitch);
 
-        oled->DrawString(0, 32, "Wleaf");
+        // 画出刚刚最后一次听到的语音指令
+        oled->DrawString(0, 32, last_voice_cmd);
 
         oled->Update();
         osDelay(50);
     }
 }
 
-void App_Main()
+void task_pca9685(void *argument)
+{
+    osDelay(3000);
+
+    for (;;)
+    {
+        // pca9685->setAngle(LegChanel::FrontLeft, 0.0f);
+        // osDelay(1000); // 间隔 1 秒
+
+        pca9685->setAngle(LegChanel::FrontRight, 0.0f);
+        osDelay(1000);
+
+        // pca9685->setAngle(LegChanel::RearLeft, 0.0f);
+        // osDelay(1000);
+
+        // pca9685->setAngle(LegChanel::RearRight, 0.0f);
+        // osDelay(1000);
+
+        // 2. 全部回到 90 度（中位），这才是你装狗腿的基准点！
+        // pca9685->setAngle(LegChanel::FrontLeft, 90.0f);
+        pca9685->setAngle(LegChanel::FrontRight, 90.0f);
+        // pca9685->setAngle(LegChanel::RearLeft, 90.0f);
+        // pca9685->setAngle(LegChanel::RearRight, 90.0f);
+
+        // 在中位休息 3 秒，然后再循环
+        osDelay(3000);
+    }
+}
+
+    void App_Main()
 {
 
     i2c1_mutex = osMutexNew(NULL);
     uart_mutex = osMutexNew(NULL);
     uart2_mutex = osMutexNew(NULL);
+
     oled = new SSD1306(&hi2c1, i2c1_mutex);
     voiceModule = new SU03T(&huart2, uart2_mutex);
     dogImu = new MPU6050(&hi2c1, i2c1_mutex);
     blueTooth = new HC05(&huart1, uart_mutex);
+    pca9685 = new PCA9685(&hi2c1, 0x80,i2c1_mutex);
+
+
     my_hc05_queue = osMessageQueueNew(64, sizeof(uint8_t), NULL);
     my_su03t_queue = osMessageQueueNew(32, sizeof(uint8_t), NULL);
 
     oled->Init();
-    // dogImu->Init();
+    dogImu->Init();
     blueTooth->Init(my_hc05_queue);
     voiceModule->Init(my_su03t_queue);
+    pca9685->Init();
 
     osThreadAttr_t task_bluetooth_test_attr = {.priority = osPriorityNormal};
-    osThreadAttr_t task_test_attr1 = {.priority = osPriorityNormal};
+    osThreadAttr_t task_Mpu6050_attr = {.priority = osPriorityNormal};
     osThreadAttr_t task_display_attr = {.priority = osPriorityNormal};
     osThreadAttr_t task_voice_attr = {.priority = osPriorityNormal};
+    osThreadAttr_t task_pca9685_attr = {.priority = osPriorityNormal};
 
     osThreadNew(task_bluetooth_test, &test_count, &task_bluetooth_test_attr);
     osThreadNew(task_display, NULL, &task_display_attr);
-    osThreadNew(task_test1, &test_count1, &task_test_attr1);
+    osThreadNew(task_Mpu6050, &test_count1, &task_Mpu6050_attr);
 
     osThreadNew(task_voice_handler, NULL, &task_voice_attr);
+    osThreadNew(task_pca9685, NULL, &task_pca9685_attr);
 }

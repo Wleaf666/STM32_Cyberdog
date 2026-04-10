@@ -329,7 +329,8 @@
 				14,
 				15,
 				16,
-				17
+				17,
+				18
 			]
 		}
 	],
@@ -413,7 +414,8 @@
 				14,
 				15,
 				16,
-				17
+				17,
+				18
 			]
 		},
 		{
@@ -427,7 +429,6 @@
 			"name" : "Object Libraries",
 			"sourceIndexes" : 
 			[
-				18,
 				19,
 				20,
 				21,
@@ -452,7 +453,8 @@
 				40,
 				41,
 				42,
-				43
+				43,
+				44
 			]
 		}
 	],
@@ -540,6 +542,12 @@
 			"backtrace" : 7,
 			"compileGroupIndex" : 2,
 			"path" : "usercode/src/hc05.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 7,
+			"compileGroupIndex" : 2,
+			"path" : "usercode/src/motion_4dof.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
