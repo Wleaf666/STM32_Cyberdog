@@ -9,6 +9,7 @@
 #include "stdio.h"
 #include "su03t.hpp"
 #include "pca9685.hpp"
+#include "motion_4dof.hpp" // 【新增】引入步态控制库
 
 osMessageQueueId_t my_hc05_queue;
 osMessageQueueId_t my_su03t_queue = nullptr;
@@ -27,6 +28,7 @@ HC05 *blueTooth = nullptr;
 SSD1306 *oled = nullptr;
 SU03T *voiceModule = nullptr;
 PCA9685 *pca9685 = nullptr;
+Motion4DOF *motionBrain = nullptr; // 【新增】声明运动小脑指针
 
 void HC05_RxCallback_Wrapper(UART_HandleTypeDef *huart)
 {
@@ -130,36 +132,51 @@ void task_display(void *argument)
     }
 }
 
-void task_pca9685(void *argument)
+// void task_pca9685(void *argument)
+// {
+//     osDelay(3000);
+
+//     for (;;)
+//     {
+//         // pca9685->setAngle(LegChanel::FrontLeft, 0.0f);
+//         // osDelay(1000); // 间隔 1 秒
+
+//         pca9685->setAngle(LegChanel::FrontRight, 0.0f);
+//         osDelay(1000);
+
+//         // pca9685->setAngle(LegChanel::RearLeft, 0.0f);
+//         // osDelay(1000);
+
+//         // pca9685->setAngle(LegChanel::RearRight, 0.0f);
+//         // osDelay(1000);
+
+//         // 2. 全部回到 90 度（中位），这才是你装狗腿的基准点！
+//         // pca9685->setAngle(LegChanel::FrontLeft, 90.0f);
+//         pca9685->setAngle(LegChanel::FrontRight, 90.0f);
+//         // pca9685->setAngle(LegChanel::RearLeft, 90.0f);
+//         // pca9685->setAngle(LegChanel::RearRight, 90.0f);
+
+//         // 在中位休息 3 秒，然后再循环
+//         osDelay(3000);
+//     }
+// }
+void task_motion_control(void *argument)
 {
-    osDelay(3000);
+    // 上电后等两秒，让你有时间把狗放好
+    osDelay(2000);
 
     for (;;)
     {
-        // pca9685->setAngle(LegChanel::FrontLeft, 0.0f);
-        // osDelay(1000); // 间隔 1 秒
+        // 【当前阶段：仅测试站立校准】
+        // 死循环调用站立指令，让 4 个舵机死死锁在 90 度中位
+        motionBrain->StandIdle();
 
-        pca9685->setAngle(LegChanel::FrontRight, 0.0f);
-        osDelay(1000);
-
-        // pca9685->setAngle(LegChanel::RearLeft, 0.0f);
-        // osDelay(1000);
-
-        // pca9685->setAngle(LegChanel::RearRight, 0.0f);
-        // osDelay(1000);
-
-        // 2. 全部回到 90 度（中位），这才是你装狗腿的基准点！
-        // pca9685->setAngle(LegChanel::FrontLeft, 90.0f);
-        pca9685->setAngle(LegChanel::FrontRight, 90.0f);
-        // pca9685->setAngle(LegChanel::RearLeft, 90.0f);
-        // pca9685->setAngle(LegChanel::RearRight, 90.0f);
-
-        // 在中位休息 3 秒，然后再循环
-        osDelay(3000);
+        // 运动控制任务标准的 50Hz (20ms) 刷新率
+        osDelay(20);
     }
 }
 
-    void App_Main()
+void App_Main()
 {
 
     i2c1_mutex = osMutexNew(NULL);
@@ -170,8 +187,8 @@ void task_pca9685(void *argument)
     voiceModule = new SU03T(&huart2, uart2_mutex);
     dogImu = new MPU6050(&hi2c1, i2c1_mutex);
     blueTooth = new HC05(&huart1, uart_mutex);
-    pca9685 = new PCA9685(&hi2c1, 0x80,i2c1_mutex);
-
+    pca9685 = new PCA9685(&hi2c1, 0x80, i2c1_mutex);
+    motionBrain = new Motion4DOF(pca9685); // 【新增】实例化小脑，把肌肉(pca9685)传进去
 
     my_hc05_queue = osMessageQueueNew(64, sizeof(uint8_t), NULL);
     my_su03t_queue = osMessageQueueNew(32, sizeof(uint8_t), NULL);
@@ -181,17 +198,20 @@ void task_pca9685(void *argument)
     blueTooth->Init(my_hc05_queue);
     voiceModule->Init(my_su03t_queue);
     pca9685->Init();
+    motionBrain->Init(); // 【新增】初始化步态相位参数
 
     osThreadAttr_t task_bluetooth_test_attr = {.priority = osPriorityNormal};
     osThreadAttr_t task_Mpu6050_attr = {.priority = osPriorityNormal};
     osThreadAttr_t task_display_attr = {.priority = osPriorityNormal};
     osThreadAttr_t task_voice_attr = {.priority = osPriorityNormal};
-    osThreadAttr_t task_pca9685_attr = {.priority = osPriorityNormal};
+
+    osThreadAttr_t task_motion_attr = {.priority = osPriorityNormal};
 
     osThreadNew(task_bluetooth_test, &test_count, &task_bluetooth_test_attr);
     osThreadNew(task_display, NULL, &task_display_attr);
     osThreadNew(task_Mpu6050, &test_count1, &task_Mpu6050_attr);
 
     osThreadNew(task_voice_handler, NULL, &task_voice_attr);
-    osThreadNew(task_pca9685, NULL, &task_pca9685_attr);
+
+    osThreadNew(task_motion_control, NULL, &task_motion_attr);
 }
