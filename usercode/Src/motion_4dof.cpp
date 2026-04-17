@@ -3,7 +3,6 @@
 // 宏定义圆周率
 #define PI 3.1415926535f
 
-// 【新增】：构造函数实现，将传入的 driver 绑定到私有指针
 Motion4DOF::Motion4DOF(PCA9685 *_driver) : servoDriver(_driver)
 {
 }
@@ -18,146 +17,272 @@ void Motion4DOF::Init()
 void Motion4DOF::Relax()
 {
     for (int i = 0; i < 4; i++)
-        servoDriver->setPWM(i, 0, 4096); // PCA9685 强制关闭通道指令
+        servoDriver->setPWM(i, 0, 4096); // 强制脱力关闭 PWM
 }
 
 void Motion4DOF::StandIdle()
 {
-    // 让所有舵机回到 90 度中位
     servoDriver->setAngle(LegChanel::FrontLeft, mid);
     servoDriver->setAngle(LegChanel::FrontRight, mid);
     servoDriver->setAngle(LegChanel::RearLeft, mid);
     servoDriver->setAngle(LegChanel::RearRight, mid);
 }
 
-void Motion4DOF::matrixEngine(const int (*gait)[4], int phases, int repeats)
+// 终极平滑矩阵引擎
+void Motion4DOF::matrixEngine(const int (*gait)[4], int phases, int repeats,
+                              float lf_swing, float lf_stance, float rf_swing, float rf_stance,
+                              float lh_swing, float lh_stance, float rh_swing, float rh_stance)
 {
     for (int r = 0; r < repeats; r++)
     {
         for (int p = 0; p < phases; p++)
         {
-            // 1. 快移 (Swing)
+            // 1. 快移动作 (打滑阶段：值为 1 的腿极速前伸)
             if (gait[p][0])
-                servoDriver->setAngle(LegChanel::FrontLeft, LF_F);
+                servoDriver->setAngle(LegChanel::FrontLeft, lf_swing);
             if (gait[p][1])
-                servoDriver->setAngle(LegChanel::FrontRight, RF_F);
+                servoDriver->setAngle(LegChanel::FrontRight, rf_swing);
             if (gait[p][2])
-                servoDriver->setAngle(LegChanel::RearLeft, LH_F);
+                servoDriver->setAngle(LegChanel::RearLeft, lh_swing);
             if (gait[p][3])
-                servoDriver->setAngle(LegChanel::RearRight, RH_F);
-            osDelay(120);
+                servoDriver->setAngle(LegChanel::RearRight, rh_swing);
+            osDelay(120); // 等待冲刺打滑完成
 
-            // 2. 慢划 (Stance) - 简化为单次线性补偿以节省 I2C 带宽
-            servoDriver->setAngle(LegChanel::FrontLeft, gait[p][0] ? LF_F : LF_B);
-            servoDriver->setAngle(LegChanel::FrontRight, gait[p][1] ? RF_F : RF_B);
-            servoDriver->setAngle(LegChanel::RearLeft, gait[p][2] ? LH_F : LH_B);
-            servoDriver->setAngle(LegChanel::RearRight, gait[p][3] ? RH_F : RH_B);
-            osDelay(200);
+            // 2. 慢推移动作 (抓地阶段：值为 0 的腿缓慢后划推动身体)
+            int smooth_frames = 12; // 划水分 12 帧
+            for (int j = 1; j <= smooth_frames; j++)
+            {
+                float ratio = (float)j / smooth_frames;
+                if (!gait[p][0])
+                    servoDriver->setAngle(LegChanel::FrontLeft, lf_swing + (lf_stance - lf_swing) * ratio);
+                if (!gait[p][1])
+                    servoDriver->setAngle(LegChanel::FrontRight, rf_swing + (rf_stance - rf_swing) * ratio);
+                if (!gait[p][2])
+                    servoDriver->setAngle(LegChanel::RearLeft, lh_swing + (lh_stance - lh_swing) * ratio);
+                if (!gait[p][3])
+                    servoDriver->setAngle(LegChanel::RearRight, rh_swing + (rh_stance - rh_swing) * ratio);
+                osDelay(15);
+            }
         }
     }
 }
 
-void Motion4DOF::actionShakeHand(bool left)
-{
-    StandIdle();
-    osDelay(200);
-    // 抬起指定的前腿
-    LegChanel target = left ? LegChanel::FrontLeft : LegChanel::FrontRight;
-    float up_angle = left ? 40.0f : 140.0f; // 根据镜像计算抬起角度
-    for (int i = 0; i < 3; i++)
-    { // 摇晃3次
-        servoDriver->setAngle(target, up_angle);
-        osDelay(200);
-        servoDriver->setAngle(target, mid);
-        osDelay(200);
-    }
-}
-
+// ==========================================
+// 核心中枢：指令分发器
+// ==========================================
 void Motion4DOF::ExecuteCommand(VoiceCmd cmd)
 {
-    static const int creep[4][4] = {{0, 0, 0, 1}, {0, 1, 0, 0}, {0, 0, 1, 0}, {1, 0, 0, 0}};
+    // 极其稳定的经典对角爬行步态矩阵 (Creep Gait)
+    static const int creep[4][4] = {
+        {0, 0, 0, 1},
+        {0, 1, 0, 0},
+        {0, 0, 1, 0},
+        {1, 0, 0, 0}};
 
     switch (cmd)
     {
-    case VoiceCmd::FORWARD:
-        matrixEngine(creep, 4, 1);
+    // --- 1. 系统状态 ---
+    case VoiceCmd::WAKE_UP:
+    case VoiceCmd::STAND_UP:
+    case VoiceCmd::STOP_MOVE:
+        StandIdle();
         break;
+    case VoiceCmd::SLEEP:
+        Relax();
+        break;
+
+    // --- 2. 运动指令 ---
+    case VoiceCmd::FORWARD:
+        // 前进：正常极性
+        matrixEngine(creep, 4, 1, LF_F, LF_B, RF_F, RF_B, LH_F, LH_B, RH_F, RH_B);
+        break;
+    case VoiceCmd::BACKWARD:
+        // 后退：Swing 和 Stance 极性对调
+        matrixEngine(creep, 4, 1, LF_B, LF_F, RF_B, RF_F, LH_B, LH_F, RH_B, RH_F);
+        break;
+    case VoiceCmd::TURN_LEFT:
+        // 左转：左边后退极性，右边前进极性
+        matrixEngine(creep, 4, 1, LF_B, LF_F, RF_F, RF_B, LH_B, LH_F, RH_F, RH_B);
+        break;
+    case VoiceCmd::TURN_RIGHT:
+        // 右转：左边前进极性，右边后退极性
+        matrixEngine(creep, 4, 1, LF_F, LF_B, RF_B, RF_F, LH_F, LH_B, RH_B, RH_F);
+        break;
+    case VoiceCmd::SHIFT_LEFT:
+        // 4自由度无机械侧移能力，用“原地左右扭屁股”代替
+        postureLeanLeft();
+        osDelay(200);
+        StandIdle();
+        break;
+    case VoiceCmd::SHIFT_RIGHT:
+        postureLeanRight();
+        osDelay(200);
+        StandIdle();
+        break;
+
+    // --- 3. 静态姿态 ---
+    case VoiceCmd::SIT_DOWN:
+        postureSitDown();
+        break;
+    case VoiceCmd::LIE_DOWN:
+        postureLieDown();
+        break;
+    case VoiceCmd::LOOK_UP:
+        postureLookUp();
+        break;
+    case VoiceCmd::LOOK_DOWN:
+        postureLookDown();
+        break;
+    case VoiceCmd::LEAN_LEFT:
+        postureLeanLeft();
+        break;
+    case VoiceCmd::LEAN_RIGHT:
+        postureLeanRight();
+        break;
+
+    // --- 4. 花式动作 ---
     case VoiceCmd::SHAKE_HAND_L:
         actionShakeHand(true);
         break;
     case VoiceCmd::SHAKE_HAND_R:
         actionShakeHand(false);
         break;
-    case VoiceCmd::LOOK_UP:
-        servoDriver->setAngle(LegChanel::FrontLeft, 120);
-        servoDriver->setAngle(LegChanel::FrontRight, 60);
+    case VoiceCmd::GREETING:
+        actionGreeting();
+        break;
+    case VoiceCmd::STRETCH:
+        actionStretch();
         break;
     case VoiceCmd::DANCE:
         actionDance();
         break;
-    case VoiceCmd::WAKE_UP:
-        StandIdle();
+    case VoiceCmd::ATTACK_MODE:
+        actionAttackMode();
         break;
-    case VoiceCmd::SLEEP:
-        Relax();
-        break;
+
     default:
         break;
     }
 }
 
-void Motion4DOF::TrotStep(float speed_multiplier, float amplitude, float dir)
+// ==========================================
+// 姿态与动作底层实现 (严格遵守左右镜像法则)
+// ==========================================
+
+void Motion4DOF::postureSitDown()
 {
-    // 1. 推进虚拟时间 (0.02秒是 50Hz 刷新率的周期)
-    current_time += 0.02f * speed_multiplier * dir;
-
-    // 2. 为 4 条腿生成正弦波角度并驱动
-    const float phys_dir[4] = {1.0f, -1.0f, 1.0f, -1.0f};
-
-    // 2. 为 4 条腿生成正弦波角度并驱动
-    for (int i = 0; i < 4; i++)
-    {
-        // 公式：中心点 + 方向补偿 * 幅度 * sin(时间 + 相位差)
-        float target_angle = legs[i].center_angle + phys_dir[i] * amplitude * sin(current_time + legs[i].phase_offset);
-
-        // 调用 pca9685 setAngle 函数
-        servoDriver->setAngle(legs[i].leg_id, target_angle);
-    }
+    servoDriver->setAngle(LegChanel::FrontLeft, mid);
+    servoDriver->setAngle(LegChanel::FrontRight, mid);
+    // 后腿往后折叠蹲下 (左侧增大为后退，右侧减小为后退)
+    servoDriver->setAngle(LegChanel::RearLeft, mid + 40);
+    servoDriver->setAngle(LegChanel::RearRight, mid - 40);
 }
 
-void Motion4DOF::RelaxIdle()
+void Motion4DOF::postureLieDown()
 {
-    // 让 4 条腿瞬间脱力变软
-    for (int i = 0; i < 4; i++)
-    {
-        servoDriver->TurnOff(legs[i].leg_id);
-    }
+    // 四腿趴平 (前腿前伸，后腿后伸)
+    servoDriver->setAngle(LegChanel::FrontLeft, mid - 50);
+    servoDriver->setAngle(LegChanel::FrontRight, mid + 50);
+    servoDriver->setAngle(LegChanel::RearLeft, mid + 50);
+    servoDriver->setAngle(LegChanel::RearRight, mid - 50);
 }
 
-void Motion4DOF::actionDance()
+void Motion4DOF::postureLookUp()
 {
-    StandIdle();
-    osDelay(200);
-    // 左扭右扭跳舞循环 3 次
+    // 前腿往后收起抬高，后腿往外撇降低
+    servoDriver->setAngle(LegChanel::FrontLeft, mid + 30);
+    servoDriver->setAngle(LegChanel::FrontRight, mid - 30);
+    servoDriver->setAngle(LegChanel::RearLeft, mid + 30);
+    servoDriver->setAngle(LegChanel::RearRight, mid - 30);
+}
+
+void Motion4DOF::postureLookDown()
+{
+    // 前腿往外撇降低，后腿往后收起抬高
+    servoDriver->setAngle(LegChanel::FrontLeft, mid - 30);
+    servoDriver->setAngle(LegChanel::FrontRight, mid + 30);
+    servoDriver->setAngle(LegChanel::RearLeft, mid - 30);
+    servoDriver->setAngle(LegChanel::RearRight, mid + 30);
+}
+
+void Motion4DOF::postureLeanLeft()
+{
+    // 左侧腿趴下，右侧腿站直
+    servoDriver->setAngle(LegChanel::FrontLeft, mid - 40);
+    servoDriver->setAngle(LegChanel::RearLeft, mid + 40);
+    servoDriver->setAngle(LegChanel::FrontRight, mid);
+    servoDriver->setAngle(LegChanel::RearRight, mid);
+}
+
+void Motion4DOF::postureLeanRight()
+{
+    // 右侧腿趴下，左侧腿站直
+    servoDriver->setAngle(LegChanel::FrontLeft, mid);
+    servoDriver->setAngle(LegChanel::RearLeft, mid);
+    servoDriver->setAngle(LegChanel::FrontRight, mid + 40);
+    servoDriver->setAngle(LegChanel::RearRight, mid - 40);
+}
+
+void Motion4DOF::actionShakeHand(bool left)
+{
+    postureSitDown(); // 先坐下保证底盘稳定
+    osDelay(300);
+    LegChanel target = left ? LegChanel::FrontLeft : LegChanel::FrontRight;
+    float up_angle = left ? (mid - 60) : (mid + 60); // 往前上方抬起
+
     for (int i = 0; i < 3; i++)
     {
-        servoDriver->setAngle(LegChanel::FrontLeft, 120);
-        servoDriver->setAngle(LegChanel::FrontRight, 60);
-        osDelay(300);
-        servoDriver->setAngle(LegChanel::FrontLeft, 60);
-        servoDriver->setAngle(LegChanel::FrontRight, 120);
-        osDelay(300);
+        servoDriver->setAngle(target, up_angle);
+        osDelay(150);
+        servoDriver->setAngle(target, up_angle + (left ? 25 : -25)); // 上下抖动
+        osDelay(150);
     }
-    StandIdle();
 }
 
-// 就算暂时不用，也必须写一个空壳放着，否则会报错！
-void Motion4DOF::actionLook(int type)
+void Motion4DOF::actionGreeting()
 {
-    // 预留位置，后续开发
+    // 先抬头，然后抬起右手招手
+    postureLookUp();
+    osDelay(200);
+    actionShakeHand(false);
 }
 
 void Motion4DOF::actionStretch()
 {
-    // 预留位置，后续开发
+    // 类似真狗伸懒腰：前腿极度前伸趴下，后腿站直
+    servoDriver->setAngle(LegChanel::FrontLeft, mid - 60);
+    servoDriver->setAngle(LegChanel::FrontRight, mid + 60);
+    servoDriver->setAngle(LegChanel::RearLeft, mid);
+    servoDriver->setAngle(LegChanel::RearRight, mid);
+    osDelay(1200); // 舒服地拉伸一秒钟
+}
+
+void Motion4DOF::actionDance()
+{
+    // 左右摇摆舞
+    for (int i = 0; i < 2; i++)
+    {
+        postureLeanLeft();
+        osDelay(300);
+        postureLeanRight();
+        osDelay(300);
+    }
+    // 抬头低头蹦迪
+    for (int i = 0; i < 2; i++)
+    {
+        postureLookUp();
+        osDelay(200);
+        postureLookDown();
+        osDelay(200);
+    }
+}
+
+void Motion4DOF::actionAttackMode()
+{
+    // 压低前身，后腿随时准备发力蹬出
+    servoDriver->setAngle(LegChanel::FrontLeft, mid - 30);
+    servoDriver->setAngle(LegChanel::FrontRight, mid + 30);
+    servoDriver->setAngle(LegChanel::RearLeft, mid - 15);
+    servoDriver->setAngle(LegChanel::RearRight, mid + 15);
+    osDelay(1000);
 }
