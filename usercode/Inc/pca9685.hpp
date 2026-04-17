@@ -50,4 +50,6 @@ class PCA9685
         void setAngle(LegChanel leg, float angle);
 
         void setServoConfig(LegChanel leg, ServoConfig config);
+
+        void TurnOff(LegChanel leg);
 };

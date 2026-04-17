@@ -11,6 +11,8 @@
 #include "pca9685.hpp"
 #include "motion_4dof.hpp" // 【新增】引入步态控制库
 
+volatile VoiceCmd global_dog_action = VoiceCmd::WAKE_UP;
+
 osMessageQueueId_t my_hc05_queue;
 osMessageQueueId_t my_su03t_queue = nullptr;
 
@@ -54,6 +56,9 @@ void task_voice_handler(void *argument)
 
         if (cmd != VoiceCmd::NONE)
         {
+            // 【关键】：把听到的指令直接挂载到全局动作上！
+            global_dog_action = cmd;
+
             switch (cmd)
             {
             case VoiceCmd::WAKE_UP:
@@ -62,8 +67,8 @@ void task_voice_handler(void *argument)
             case VoiceCmd::FORWARD:
                 sprintf(last_voice_cmd, "Voice: Forward");
                 break;
-            case VoiceCmd::SIT_DOWN:
-                sprintf(last_voice_cmd, "Voice: Sit Down");
+            case VoiceCmd::SIT_DOWN: // 这里我们可以把 SIT_DOWN 当作“停止”来用
+                sprintf(last_voice_cmd, "Voice: Stop");
                 break;
             default:
                 sprintf(last_voice_cmd, "Voice: Unknown");
@@ -90,24 +95,114 @@ void task_bluetooth_test(void *argument)
     RobotCommand cmd;
     for (;;)
     {
-        (*(uint32_t *)argument)++;
         if (blueTooth->getCommand(cmd))
         {
-            blueTooth->sendString("Got a Valid Packet!\r\n");
-
-            HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
+            // 收到手机指令时，让狗叫一声作为反馈（根据需要取消注释）
             voiceModule->playVoice(VoicePlay::BEEP);
+
+            // =========================================================
+            // 【全动作映射区】
+            // 将手机发来的 Hex 控制码 (cmd.cmd_type) 完美映射到全局枚举
+            // 手机按键配置格式为：AA XX 55 (其中 XX 为下方的 Case 值)
+            // =========================================================
+            switch (cmd.cmd_type)
+            {
+            // --- 1. 系统与状态控制 ---
+            case 0x01:
+                global_dog_action = VoiceCmd::WAKE_UP;
+                break;
+            case 0x02:
+                global_dog_action = VoiceCmd::SLEEP;
+                break;
+            case 0x03:
+                global_dog_action = VoiceCmd::REPORT_BAT;
+                break;
+
+            // --- 2. 基础移动指令 ---
+            case 0x10:
+                global_dog_action = VoiceCmd::FORWARD;
+                blueTooth->sendString("forward\r\n"); // 串口反馈
+                break;
+            case 0x11:
+                global_dog_action = VoiceCmd::BACKWARD;
+                blueTooth->sendString("backward\r\n");
+                break;
+            case 0x12:
+                global_dog_action = VoiceCmd::TURN_LEFT;
+                blueTooth->sendString("turn left\r\n");
+                break;
+            case 0x13:
+                global_dog_action = VoiceCmd::TURN_RIGHT;
+                blueTooth->sendString("turn right\r\n");
+                break;
+            case 0x14:
+                global_dog_action = VoiceCmd::SHIFT_LEFT;
+                break;
+            case 0x15:
+                global_dog_action = VoiceCmd::SHIFT_RIGHT;
+                break;
+            case 0x16:
+                global_dog_action = VoiceCmd::STOP_MOVE;
+                break;
+
+            // --- 3. 静态姿态控制 ---
+            case 0x20:
+                global_dog_action = VoiceCmd::STAND_UP;
+                break;
+            case 0x21:
+                global_dog_action = VoiceCmd::SIT_DOWN;
+                break;
+            case 0x22:
+                global_dog_action = VoiceCmd::LIE_DOWN;
+                break;
+            case 0x23:
+                global_dog_action = VoiceCmd::LOOK_UP;
+                break;
+            case 0x24:
+                global_dog_action = VoiceCmd::LOOK_DOWN;
+                break;
+            case 0x25:
+                global_dog_action = VoiceCmd::LEAN_LEFT;
+                break;
+            case 0x26:
+                global_dog_action = VoiceCmd::LEAN_RIGHT;
+                break;
+
+            // --- 4. 互动与花式动作 ---
+            case 0x30:
+                global_dog_action = VoiceCmd::SHAKE_HAND_L;
+                break;
+            case 0x31:
+                global_dog_action = VoiceCmd::SHAKE_HAND_R;
+                break;
+            case 0x32:
+                global_dog_action = VoiceCmd::GREETING;
+                break;
+            case 0x33:
+                global_dog_action = VoiceCmd::STRETCH;
+                break;
+            case 0x34:
+                global_dog_action = VoiceCmd::DANCE;
+                break;
+            case 0x35:
+                global_dog_action = VoiceCmd::ATTACK_MODE;
+                break;
+
+            // --- 兼容旧版本的停止指令 ---
+            case 0x00:
+                global_dog_action = VoiceCmd::SIT_DOWN;
+                break;
+
+            default:
+                break; // 收到未定义的码，忽略
+            }
+
+            // 在 OLED 屏幕上同步显示蓝牙发来的十六进制指令，方便你对照调试
+            sprintf(last_voice_cmd, "BT: CMD %02X", cmd.cmd_type);
         }
-        // uint8_t raw_byte;
-        // if (osMessageQueueGet(my_hc05_queue, &raw_byte, NULL, 0) == osOK)
-        // {
-        //     // 收到啥字母，就立刻原样弹回去！
-        //     blueTooth.sendBytes(&raw_byte, 1);
 
-        //     // 闪烁小灯，给你视觉反馈
-        //     HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
-        // }
-
+        // 【极其关键】osDelay 必须放在 if 的外面，for 循环的底部！
+        // 这样在没有收到蓝牙数据时，任务会主动休眠 10ms 把 CPU 让给步态控制任务
         osDelay(10);
     }
 }
@@ -117,67 +212,52 @@ void task_display(void *argument)
     char dog_pitch[32];
     for (;;)
     {
-        oled->Clear();
-        oled->DrawString(0, 0, "CyberDog Status:");
+        if (global_dog_action == VoiceCmd::WAKE_UP || global_dog_action == VoiceCmd::SIT_DOWN)
+        {
+            oled->Clear();
+            oled->DrawString(0, 0, "CyberDog Status:");
 
-        // 画 IMU 数据
-        sprintf(dog_pitch, "Pitch:%d", (int16_t)dogImu->GetPitch());
-        oled->DrawString(0, 16, dog_pitch);
+            sprintf(dog_pitch, "Pitch:%d", (int16_t)dogImu->GetPitch());
+            oled->DrawString(0, 16, dog_pitch);
 
-        // 画出刚刚最后一次听到的语音指令
-        oled->DrawString(0, 32, last_voice_cmd);
+            oled->DrawString(0, 32, last_voice_cmd);
 
-        oled->Update();
-        osDelay(50);
+            oled->Update();
+        }
+
+        // 刷新频率依然保持较低的 200ms
+        osDelay(200);
     }
 }
 
-// void task_pca9685(void *argument)
-// {
-//     osDelay(3000);
 
-//     for (;;)
-//     {
-//         // pca9685->setAngle(LegChanel::FrontLeft, 0.0f);
-//         // osDelay(1000); // 间隔 1 秒
-
-//         pca9685->setAngle(LegChanel::FrontRight, 0.0f);
-//         osDelay(1000);
-
-//         // pca9685->setAngle(LegChanel::RearLeft, 0.0f);
-//         // osDelay(1000);
-
-//         // pca9685->setAngle(LegChanel::RearRight, 0.0f);
-//         // osDelay(1000);
-
-//         // 2. 全部回到 90 度（中位），这才是你装狗腿的基准点！
-//         // pca9685->setAngle(LegChanel::FrontLeft, 90.0f);
-//         pca9685->setAngle(LegChanel::FrontRight, 90.0f);
-//         // pca9685->setAngle(LegChanel::RearLeft, 90.0f);
-//         // pca9685->setAngle(LegChanel::RearRight, 90.0f);
-
-//         // 在中位休息 3 秒，然后再循环
-//         osDelay(3000);
-//     }
-// }
 void task_motion_control(void *argument)
 {
-    // 上电后等两秒，让你有时间把狗放好
-    osDelay(2000);
+    
 
+    osDelay(2000); // 开机等待
     for (;;)
     {
-        // 【当前阶段：仅测试站立校准】
-        // 死循环调用站立指令，让 4 个舵机死死锁在 90 度中位
-        motionBrain->StandIdle();
+        // 直接调用封装好的执行接口
+        motionBrain->ExecuteCommand(global_dog_action);
 
-        // 运动控制任务标准的 50Hz (20ms) 刷新率
+        // // 如果是单次触发动作（如招手），执行完后自动归位
+        // if (global_dog_action == VoiceCmd::SHAKE_HAND_L || global_dog_action == VoiceCmd::SHAKE_HAND_R ||
+        //     global_dog_action == VoiceCmd::DANCE)
+        // {
+        //     global_dog_action = VoiceCmd::WAKE_UP;
+        // }
+
+        global_dog_action = VoiceCmd::WAKE_UP;
+
         osDelay(20);
     }
 }
 
 void App_Main()
 {
+
+    HAL_Delay(100);
 
     i2c1_mutex = osMutexNew(NULL);
     uart_mutex = osMutexNew(NULL);
@@ -199,6 +279,8 @@ void App_Main()
     voiceModule->Init(my_su03t_queue);
     pca9685->Init();
     motionBrain->Init(); // 【新增】初始化步态相位参数
+
+
 
     osThreadAttr_t task_bluetooth_test_attr = {.priority = osPriorityNormal};
     osThreadAttr_t task_Mpu6050_attr = {.priority = osPriorityNormal};

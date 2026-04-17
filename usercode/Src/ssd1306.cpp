@@ -130,6 +130,7 @@ void SSD1306::Update()
             HAL_I2C_Mem_Write(hi2c, address, 0x40, 1, &buffer[i * 128], 128, 100);
         }
         osMutexRelease(i2cMutex);
+        osDelay(1);
     }
 }
 

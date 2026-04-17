@@ -76,6 +76,10 @@ bool HC05::getCommand(RobotCommand &cmd)
 
 bool HC05::parsePacket(const std::vector<uint8_t> &packet, RobotCommand &out_cmd)
 {
-
-    return true;
+    if (packet.size() == 3 && packet[0] == 0xAA && packet[2] == 0x55)
+    {
+        out_cmd.cmd_type = packet[1]; // 提取中间的控制码 (比如 0x01)
+        return true;
+    }
+    return false;
 }

@@ -45,6 +45,13 @@ void PCA9685::setPWMFreq(float freq)
     writeRegister(PCA9685_MODE1, oldmode | 0x80);
 }
 
+void PCA9685::TurnOff(LegChanel leg)
+{
+    uint8_t ch = static_cast<uint8_t>(leg);
+    // PCA9685 的魔法指令：将 off_tick 的第 12 位写 1（即 4096），可以强制关闭该通道
+    setPWM(ch, 0, 4096);
+}
+
 void PCA9685::setPWM(uint8_t channel,uint16_t on_tick,uint16_t off_tick)
 {
     uint8_t reg = LED0_ON_L + 4 * channel;
@@ -54,7 +61,24 @@ void PCA9685::setPWM(uint8_t channel,uint16_t on_tick,uint16_t off_tick)
                        static_cast<uint8_t>(off_tick >> 8)};
     if (i2cMutex != nullptr && osMutexAcquire(i2cMutex, osWaitForever) == osOK)
     {
-        HAL_I2C_Mem_Write(hi2c, address, reg, 1, data, 4,100);
+        uint8_t retry = 3; // 【新增】：最多重试 3 次！
+
+        while (retry > 0)
+        {
+            // 尝试发送数据
+            if (HAL_I2C_Mem_Write(hi2c, address, reg, 1, data, 4, 10) == HAL_OK)
+            {
+                break; // 【关键】：一旦发送成功，立刻跳出重试循环！
+            }
+
+            // ⚠️ 发送失败（遇到电磁干扰）
+            // 暴力复苏 I2C 外设
+            HAL_I2C_DeInit(hi2c);
+            HAL_I2C_Init(hi2c);
+
+            retry--; // 扣除一次重试机会，继续死磕！
+        }
+
         osMutexRelease(i2cMutex);
     }
 }
