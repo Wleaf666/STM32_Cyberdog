@@ -10,6 +10,8 @@
 #include "su03t.hpp"
 #include "pca9685.hpp"
 #include "motion_4dof.hpp" // 【新增】引入步态控制库
+#include "adc.h"           // 确保你的 CubeMX 生成了 adc.h
+#include <cmath>
 
 volatile VoiceCmd global_dog_action = VoiceCmd::WAKE_UP;
 
@@ -31,6 +33,172 @@ SSD1306 *oled = nullptr;
 SU03T *voiceModule = nullptr;
 PCA9685 *pca9685 = nullptr;
 Motion4DOF *motionBrain = nullptr; // 【新增】声明运动小脑指针
+
+extern "C" void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
+{
+    // 1. 暴力清除所有错误标志位 (溢出、噪音、帧错误)
+    __HAL_UART_CLEAR_OREFLAG(huart);
+    __HAL_UART_CLEAR_NEFLAG(huart);
+    __HAL_UART_CLEAR_FEFLAG(huart);
+
+    // 2. 重新强行开启中断接收！
+    if (huart->Instance == USART1 && blueTooth != nullptr)
+    {
+        // 蓝牙挂了，重新初始化蓝牙接收
+        blueTooth->Init(my_hc05_queue);
+    }
+    if (huart->Instance == USART2 && voiceModule != nullptr)
+    {
+        // 语音挂了，重新初始化语音接收
+        voiceModule->Init(my_su03t_queue);
+    }
+}
+
+uint8_t GetBatteryPercentage()
+{
+    // 启动 ADC 采样
+    HAL_ADC_Start(&hadc1);
+    if (HAL_ADC_PollForConversion(&hadc1, 10) == HAL_OK)
+    {
+        uint32_t raw_adc = HAL_ADC_GetValue(&hadc1);
+
+        // 【极其重要】：你测的是 7.4V，单片机只能测 3.3V 以内。
+        // 你必定使用了电阻分压。假设你用了 10k 和 2k 的电阻分压，比例就是 (10+2)/2 = 6.0倍。
+        // ⚠️ 请把这里的 6.0f 替换成你真实的硬件分压倍数！
+        float divide_ratio = 6.0f;
+
+        float voltage = (raw_adc / 4096.0f) * 3.3f * divide_ratio;
+
+        // 2S 锂电池：满电约 8.4V，没电保护约 6.4V
+        float percent_f = (voltage - 6.4f) / (8.4f - 6.4f) * 100.0f;
+
+        int percent = (int)percent_f;
+        if (percent > 100)
+            percent = 100;
+        if (percent < 0)
+            percent = 0;
+
+        return (uint8_t)percent;
+    }
+    return 0; // 读取失败默认返回0
+}
+
+// ==========================================
+// 2. Cozmo 风格矢量动态表情渲染引擎
+// ==========================================
+void DrawDynamicFace(VoiceCmd cmd, uint32_t tick)
+{
+    // 计算全局平滑悬浮偏移量 (利用正弦波产生呼吸感，周期约1.2秒，上下浮动3像素)
+    int y_breathe = (int)(sin(tick / 200.0f) * 3.0f);
+
+    // 计算全局眨眼触发器 (每隔 4000 毫秒，触发一次 150 毫秒的闭眼)
+    bool is_blinking = (tick % 4000) < 150;
+
+    switch (cmd)
+    {
+    case VoiceCmd::WAKE_UP:
+    case VoiceCmd::STAND_UP:
+    case VoiceCmd::STOP_MOVE:
+    case VoiceCmd::REPORT_BAT:
+        // 【待机状态】：带呼吸感和自动眨眼的好奇大眼睛
+        if (is_blinking)
+        {
+            // 眨眼瞬间：画一条细线
+            oled->FillRect(32, 34 + y_breathe, 24, 4, true);
+            oled->FillRect(72, 34 + y_breathe, 24, 4, true);
+        }
+        else
+        {
+            // 正常睁眼：随呼吸上下浮动
+            oled->FillRect(32, 20 + y_breathe, 24, 30, true);
+            oled->FillRect(72, 20 + y_breathe, 24, 30, true);
+        }
+        break;
+
+    case VoiceCmd::SLEEP:
+    case VoiceCmd::SIT_DOWN:
+    case VoiceCmd::LIE_DOWN:
+        // 【睡觉状态】：眼睛眯成一条缝，右上角带有动态弹出的 Zzz 动画
+        oled->FillRect(32, 38, 24, 6, true);
+        oled->FillRect(72, 38, 24, 6, true);
+
+        // 动态 Zzz 计算：每 600ms 增加一个 Z，循环 3 个状态
+        {
+            int z_state = (tick / 600) % 4;
+            if (z_state >= 1)
+                oled->DrawString(95, 30, "Z");
+            if (z_state >= 2)
+                oled->DrawString(105, 20, "z");
+            if (z_state >= 3)
+                oled->DrawString(115, 10, "z");
+        }
+        break;
+
+    case VoiceCmd::FORWARD:
+    case VoiceCmd::BACKWARD:
+        // 【运动状态】：专注且警觉！眼睛变宽变扁，取消眨眼，且带有微微的震动感模拟发力
+        {
+            int shake = (tick % 100 < 50) ? 1 : -1; // 50ms的高频震动
+            oled->FillRect(28, 16 + shake, 28, 20, true);
+            oled->FillRect(72, 16 + shake, 28, 20, true);
+        }
+        break;
+
+    case VoiceCmd::TURN_LEFT:
+    case VoiceCmd::SHIFT_LEFT:
+        // 【左看状态】：眼球移到极左，且左眼变小（模拟透视感）
+        oled->FillRect(10, 24, 18, 24, true);
+        oled->FillRect(45, 20, 24, 30, true);
+        break;
+
+    case VoiceCmd::TURN_RIGHT:
+    case VoiceCmd::SHIFT_RIGHT:
+        // 【右看状态】：眼球移到极右，且右眼变小
+        oled->FillRect(59, 20, 24, 30, true);
+        oled->FillRect(100, 24, 18, 24, true);
+        break;
+
+    case VoiceCmd::ATTACK_MODE:
+        // 【攻击状态】：极其凶狠！取消眨眼，倒八字眉毛闪烁 (警告意味)
+        oled->FillRect(32, 32, 24, 18, true);
+        oled->FillRect(72, 32, 24, 18, true);
+
+        // 眉毛以 200ms 频率红暴闪烁
+        if (tick % 200 < 100)
+        {
+            for (int i = 0; i < 8; i++)
+            {
+                oled->DrawLine(16, 18 + i, 56, 32 + i, true);  //
+                oled->DrawLine(112, 18 + i, 72, 32 + i, true); // /
+            }
+        }
+        break;
+
+    case VoiceCmd::SHAKE_HAND_L:
+    case VoiceCmd::SHAKE_HAND_R:
+    case VoiceCmd::GREETING:
+    case VoiceCmd::DANCE:
+    case VoiceCmd::STRETCH:
+        // 【开心状态】：极其开心的笑眼 ^ ^ ，伴随激动的上下跳动
+        {
+            int y_jump = (tick % 300 < 150) ? -4 : 0; // 快速跳动
+            for (int i = 0; i < 6; i++)
+            {
+                oled->DrawLine(30, 35 + i + y_jump, 44, 18 + i + y_jump, true);
+                oled->DrawLine(44, 18 + i + y_jump, 58, 35 + i + y_jump, true);
+
+                oled->DrawLine(70, 35 + i + y_jump, 84, 18 + i + y_jump, true);
+                oled->DrawLine(84, 18 + i + y_jump, 98, 35 + i + y_jump, true);
+            }
+        }
+        break;
+
+    default:
+        oled->FillRect(32, 20, 24, 30, true);
+        oled->FillRect(72, 20, 24, 30, true);
+        break;
+    }
+}
 
 void HC05_RxCallback_Wrapper(UART_HandleTypeDef *huart)
 {
@@ -209,46 +377,63 @@ void task_bluetooth_test(void *argument)
 
 void task_display(void *argument)
 {
-    char dog_pitch[32];
+    char text_buffer[32];
     for (;;)
     {
-        if (global_dog_action == VoiceCmd::WAKE_UP || global_dog_action == VoiceCmd::SIT_DOWN)
-        {
-            oled->Clear();
-            oled->DrawString(0, 0, "CyberDog Status:");
+        oled->Clear();
 
-            sprintf(dog_pitch, "Pitch:%d", (int16_t)dogImu->GetPitch());
-            oled->DrawString(0, 16, dog_pitch);
+        // 1. 获取系统运行的毫秒数，这是所有动画的“时间引擎”
+        uint32_t current_tick = osKernelGetTickCount();
 
-            oled->DrawString(0, 32, last_voice_cmd);
+        // 2. 渲染带时间参数的动态表情！
+        DrawDynamicFace(global_dog_action, current_tick);
 
-            oled->Update();
-        }
+        // 3. 右上角依然保留非常实用的电池 UI (去掉了顶层的 Voice 文字)
+        uint8_t bat_percent = GetBatteryPercentage();
+        oled->DrawBattery(104, 0, bat_percent);
+        sprintf(text_buffer, "%d%%", bat_percent);
+        oled->DrawString(106, 12, text_buffer);
 
-        // 刷新频率依然保持较低的 200ms
-        osDelay(200);
+        // 4. 左下角极客仪表盘 (如果你以后觉得碍眼，把这两行删掉就是一张极其纯粹的脸了)
+        sprintf(text_buffer, "P:%d R:%d", (int16_t)dogImu->GetPitch(), (int16_t)dogImu->GetRoll());
+        oled->DrawString(0, 54, text_buffer);
+
+        oled->Update();
+
+        // 【关键】：为了让动画顺滑，将屏幕刷新率提速到 50ms 一帧 (相当于 20 FPS)
+        // 配合硬件 I2C，这个帧率既不拖累单片机，又能让人眼感觉极其丝滑
+        osDelay(50);
     }
 }
 
-
 void task_motion_control(void *argument)
 {
-    
-
-    osDelay(2000); // 开机等待
+    osDelay(2000);
     for (;;)
     {
-        // 直接调用封装好的执行接口
-        motionBrain->ExecuteCommand(global_dog_action);
+        VoiceCmd current_cmd = global_dog_action;
+        motionBrain->ExecuteCommand(current_cmd);
 
-        // // 如果是单次触发动作（如招手），执行完后自动归位
-        // if (global_dog_action == VoiceCmd::SHAKE_HAND_L || global_dog_action == VoiceCmd::SHAKE_HAND_R ||
-        //     global_dog_action == VoiceCmd::DANCE)
-        // {
-        //     global_dog_action = VoiceCmd::WAKE_UP;
-        // }
-
-        global_dog_action = VoiceCmd::WAKE_UP;
+        if (global_dog_action == current_cmd)
+        {
+            // 【核心修复】：白名单机制！只有走路、转弯或一次性表演动作，执行完才自动起立。
+            // 坐下、趴下、歪头等静态动作被排除在外，它们将被永久保持，直到下一次命令打断！
+            if (current_cmd == VoiceCmd::FORWARD ||
+                current_cmd == VoiceCmd::BACKWARD ||
+                current_cmd == VoiceCmd::TURN_LEFT ||
+                current_cmd == VoiceCmd::TURN_RIGHT ||
+                current_cmd == VoiceCmd::SHIFT_LEFT ||
+                current_cmd == VoiceCmd::SHIFT_RIGHT ||
+                current_cmd == VoiceCmd::SHAKE_HAND_L ||
+                current_cmd == VoiceCmd::SHAKE_HAND_R ||
+                current_cmd == VoiceCmd::GREETING ||
+                current_cmd == VoiceCmd::STRETCH ||
+                current_cmd == VoiceCmd::DANCE ||
+                current_cmd == VoiceCmd::ATTACK_MODE)
+            {
+                global_dog_action = VoiceCmd::WAKE_UP;
+            }
+        }
 
         osDelay(20);
     }
@@ -279,8 +464,6 @@ void App_Main()
     voiceModule->Init(my_su03t_queue);
     pca9685->Init();
     motionBrain->Init(); // 【新增】初始化步态相位参数
-
-
 
     osThreadAttr_t task_bluetooth_test_attr = {.priority = osPriorityNormal};
     osThreadAttr_t task_Mpu6050_attr = {.priority = osPriorityNormal};

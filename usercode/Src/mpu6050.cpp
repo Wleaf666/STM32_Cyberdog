@@ -12,7 +12,7 @@
 
 bool MPU6050::Init()
 {
-    if(HAL_I2C_IsDeviceReady(hi2c,MPU_ADDR,3,10)!=HAL_OK)
+    if (HAL_I2C_IsDeviceReady(hi2c, MPU_ADDR, 3, 10) != HAL_OK)
     {
         device_ready = false;
         return false;
@@ -25,8 +25,8 @@ bool MPU6050::Init()
         HAL_I2C_Mem_Read(hi2c, MPU_ADDR, REG_WHO_AM_I, 1, &check, 1, 100);
         if (check != 0x68)
         {
-            return false;
-            osMutexRelease(i2cMutex);
+            osMutexRelease(i2cMutex); 
+            return false;             
         }
         data = 0x01;
         HAL_I2C_Mem_Write(hi2c, MPU_ADDR, REG_PWR_MGMT_1, 1, &data, 1, 100);
@@ -44,8 +44,6 @@ bool MPU6050::Init()
         osMutexRelease(i2cMutex);
     }
 
-        
-
     this->lastTick = osKernelGetTickCount();
 
     return true;
@@ -53,16 +51,25 @@ bool MPU6050::Init()
 
 void MPU6050::Update()
 {
-    if(!device_ready)
+    if (!device_ready)
         return;
     uint8_t data_buffer[14] = {0};
+    bool read_success = false;
     if (i2cMutex != nullptr && osMutexAcquire(i2cMutex, osWaitForever) == osOK)
     {
-        HAL_I2C_Mem_Read(hi2c, MPU_ADDR, REG_DATA, 1, data_buffer, 14, 100);
+        if (HAL_I2C_Mem_Read(hi2c, MPU_ADDR, REG_DATA, 1, data_buffer, 14, 100) == HAL_OK)
+        {
+            read_success = true;
+        }
 
         osMutexRelease(i2cMutex);
     }
 
+    if (!read_success)
+    {
+        Init(); // 重新下发唤醒寄存器命令
+        return;
+    }
 
     int16_t RawAccleX = (int16_t)((data_buffer[0] << 8) | data_buffer[1]);
     int16_t RawAccleY = (int16_t)((data_buffer[2] << 8) | data_buffer[3]);
@@ -84,7 +91,7 @@ void MPU6050::Update()
 
     this->temptreture = RawTemperature / 340.0f + 35;
 
-    float accelPitch = atan2(this->accelX, sqrt( this->accelY * this->accelY + this->accelZ * this->accelZ)) *57.29578f;
+    float accelPitch = atan2(this->accelX, sqrt(this->accelY * this->accelY + this->accelZ * this->accelZ)) * 57.29578f;
     float accelRoll = atan2(this->accelY, this->accelZ) * 57.29578f;
 
     uint32_t currentTick = osKernelGetTickCount();
@@ -93,9 +100,15 @@ void MPU6050::Update()
 
     float dt = (float)deltaTick / (float)osKernelGetTickFreq();
 
-    if(dt<=0.0f||dt>0.1f)
+    if (dt <= 0.0f || dt > 0.1f)
     {
         dt = 0.02f;
+    }
+
+    if (RawAccleX == 0 && RawAccleY == 0 && RawAccleZ == 0)
+    {
+        Init();
+        return;
     }
 
     this->pitch = 0.98f * (this->pitch + (-this->gyroY) * dt) + 0.02f * accelPitch;

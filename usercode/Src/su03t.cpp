@@ -35,31 +35,27 @@ void SU03T::onRxCpltCallback()
 VoiceCmd SU03T::getCommand()
 {
     uint8_t byte;
-
-    // 从队列抽水，超时为 0，绝对不阻塞当前任务
     while (osMessageQueueGet(rxQueue, &byte, NULL, 0) == osOK)
     {
+        // 🛡️ 终极装甲：同样的防线，容量上限是 16
+        if (rxBuffer.size() >= 16)
+        {
+            rxBuffer.clear();
+        }
+
         rxBuffer.push_back(byte);
 
-        // 1. 找包头 0xAA，不是就抛弃
         if (rxBuffer.front() != 0xAA)
         {
             rxBuffer.clear();
             continue;
         }
 
-        // 2. 找包尾 0x55，并且长度必须大于等于 3 (AA XX 55)
         if (byte == 0x55 && rxBuffer.size() >= 3)
         {
             VoiceCmd cmd = parsePacket(rxBuffer);
-            rxBuffer.clear(); // 解析完立刻清空
-            return cmd;
-        }
-
-        // 3. 缓冲区防爆破保护
-        if (rxBuffer.size() > 16)
-        {
             rxBuffer.clear();
+            return cmd;
         }
     }
     return VoiceCmd::NONE;

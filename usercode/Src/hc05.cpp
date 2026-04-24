@@ -50,6 +50,12 @@ bool HC05::getCommand(RobotCommand &cmd)
     uint8_t byte;
     while (osMessageQueueGet(rxQueue, &byte, NULL, 0) == osOK)
     {
+        // 🛡️ 终极装甲：在塞入数据前检查！只要满了，立刻清空，绝对不给 vector 扩容的机会！
+        if (rxBuffer.size() >= 64)
+        {
+            rxBuffer.clear();
+        }
+
         rxBuffer.push_back(byte);
 
         if (rxBuffer.front() != 0xAA)
@@ -64,12 +70,6 @@ bool HC05::getCommand(RobotCommand &cmd)
             rxBuffer.clear();
             return valid;
         }
-
-        if (rxBuffer.size() > 64)
-        {
-            rxBuffer.clear();
-        }
-        
     }
     return false;
 }

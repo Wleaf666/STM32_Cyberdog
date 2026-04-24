@@ -7,7 +7,7 @@
 				{
 					"directoryIndex" : 1,
 					"id" : "stm32cubemx::@768a070a0fe75716b479",
-					"jsonFile" : "target-stm32cubemx-Debug-5e0d86e54543ac1a1c41.json",
+					"jsonFile" : "target-stm32cubemx-Debug-c39d1dbad568caaecbcc.json",
 					"name" : "stm32cubemx",
 					"projectIndex" : 0
 				}
@@ -80,21 +80,21 @@
 				{
 					"directoryIndex" : 1,
 					"id" : "FreeRTOS::@768a070a0fe75716b479",
-					"jsonFile" : "target-FreeRTOS-Debug-97615934f8c08252bfae.json",
+					"jsonFile" : "target-FreeRTOS-Debug-33d0c67b1d1835111482.json",
 					"name" : "FreeRTOS",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
 					"id" : "STM32_CyberDog::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-STM32_CyberDog-Debug-81e0a8f721e6bfeb8e59.json",
+					"jsonFile" : "target-STM32_CyberDog-Debug-cec2b3ed166ec6654d2f.json",
 					"name" : "STM32_CyberDog",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 1,
 					"id" : "STM32_Drivers::@768a070a0fe75716b479",
-					"jsonFile" : "target-STM32_Drivers-Debug-3f016cf5ffbf2581df3e.json",
+					"jsonFile" : "target-STM32_Drivers-Debug-2c9a552a41cef2af39a2.json",
 					"name" : "STM32_Drivers",
 					"projectIndex" : 0
 				}

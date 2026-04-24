@@ -1,5 +1,6 @@
 #include "ssd1306.hpp"
 #include "font.hpp"
+#include "stdlib.h"
 
 
 SSD1306::SSD1306(I2C_HandleTypeDef *_hi2c, osMutexId_t _i2cMutex, uint8_t _address)
@@ -110,23 +111,26 @@ void SSD1306::DrawPixel(int16_t x, int16_t y, bool color)
 
 void SSD1306::Update()
 {
-    if(!device_ready)
+    if (!device_ready)
         return;
     if (i2cMutex != nullptr && osMutexAcquire(i2cMutex, osWaitForever) == osOK)
     {
         for (uint8_t i = 0; i < 8; i++)
         {
-            // 1. 瞄准行：告诉屏幕我们要画第 i 页 (Page 0 ~ Page 7)
+            // 1. 瞄准行
             uint8_t page_cmd = 0xB0 + i;
             HAL_I2C_Mem_Write(hi2c, address, 0x00, 1, &page_cmd, 1, 10);
 
-            // 2. 瞄准列：告诉屏幕我们从第 0 列开始画 (分为低四位 0x00 和高四位 0x10)
-            uint8_t col_low = 0x00;
+            // ==========================================
+            // 【核心修正区】：1.3寸屏幕 (SH1106) 的 2 像素偏移量
+            // ==========================================
+            uint8_t col_low = 0x02; // <---- 原来是 0x00，必须改成 0x02！
             uint8_t col_high = 0x10;
+
             HAL_I2C_Mem_Write(hi2c, address, 0x00, 1, &col_low, 1, 10);
             HAL_I2C_Mem_Write(hi2c, address, 0x00, 1, &col_high, 1, 10);
 
-            // 3. 开火：稳稳地把这 128 个字节的数据刷进去！
+            // 3. 稳稳地刷入 128 字节
             HAL_I2C_Mem_Write(hi2c, address, 0x40, 1, &buffer[i * 128], 128, 100);
         }
         osMutexRelease(i2cMutex);
@@ -176,5 +180,67 @@ void SSD1306::DrawString(int16_t x, int16_t y, const char *str)
         }
 
         str++; // 指向下一个字符
+    }
+}
+
+// Bresenham 画线算法 (极其高效的底层画线)
+void SSD1306::DrawLine(int16_t x0, int16_t y0, int16_t x1, int16_t y1, bool color)
+{
+    int16_t dx = abs(x1 - x0), sx = x0 < x1 ? 1 : -1;
+    int16_t dy = -abs(y1 - y0), sy = y0 < y1 ? 1 : -1;
+    int16_t err = dx + dy, e2;
+    for (;;)
+    {
+        DrawPixel(x0, y0, color);
+        if (x0 == x1 && y0 == y1)
+            break;
+        e2 = 2 * err;
+        if (e2 >= dy)
+        {
+            err += dy;
+            x0 += sx;
+        }
+        if (e2 <= dx)
+        {
+            err += dx;
+            y0 += sy;
+        }
+    }
+}
+
+// 画实心矩形 (用来画大眼睛)
+void SSD1306::FillRect(int16_t x, int16_t y, int16_t w, int16_t h, bool color)
+{
+    for (int16_t i = x; i < x + w; i++)
+    {
+        for (int16_t j = y; j < y + h; j++)
+        {
+            DrawPixel(i, j, color);
+        }
+    }
+}
+
+// 绘制精美的电池 UI 图标
+void SSD1306::DrawBattery(int16_t x, int16_t y, uint8_t percentage)
+{
+    // 1. 画电池外框 (长20，宽8)
+    DrawLine(x, y, x + 20, y, true);
+    DrawLine(x, y + 8, x + 20, y + 8, true);
+    DrawLine(x, y, x, y + 8, true);
+    DrawLine(x + 20, y, x + 20, y + 8, true);
+
+    // 2. 画电池正极的凸起
+    DrawLine(x + 21, y + 2, x + 21, y + 6, true);
+    DrawLine(x + 22, y + 2, x + 22, y + 6, true);
+
+    // 3. 内部电量填充 (限制范围并计算填充宽度)
+    if (percentage > 100)
+        percentage = 100;
+    uint8_t fill_width = (percentage * 18) / 100;
+
+    for (int i = 0; i < fill_width; i++)
+    {
+        // 画内部实心竖线，留出1像素边框间距
+        DrawLine(x + 1 + i, y + 1, x + 1 + i, y + 7, true);
     }
 }

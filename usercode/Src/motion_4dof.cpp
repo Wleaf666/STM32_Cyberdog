@@ -1,4 +1,5 @@
 #include "motion_4dof.hpp"
+extern volatile VoiceCmd global_dog_action;
 
 // 宏定义圆周率
 #define PI 3.1415926535f
@@ -20,25 +21,20 @@ void Motion4DOF::Relax()
         servoDriver->setPWM(i, 0, 4096); // 强制脱力关闭 PWM
 }
 
-void Motion4DOF::StandIdle()
-{
-    servoDriver->setAngle(LegChanel::FrontLeft, mid);
-    servoDriver->setAngle(LegChanel::FrontRight, mid);
-    servoDriver->setAngle(LegChanel::RearLeft, mid);
-    servoDriver->setAngle(LegChanel::RearRight, mid);
-}
+
 
 // 终极平滑矩阵引擎
 void Motion4DOF::matrixEngine(const int (*gait)[4], int phases, int repeats,
                               float lf_swing, float lf_stance, float rf_swing, float rf_stance,
                               float lh_swing, float lh_stance, float rh_swing, float rh_stance)
 {
+    // 【记录初衷】：记住我是因为什么指令进来的
+    VoiceCmd entry_cmd = global_dog_action;
+
     float swing_angles[4] = {lf_swing, rf_swing, lh_swing, rh_swing};
     float stance_angles[4] = {lf_stance, rf_stance, lh_stance, rh_stance};
     LegChanel legs[4] = {LegChanel::FrontLeft, LegChanel::FrontRight, LegChanel::RearLeft, LegChanel::RearRight};
 
-    // 计算在抓地阶段，每经过一个相位需要移动的角度增量
-    // (总行程 = stance - swing, 分配给 phases-1 个抓地相位)
     float stance_step[4];
     for (int i = 0; i < 4; i++)
     {
@@ -49,62 +45,84 @@ void Motion4DOF::matrixEngine(const int (*gait)[4], int phases, int repeats,
     {
         for (int p = 0; p < phases; p++)
         {
-            // 记录这一阶段骤开始时的角度，作为平滑插值的起点
+            // ==========================================
+            // 🚨 【紧急刹车打断机制】
+            // ==========================================
+            // 每次切换相位前，看一眼指令变了没有。如果变了（比如用户按了停止或转弯），立刻退出引擎！
+            if (global_dog_action != entry_cmd)
+            {
+                return;
+            }
+
             float start_angles[4];
             float target_angles[4];
 
             for (int i = 0; i < 4; i++)
             {
-                start_angles[i] = cur_angles[i]; // 读取当前真实的腿部角度
-
+                start_angles[i] = cur_angles[i];
                 if (gait[p][i] == 1)
                 {
-                    // 抬腿迈步状态：直接把目标定在最前方
                     target_angles[i] = swing_angles[i];
                 }
                 else
                 {
-                    // 抓地推移状态：在当前角度的基础上，往后推移一个步长增量
                     target_angles[i] = cur_angles[i] + stance_step[i];
+
+                    // ==========================================
+                    // 🚨 【新增防护装甲：动态限幅器 (Clamp)】
+                    // 防止切换方向时，累加值超出物理极限导致舵机“骨折”
+                    // ==========================================
+
+                    // 1. 自动判断当前动作的上限和下限
+                    float min_angle = (swing_angles[i] < stance_angles[i]) ? swing_angles[i] : stance_angles[i];
+                    float max_angle = (swing_angles[i] > stance_angles[i]) ? swing_angles[i] : stance_angles[i];
+
+                    // 2. 如果盲目加算导致越界，强制将其锁死在合法边界上
+                    if (target_angles[i] < min_angle)
+                        target_angles[i] = min_angle;
+                    if (target_angles[i] > max_angle)
+                        target_angles[i] = max_angle;
                 }
             }
 
             // ==========================================
-            // 1. 抬腿迈步 (打滑阶段：极速前伸)
+            // 1. 抬腿迈步 (极速前伸)
             // ==========================================
             for (int i = 0; i < 4; i++)
             {
                 if (gait[p][i] == 1)
                 {
                     servoDriver->setAngle(legs[i], target_angles[i]);
-                    cur_angles[i] = target_angles[i]; // 更新记录
+                    cur_angles[i] = target_angles[i];
                 }
             }
-            osDelay(30); // 稍微缩短前伸等待时间，让动作更利落
+            // 【提速】：从 30ms 减半到 15ms，让抬腿像闪电一样快
+            osDelay(15);
 
             // ==========================================
-            // 2. 慢推移动作 (抓地阶段：缓慢往后推移)
+            // 2. 慢推移动作 (抓地推进)
             // ==========================================
-            int smooth_frames = 10;
+            // 【提速】：将插值帧数从 10 帧压缩到 5 帧，大幅缩短单步时间
+            int smooth_frames = 5;
             for (int j = 1; j <= smooth_frames; j++)
             {
+                // 内部小循环也加入打断，做到毫秒级响应
+                if (global_dog_action != entry_cmd)
+                    return;
+
                 float ratio = (float)j / smooth_frames;
                 for (int i = 0; i < 4; i++)
                 {
                     if (gait[p][i] == 0)
                     {
-                        // 线性插值：从当前起点，平滑过渡到这一个相位的目标点
                         float interpolated = start_angles[i] + (target_angles[i] - start_angles[i]) * ratio;
                         servoDriver->setAngle(legs[i], interpolated);
-
-                        // 在最后一帧，把当前角度正式记录下来，留给下一个相位使用
-                        if (j == smooth_frames)
-                        {
-                            cur_angles[i] = target_angles[i];
-                        }
+                        // 【改进】：每一帧都实时更新当前角度，防止打断时姿态错乱
+                        cur_angles[i] = interpolated;
                     }
                 }
-                osDelay(15);
+                // 【提速】：每帧间隔从 15ms 缩减到 10ms
+                osDelay(10);
             }
         }
     }
@@ -212,58 +230,95 @@ void Motion4DOF::ExecuteCommand(VoiceCmd cmd)
 // 姿态与动作底层实现 (严格遵守左右镜像法则)
 // ==========================================
 
+void Motion4DOF::StandIdle()
+{
+    servoDriver->setAngle(LegChanel::FrontLeft, mid);
+    servoDriver->setAngle(LegChanel::FrontRight, mid);
+    servoDriver->setAngle(LegChanel::RearLeft, mid);
+    servoDriver->setAngle(LegChanel::RearRight, mid);
+    // 【关键】：同步更新记忆！
+    cur_angles[0] = mid;
+    cur_angles[1] = mid;
+    cur_angles[2] = mid;
+    cur_angles[3] = mid;
+}
+
 void Motion4DOF::postureSitDown()
 {
     servoDriver->setAngle(LegChanel::FrontLeft, mid);
     servoDriver->setAngle(LegChanel::FrontRight, mid);
-    // 后腿往后折叠蹲下 (左侧增大为后退，右侧减小为后退)
     servoDriver->setAngle(LegChanel::RearLeft, mid + 40);
     servoDriver->setAngle(LegChanel::RearRight, mid - 40);
+
+    cur_angles[0] = mid;
+    cur_angles[1] = mid;
+    cur_angles[2] = mid + 40;
+    cur_angles[3] = mid - 40;
 }
 
 void Motion4DOF::postureLieDown()
 {
-    // 四腿趴平 (前腿前伸，后腿后伸)
     servoDriver->setAngle(LegChanel::FrontLeft, mid - 50);
     servoDriver->setAngle(LegChanel::FrontRight, mid + 50);
     servoDriver->setAngle(LegChanel::RearLeft, mid + 50);
     servoDriver->setAngle(LegChanel::RearRight, mid - 50);
+
+    cur_angles[0] = mid - 50;
+    cur_angles[1] = mid + 50;
+    cur_angles[2] = mid + 50;
+    cur_angles[3] = mid - 50;
 }
 
 void Motion4DOF::postureLookUp()
 {
-    // 前腿往后收起抬高，后腿往外撇降低
     servoDriver->setAngle(LegChanel::FrontLeft, mid + 30);
     servoDriver->setAngle(LegChanel::FrontRight, mid - 30);
     servoDriver->setAngle(LegChanel::RearLeft, mid + 30);
     servoDriver->setAngle(LegChanel::RearRight, mid - 30);
+
+    cur_angles[0] = mid + 30;
+    cur_angles[1] = mid - 30;
+    cur_angles[2] = mid + 30;
+    cur_angles[3] = mid - 30;
 }
 
 void Motion4DOF::postureLookDown()
 {
-    // 前腿往外撇降低，后腿往后收起抬高
     servoDriver->setAngle(LegChanel::FrontLeft, mid - 30);
     servoDriver->setAngle(LegChanel::FrontRight, mid + 30);
     servoDriver->setAngle(LegChanel::RearLeft, mid - 30);
     servoDriver->setAngle(LegChanel::RearRight, mid + 30);
+
+    cur_angles[0] = mid - 30;
+    cur_angles[1] = mid + 30;
+    cur_angles[2] = mid - 30;
+    cur_angles[3] = mid + 30;
 }
 
 void Motion4DOF::postureLeanLeft()
 {
-    // 左侧腿趴下，右侧腿站直
     servoDriver->setAngle(LegChanel::FrontLeft, mid - 40);
     servoDriver->setAngle(LegChanel::RearLeft, mid + 40);
     servoDriver->setAngle(LegChanel::FrontRight, mid);
     servoDriver->setAngle(LegChanel::RearRight, mid);
+
+    cur_angles[0] = mid - 40;
+    cur_angles[1] = mid;
+    cur_angles[2] = mid + 40;
+    cur_angles[3] = mid;
 }
 
 void Motion4DOF::postureLeanRight()
 {
-    // 右侧腿趴下，左侧腿站直
     servoDriver->setAngle(LegChanel::FrontLeft, mid);
     servoDriver->setAngle(LegChanel::RearLeft, mid);
     servoDriver->setAngle(LegChanel::FrontRight, mid + 40);
     servoDriver->setAngle(LegChanel::RearRight, mid - 40);
+
+    cur_angles[0] = mid;
+    cur_angles[1] = mid + 40;
+    cur_angles[2] = mid;
+    cur_angles[3] = mid - 40;
 }
 
 void Motion4DOF::actionShakeHand(bool left)
