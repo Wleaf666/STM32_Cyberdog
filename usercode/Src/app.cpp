@@ -36,21 +36,28 @@ Motion4DOF *motionBrain = nullptr; // 【新增】声明运动小脑指针
 
 extern "C" void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
 {
-    // 1. 暴力清除所有错误标志位 (溢出、噪音、帧错误)
-    __HAL_UART_CLEAR_OREFLAG(huart);
-    __HAL_UART_CLEAR_NEFLAG(huart);
-    __HAL_UART_CLEAR_FEFLAG(huart);
+    // 1. 规范清除错误标志位 (绝对不要在这里强行 Unlock！)
+    if (__HAL_UART_GET_FLAG(huart, UART_FLAG_ORE) != RESET)
+    {
+        __HAL_UART_CLEAR_OREFLAG(huart);
+    }
+    if (__HAL_UART_GET_FLAG(huart, UART_FLAG_NE) != RESET)
+    {
+        __HAL_UART_CLEAR_NEFLAG(huart);
+    }
+    if (__HAL_UART_GET_FLAG(huart, UART_FLAG_FE) != RESET)
+    {
+        __HAL_UART_CLEAR_FEFLAG(huart);
+    }
 
-    // 2. 重新强行开启中断接收！
+    // 2. 优雅通知上层重启接收
     if (huart->Instance == USART1 && blueTooth != nullptr)
     {
-        // 蓝牙挂了，重新初始化蓝牙接收
-        blueTooth->Init(my_hc05_queue);
+        blueTooth->Resume();
     }
     if (huart->Instance == USART2 && voiceModule != nullptr)
     {
-        // 语音挂了，重新初始化语音接收
-        voiceModule->Init(my_su03t_queue);
+        voiceModule->Resume();
     }
 }
 
@@ -439,6 +446,31 @@ void task_motion_control(void *argument)
     }
 }
 
+void task_system_init(void *argument)
+{
+    // 【极其关键】让子弹飞一会儿！给所有外设 100ms 的硬件上电稳定时间
+    osDelay(100);
+
+    // 此时调度器已经完美运行，TIM4 中断正常，Mutex 安全，超时机制满血复活！
+    oled->Init();
+    dogImu->Init();
+    blueTooth->Init(my_hc05_queue);
+    voiceModule->Init(my_su03t_queue);
+    pca9685->Init();
+    motionBrain->Init();
+
+    // 初始化完成后，再点火启动所有干活的线程
+    osThreadAttr_t default_attr = {.priority = osPriorityNormal};
+    osThreadNew(task_bluetooth_test, &test_count, &default_attr);
+    osThreadNew(task_display, NULL, &default_attr);
+    osThreadNew(task_Mpu6050, &test_count1, &default_attr);
+    osThreadNew(task_voice_handler, NULL, &default_attr);
+    osThreadNew(task_motion_control, NULL, &default_attr);
+
+    // 初始化任务完成使命，自杀释放内存
+    osThreadExit();
+}
+
 void App_Main()
 {
 
@@ -458,25 +490,27 @@ void App_Main()
     my_hc05_queue = osMessageQueueNew(64, sizeof(uint8_t), NULL);
     my_su03t_queue = osMessageQueueNew(32, sizeof(uint8_t), NULL);
 
-    oled->Init();
-    dogImu->Init();
-    blueTooth->Init(my_hc05_queue);
-    voiceModule->Init(my_su03t_queue);
-    pca9685->Init();
-    motionBrain->Init(); // 【新增】初始化步态相位参数
+    // oled->Init();
+    // dogImu->Init();
+    // blueTooth->Init(my_hc05_queue);
+    // voiceModule->Init(my_su03t_queue);
+    // pca9685->Init();
+    // motionBrain->Init(); // 【新增】初始化步态相位参数
 
-    osThreadAttr_t task_bluetooth_test_attr = {.priority = osPriorityNormal};
-    osThreadAttr_t task_Mpu6050_attr = {.priority = osPriorityNormal};
-    osThreadAttr_t task_display_attr = {.priority = osPriorityNormal};
-    osThreadAttr_t task_voice_attr = {.priority = osPriorityNormal};
+    // osThreadAttr_t task_bluetooth_test_attr = {.priority = osPriorityNormal};
+    // osThreadAttr_t task_Mpu6050_attr = {.priority = osPriorityNormal};
+    // osThreadAttr_t task_display_attr = {.priority = osPriorityNormal};
+    // osThreadAttr_t task_voice_attr = {.priority = osPriorityNormal};
 
-    osThreadAttr_t task_motion_attr = {.priority = osPriorityNormal};
+    // osThreadAttr_t task_motion_attr = {.priority = osPriorityNormal};
 
-    osThreadNew(task_bluetooth_test, &test_count, &task_bluetooth_test_attr);
-    osThreadNew(task_display, NULL, &task_display_attr);
-    osThreadNew(task_Mpu6050, &test_count1, &task_Mpu6050_attr);
+    // osThreadNew(task_bluetooth_test, &test_count, &task_bluetooth_test_attr);
+    // osThreadNew(task_display, NULL, &task_display_attr);
+    // osThreadNew(task_Mpu6050, &test_count1, &task_Mpu6050_attr);
 
-    osThreadNew(task_voice_handler, NULL, &task_voice_attr);
+    // osThreadNew(task_voice_handler, NULL, &task_voice_attr);
 
-    osThreadNew(task_motion_control, NULL, &task_motion_attr);
+    // osThreadNew(task_motion_control, NULL, &task_motion_attr);
+    osThreadAttr_t init_attr = {.priority = osPriorityHigh};
+    osThreadNew(task_system_init, NULL, &init_attr);
 }

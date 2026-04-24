@@ -37,9 +37,17 @@ private:
     const float RH_F = 90 + 25, RH_B = 90 - 25;
 
     // 高级矩阵引擎：支持动态极性覆盖
-    void matrixEngine(const int (*gait)[4], int phases, int repeats,
-                      float lf_s, float lf_e, float rf_s, float rf_e,
-                      float lh_s, float lh_e, float rh_s, float rh_e);
+    // void matrixEngine(const int (*gait)[4], int phases, int repeats,
+    //                   float lf_s, float lf_e, float rf_s, float rf_e,
+    //                   float lh_s, float lh_e, float rh_s, float rh_e);
+
+    void actionWalkForward();
+
+    void actionWalkBackward();
+
+    void actionTurnLeft();
+
+    void actionTurnRight();
 
     // ==========================================
     // 静态姿态库 (IK 基础姿态)

@@ -38,6 +38,8 @@ class HC05
         void onRxCpltCallback();
 
         bool getCommand(RobotCommand &cmd);
+
+        void Resume(); // 硬件级防死锁复苏
 };
 
 void HC05_RxCallback_Wrapper(UART_HandleTypeDef *huart);

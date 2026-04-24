@@ -83,6 +83,8 @@ public:
 
     // 供应用层调用的接口：让语音模块播报指定音频
     void playVoice(VoicePlay audio_id);
+
+    void Resume(); // 硬件级防死锁复苏
 };
 
 // C 语言中断的回调包装器

@@ -24,107 +24,217 @@ void Motion4DOF::Relax()
 
 
 // 终极平滑矩阵引擎
-void Motion4DOF::matrixEngine(const int (*gait)[4], int phases, int repeats,
-                              float lf_swing, float lf_stance, float rf_swing, float rf_stance,
-                              float lh_swing, float lh_stance, float rh_swing, float rh_stance)
+// void Motion4DOF::matrixEngine(const int (*gait)[4], int phases, int repeats,
+//                               float lf_swing, float lf_stance, float rf_swing, float rf_stance,
+//                               float lh_swing, float lh_stance, float rh_swing, float rh_stance)
+// {
+//     // 【记录初衷】：记住我是因为什么指令进来的
+//     VoiceCmd entry_cmd = global_dog_action;
+
+//     float swing_angles[4] = {lf_swing, rf_swing, lh_swing, rh_swing};
+//     float stance_angles[4] = {lf_stance, rf_stance, lh_stance, rh_stance};
+//     LegChanel legs[4] = {LegChanel::FrontLeft, LegChanel::FrontRight, LegChanel::RearLeft, LegChanel::RearRight};
+
+//     float stance_step[4];
+//     for (int i = 0; i < 4; i++)
+//     {
+//         stance_step[i] = (stance_angles[i] - swing_angles[i]) / (phases - 1);
+//     }
+
+//     for (int r = 0; r < repeats; r++)
+//     {
+//         for (int p = 0; p < phases; p++)
+//         {
+//             // ==========================================
+//             // 🚨 【紧急刹车打断机制】
+//             // ==========================================
+//             // 每次切换相位前，看一眼指令变了没有。如果变了（比如用户按了停止或转弯），立刻退出引擎！
+//             if (global_dog_action != entry_cmd)
+//             {
+//                 return;
+//             }
+
+//             float start_angles[4];
+//             float target_angles[4];
+
+//             for (int i = 0; i < 4; i++)
+//             {
+//                 start_angles[i] = cur_angles[i];
+//                 if (gait[p][i] == 1)
+//                 {
+//                     target_angles[i] = swing_angles[i];
+//                 }
+//                 else
+//                 {
+//                     target_angles[i] = cur_angles[i] + stance_step[i];
+
+//                     // ==========================================
+//                     // 🚨 【新增防护装甲：动态限幅器 (Clamp)】
+//                     // 防止切换方向时，累加值超出物理极限导致舵机“骨折”
+//                     // ==========================================
+
+//                     // 1. 自动判断当前动作的上限和下限
+//                     float min_angle = (swing_angles[i] < stance_angles[i]) ? swing_angles[i] : stance_angles[i];
+//                     float max_angle = (swing_angles[i] > stance_angles[i]) ? swing_angles[i] : stance_angles[i];
+
+//                     // 2. 如果盲目加算导致越界，强制将其锁死在合法边界上
+//                     if (target_angles[i] < min_angle)
+//                         target_angles[i] = min_angle;
+//                     if (target_angles[i] > max_angle)
+//                         target_angles[i] = max_angle;
+//                 }
+//             }
+
+//             // ==========================================
+//             // 1. 抬腿迈步 (极速前伸)
+//             // ==========================================
+//             for (int i = 0; i < 4; i++)
+//             {
+//                 if (gait[p][i] == 1)
+//                 {
+//                     servoDriver->setAngle(legs[i], target_angles[i]);
+//                     cur_angles[i] = target_angles[i];
+//                 }
+//             }
+//             // 【关键修改】：从过快的 15ms 恢复到 40ms，让舵机真正走到位！
+//             osDelay(40);
+
+//             // ==========================================
+//             // 2. 慢推移动作 (抓地推进)
+//             // ==========================================
+//             // 【关键修改】：将插值帧数增加到 8 帧，每帧 15ms (总计120ms抓地推力)
+//             // 这样能模仿“跳舞”时的重心摇摆，让前进变得极其扎实！
+//             int smooth_frames = 8;
+//             for (int j = 1; j <= smooth_frames; j++)
+//             {
+//                 if (global_dog_action != entry_cmd)
+//                     return;
+
+//                 float ratio = (float)j / smooth_frames;
+//                 for (int i = 0; i < 4; i++)
+//                 {
+//                     if (gait[p][i] == 0)
+//                     {
+//                         float interpolated = start_angles[i] + (target_angles[i] - start_angles[i]) * ratio;
+//                         servoDriver->setAngle(legs[i], interpolated);
+//                         cur_angles[i] = interpolated;
+//                     }
+//                 }
+//                 osDelay(15);
+//             }
+//         }
+//     }
+// }
+
+void Motion4DOF::actionWalkForward()
 {
-    // 【记录初衷】：记住我是因为什么指令进来的
-    VoiceCmd entry_cmd = global_dog_action;
-
-    float swing_angles[4] = {lf_swing, rf_swing, lh_swing, rh_swing};
-    float stance_angles[4] = {lf_stance, rf_stance, lh_stance, rh_stance};
-    LegChanel legs[4] = {LegChanel::FrontLeft, LegChanel::FrontRight, LegChanel::RearLeft, LegChanel::RearRight};
-
-    float stance_step[4];
-    for (int i = 0; i < 4; i++)
+    int speed = 250; // 稍微拉长一点时间，让跳舞的重心摇摆充分发挥物理惯性
+    for (int i = 0; i < 2; i++)
     {
-        stance_step[i] = (stance_angles[i] - swing_angles[i]) / (phases - 1);
+        if (global_dog_action != VoiceCmd::FORWARD)
+            return;
+
+        // 【跳舞式前进 - Phase 1】：向左倾斜
+        // 左侧腿外翻压低（撑起重心），右侧腿伸直放松（借着摇摆惯性往前蹭）
+        servoDriver->setAngle(LegChanel::FrontLeft, mid - 40);
+        servoDriver->setAngle(LegChanel::RearLeft, mid + 40);
+        servoDriver->setAngle(LegChanel::FrontRight, mid);
+        servoDriver->setAngle(LegChanel::RearRight, mid);
+        osDelay(speed);
+
+        if (global_dog_action != VoiceCmd::FORWARD)
+            return;
+
+        // 【跳舞式前进 - Phase 2】：向右倾斜
+        // 右侧腿外翻压低（撑起重心），左侧腿伸直放松（借着摇摆惯性往前蹭）
+        servoDriver->setAngle(LegChanel::FrontLeft, mid);
+        servoDriver->setAngle(LegChanel::RearLeft, mid);
+        servoDriver->setAngle(LegChanel::FrontRight, mid + 40);
+        servoDriver->setAngle(LegChanel::RearRight, mid - 40);
+        osDelay(speed);
     }
+}
 
-    for (int r = 0; r < repeats; r++)
+void Motion4DOF::actionWalkBackward()
+{
+    int speed = 250;
+    for (int i = 0; i < 2; i++)
     {
-        for (int p = 0; p < phases; p++)
-        {
-            // ==========================================
-            // 🚨 【紧急刹车打断机制】
-            // ==========================================
-            // 每次切换相位前，看一眼指令变了没有。如果变了（比如用户按了停止或转弯），立刻退出引擎！
-            if (global_dog_action != entry_cmd)
-            {
-                return;
-            }
+        if (global_dog_action != VoiceCmd::BACKWARD)
+            return;
 
-            float start_angles[4];
-            float target_angles[4];
+        // 【跳舞式后退 - Phase 1】：向左倾斜支撑
+        // 同时右侧放松的腿，给一个向后的轻微角度
+        servoDriver->setAngle(LegChanel::FrontLeft, mid - 40);
+        servoDriver->setAngle(LegChanel::RearLeft, mid + 40);
+        servoDriver->setAngle(LegChanel::FrontRight, mid + 20); // 往后拨
+        servoDriver->setAngle(LegChanel::RearRight, mid + 20);
+        osDelay(speed);
 
-            for (int i = 0; i < 4; i++)
-            {
-                start_angles[i] = cur_angles[i];
-                if (gait[p][i] == 1)
-                {
-                    target_angles[i] = swing_angles[i];
-                }
-                else
-                {
-                    target_angles[i] = cur_angles[i] + stance_step[i];
+        if (global_dog_action != VoiceCmd::BACKWARD)
+            return;
 
-                    // ==========================================
-                    // 🚨 【新增防护装甲：动态限幅器 (Clamp)】
-                    // 防止切换方向时，累加值超出物理极限导致舵机“骨折”
-                    // ==========================================
+        // 【跳舞式后退 - Phase 2】：向右倾斜支撑
+        // 同时左侧放松的腿，给一个向后的轻微角度
+        servoDriver->setAngle(LegChanel::FrontLeft, mid + 20); // 往后拨
+        servoDriver->setAngle(LegChanel::RearLeft, mid + 20);
+        servoDriver->setAngle(LegChanel::FrontRight, mid + 40);
+        servoDriver->setAngle(LegChanel::RearRight, mid - 40);
+        osDelay(speed);
+    }
+}
 
-                    // 1. 自动判断当前动作的上限和下限
-                    float min_angle = (swing_angles[i] < stance_angles[i]) ? swing_angles[i] : stance_angles[i];
-                    float max_angle = (swing_angles[i] > stance_angles[i]) ? swing_angles[i] : stance_angles[i];
+void Motion4DOF::actionTurnLeft()
+{
+    int speed = 250;
+    for (int i = 0; i < 2; i++)
+    {
+        if (global_dog_action != VoiceCmd::TURN_LEFT)
+            return;
 
-                    // 2. 如果盲目加算导致越界，强制将其锁死在合法边界上
-                    if (target_angles[i] < min_angle)
-                        target_angles[i] = min_angle;
-                    if (target_angles[i] > max_angle)
-                        target_angles[i] = max_angle;
-                }
-            }
+        // 向左转：左倾支撑时，让右侧悬空的腿向前上跨
+        servoDriver->setAngle(LegChanel::FrontLeft, mid - 40);
+        servoDriver->setAngle(LegChanel::RearLeft, mid + 40);
+        servoDriver->setAngle(LegChanel::FrontRight, mid - 20);
+        servoDriver->setAngle(LegChanel::RearRight, mid + 20);
+        osDelay(speed);
 
-            // ==========================================
-            // 1. 抬腿迈步 (极速前伸)
-            // ==========================================
-            for (int i = 0; i < 4; i++)
-            {
-                if (gait[p][i] == 1)
-                {
-                    servoDriver->setAngle(legs[i], target_angles[i]);
-                    cur_angles[i] = target_angles[i];
-                }
-            }
-            // 【提速】：从 30ms 减半到 15ms，让抬腿像闪电一样快
-            osDelay(15);
+        if (global_dog_action != VoiceCmd::TURN_LEFT)
+            return;
 
-            // ==========================================
-            // 2. 慢推移动作 (抓地推进)
-            // ==========================================
-            // 【提速】：将插值帧数从 10 帧压缩到 5 帧，大幅缩短单步时间
-            int smooth_frames = 5;
-            for (int j = 1; j <= smooth_frames; j++)
-            {
-                // 内部小循环也加入打断，做到毫秒级响应
-                if (global_dog_action != entry_cmd)
-                    return;
+        // 向左转：右倾支撑时，让左侧悬空的腿向内后收
+        servoDriver->setAngle(LegChanel::FrontLeft, mid + 20);
+        servoDriver->setAngle(LegChanel::RearLeft, mid - 20);
+        servoDriver->setAngle(LegChanel::FrontRight, mid + 40);
+        servoDriver->setAngle(LegChanel::RearRight, mid - 40);
+        osDelay(speed);
+    }
+}
 
-                float ratio = (float)j / smooth_frames;
-                for (int i = 0; i < 4; i++)
-                {
-                    if (gait[p][i] == 0)
-                    {
-                        float interpolated = start_angles[i] + (target_angles[i] - start_angles[i]) * ratio;
-                        servoDriver->setAngle(legs[i], interpolated);
-                        // 【改进】：每一帧都实时更新当前角度，防止打断时姿态错乱
-                        cur_angles[i] = interpolated;
-                    }
-                }
-                // 【提速】：每帧间隔从 15ms 缩减到 10ms
-                osDelay(10);
-            }
-        }
+void Motion4DOF::actionTurnRight()
+{
+    int speed = 250;
+    for (int i = 0; i < 2; i++)
+    {
+        if (global_dog_action != VoiceCmd::TURN_RIGHT)
+            return;
+
+        // 向右转：左倾支撑时，让右侧悬空的腿向内后收
+        servoDriver->setAngle(LegChanel::FrontLeft, mid - 40);
+        servoDriver->setAngle(LegChanel::RearLeft, mid + 40);
+        servoDriver->setAngle(LegChanel::FrontRight, mid + 20);
+        servoDriver->setAngle(LegChanel::RearRight, mid - 20);
+        osDelay(speed);
+
+        if (global_dog_action != VoiceCmd::TURN_RIGHT)
+            return;
+
+        // 向右转：右倾支撑时，让左侧悬空的腿向前上跨
+        servoDriver->setAngle(LegChanel::FrontLeft, mid - 20);
+        servoDriver->setAngle(LegChanel::RearLeft, mid + 20);
+        servoDriver->setAngle(LegChanel::FrontRight, mid + 40);
+        servoDriver->setAngle(LegChanel::RearRight, mid - 40);
+        osDelay(speed);
     }
 }
 
@@ -133,12 +243,19 @@ void Motion4DOF::matrixEngine(const int (*gait)[4], int phases, int repeats,
 // ==========================================
 void Motion4DOF::ExecuteCommand(VoiceCmd cmd)
 {
-    // 极其稳定的经典对角爬行步态矩阵 (Creep Gait)
-    static const int creep[4][4] = {
-        {0, 0, 0, 1},
-        {0, 1, 0, 0},
-        {0, 0, 1, 0},
-        {1, 0, 0, 0}};
+    // 极其稳定的经典对角爬行步态 (Creep Gait) - 适合慢速、复杂地形
+    // static const int creep[4][4] = {
+    //     {0, 0, 0, 1},
+    //     {0, 1, 0, 0},
+    //     {0, 0, 1, 0},
+    //     {1, 0, 0, 0}};
+
+    // // 🚀【重磅新增】：对角小跑步态 (Trot Gait)
+    // // 利用对角线双腿同时运动，强制重心左右摇摆，是最适合无膝盖 4DOF 狗的高速步态！
+    // static const int trot[2][4] = {
+    //     {1, 0, 0, 1}, // 相位1：左前、右后迈步；右前、左后抓地
+    //     {0, 1, 1, 0}  // 相位2：右前、左后迈步；左前、右后抓地
+    // };
 
     switch (cmd)
     {
@@ -152,36 +269,58 @@ void Motion4DOF::ExecuteCommand(VoiceCmd cmd)
         Relax();
         break;
 
-    // --- 2. 运动指令 ---
+    // --- 2. 运动指令 (全部换装 Trot 极速引擎) ---
+    // case VoiceCmd::FORWARD:
+    //     // 前进后退使用 Trot (极速小跑引擎)，循环 6 次
+    //     matrixEngine(trot, 2, 6, LF_F, LF_B, RF_F, RF_B, LH_F, LH_B, RH_F, RH_B);
+    //     break;
+    // case VoiceCmd::BACKWARD:
+    //     matrixEngine(trot, 2, 6, LF_B, LF_F, RF_B, RF_F, LH_B, LH_F, RH_B, RH_F);
+    //     break;
+
+    // case VoiceCmd::TURN_LEFT:
+    //     // 【关键修改】：转弯必须退回极其稳定的 Creep (四相爬行步态)，利用 3 点支撑产生强大扭力！
+    //     // 并且参数已和原右转互换，解决转向相反问题
+    //     matrixEngine(creep, 4, 3, LF_F, LF_B, RF_B, RF_F, LH_F, LH_B, RH_B, RH_F);
+    //     break;
+
+    // case VoiceCmd::TURN_RIGHT:
+    //     // 使用 Creep 步态向右转
+    //     matrixEngine(creep, 4, 3, LF_B, LF_F, RF_F, RF_B, LH_B, LH_F, RH_F, RH_B);
+    //     break;
     case VoiceCmd::FORWARD:
-        // 前进：正常极性
-        matrixEngine(creep, 4, 3, LF_F, LF_B, RF_F, RF_B, LH_F, LH_B, RH_F, RH_B);
+        actionWalkForward();
         break;
     case VoiceCmd::BACKWARD:
-        // 后退：Swing 和 Stance 极性对调
-        matrixEngine(creep, 4, 3, LF_B, LF_F, RF_B, RF_F, LH_B, LH_F, RH_B, RH_F);
+        actionWalkBackward();
         break;
+
     case VoiceCmd::TURN_LEFT:
-        // 左转：左边后退极性，右边前进极性
-        matrixEngine(creep, 4, 2, LF_B, LF_F, RF_F, RF_B, LH_B, LH_F, RH_F, RH_B);
+        actionTurnLeft();
         break;
+
     case VoiceCmd::TURN_RIGHT:
-        // 右转：左边前进极性，右边后退极性
-        matrixEngine(creep, 4, 2, LF_F, LF_B, RF_B, RF_F, LH_F, LH_B, RH_B, RH_F);
+        actionTurnRight();
         break;
+
     case VoiceCmd::SHIFT_LEFT:
-        // 4自由度无机械侧移能力，用“原地左右扭屁股”代替
+        // 既然没法真平移，我们就做一个极其可爱的“向左侧身卧倒闪避”的连贯动作
         postureLeanLeft();
         osDelay(200);
-        StandIdle();
-        break;
-    case VoiceCmd::SHIFT_RIGHT:
-        postureLeanRight();
-        osDelay(200);
+        postureLookDown();
+        osDelay(300);
         StandIdle();
         break;
 
-    // --- 3. 静态姿态 ---
+    case VoiceCmd::SHIFT_RIGHT:
+        postureLeanRight();
+        osDelay(200);
+        postureLookDown();
+        osDelay(300);
+        StandIdle();
+        break;
+
+    // ... 下面的 3. 静态姿态 和 4. 花式动作 保持你原来的代码完全不变即可 ...
     case VoiceCmd::SIT_DOWN:
         postureSitDown();
         break;
@@ -201,7 +340,6 @@ void Motion4DOF::ExecuteCommand(VoiceCmd cmd)
         postureLeanRight();
         break;
 
-    // --- 4. 花式动作 ---
     case VoiceCmd::SHAKE_HAND_L:
         actionShakeHand(true);
         break;

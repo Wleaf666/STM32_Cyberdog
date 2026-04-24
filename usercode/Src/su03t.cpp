@@ -84,3 +84,9 @@ void SU03T::playVoice(VoicePlay audio_id)
         osMutexRelease(txMutex);
     }
 }
+void SU03T::Resume()
+{
+    huart->RxState = HAL_UART_STATE_READY;
+    __HAL_UNLOCK(huart);
+    HAL_UART_Receive_IT(huart, &rxByte, 1);
+}

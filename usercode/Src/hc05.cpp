@@ -83,3 +83,10 @@ bool HC05::parsePacket(const std::vector<uint8_t> &packet, RobotCommand &out_cmd
     }
     return false;
 }
+
+void HC05::Resume()
+{
+    huart->RxState = HAL_UART_STATE_READY;
+    __HAL_UNLOCK(huart);
+    HAL_UART_Receive_IT(huart, &rxByte, 1);
+}
