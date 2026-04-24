@@ -33,34 +33,77 @@ void Motion4DOF::matrixEngine(const int (*gait)[4], int phases, int repeats,
                               float lf_swing, float lf_stance, float rf_swing, float rf_stance,
                               float lh_swing, float lh_stance, float rh_swing, float rh_stance)
 {
+    float swing_angles[4] = {lf_swing, rf_swing, lh_swing, rh_swing};
+    float stance_angles[4] = {lf_stance, rf_stance, lh_stance, rh_stance};
+    LegChanel legs[4] = {LegChanel::FrontLeft, LegChanel::FrontRight, LegChanel::RearLeft, LegChanel::RearRight};
+
+    // 计算在抓地阶段，每经过一个相位需要移动的角度增量
+    // (总行程 = stance - swing, 分配给 phases-1 个抓地相位)
+    float stance_step[4];
+    for (int i = 0; i < 4; i++)
+    {
+        stance_step[i] = (stance_angles[i] - swing_angles[i]) / (phases - 1);
+    }
+
     for (int r = 0; r < repeats; r++)
     {
         for (int p = 0; p < phases; p++)
         {
-            // 1. 快移动作 (打滑阶段：值为 1 的腿极速前伸)
-            if (gait[p][0])
-                servoDriver->setAngle(LegChanel::FrontLeft, lf_swing);
-            if (gait[p][1])
-                servoDriver->setAngle(LegChanel::FrontRight, rf_swing);
-            if (gait[p][2])
-                servoDriver->setAngle(LegChanel::RearLeft, lh_swing);
-            if (gait[p][3])
-                servoDriver->setAngle(LegChanel::RearRight, rh_swing);
-            osDelay(120); // 等待冲刺打滑完成
+            // 记录这一阶段骤开始时的角度，作为平滑插值的起点
+            float start_angles[4];
+            float target_angles[4];
 
-            // 2. 慢推移动作 (抓地阶段：值为 0 的腿缓慢后划推动身体)
-            int smooth_frames = 12; // 划水分 12 帧
+            for (int i = 0; i < 4; i++)
+            {
+                start_angles[i] = cur_angles[i]; // 读取当前真实的腿部角度
+
+                if (gait[p][i] == 1)
+                {
+                    // 抬腿迈步状态：直接把目标定在最前方
+                    target_angles[i] = swing_angles[i];
+                }
+                else
+                {
+                    // 抓地推移状态：在当前角度的基础上，往后推移一个步长增量
+                    target_angles[i] = cur_angles[i] + stance_step[i];
+                }
+            }
+
+            // ==========================================
+            // 1. 抬腿迈步 (打滑阶段：极速前伸)
+            // ==========================================
+            for (int i = 0; i < 4; i++)
+            {
+                if (gait[p][i] == 1)
+                {
+                    servoDriver->setAngle(legs[i], target_angles[i]);
+                    cur_angles[i] = target_angles[i]; // 更新记录
+                }
+            }
+            osDelay(30); // 稍微缩短前伸等待时间，让动作更利落
+
+            // ==========================================
+            // 2. 慢推移动作 (抓地阶段：缓慢往后推移)
+            // ==========================================
+            int smooth_frames = 10;
             for (int j = 1; j <= smooth_frames; j++)
             {
                 float ratio = (float)j / smooth_frames;
-                if (!gait[p][0])
-                    servoDriver->setAngle(LegChanel::FrontLeft, lf_swing + (lf_stance - lf_swing) * ratio);
-                if (!gait[p][1])
-                    servoDriver->setAngle(LegChanel::FrontRight, rf_swing + (rf_stance - rf_swing) * ratio);
-                if (!gait[p][2])
-                    servoDriver->setAngle(LegChanel::RearLeft, lh_swing + (lh_stance - lh_swing) * ratio);
-                if (!gait[p][3])
-                    servoDriver->setAngle(LegChanel::RearRight, rh_swing + (rh_stance - rh_swing) * ratio);
+                for (int i = 0; i < 4; i++)
+                {
+                    if (gait[p][i] == 0)
+                    {
+                        // 线性插值：从当前起点，平滑过渡到这一个相位的目标点
+                        float interpolated = start_angles[i] + (target_angles[i] - start_angles[i]) * ratio;
+                        servoDriver->setAngle(legs[i], interpolated);
+
+                        // 在最后一帧，把当前角度正式记录下来，留给下一个相位使用
+                        if (j == smooth_frames)
+                        {
+                            cur_angles[i] = target_angles[i];
+                        }
+                    }
+                }
                 osDelay(15);
             }
         }
@@ -94,19 +137,19 @@ void Motion4DOF::ExecuteCommand(VoiceCmd cmd)
     // --- 2. 运动指令 ---
     case VoiceCmd::FORWARD:
         // 前进：正常极性
-        matrixEngine(creep, 4, 1, LF_F, LF_B, RF_F, RF_B, LH_F, LH_B, RH_F, RH_B);
+        matrixEngine(creep, 4, 3, LF_F, LF_B, RF_F, RF_B, LH_F, LH_B, RH_F, RH_B);
         break;
     case VoiceCmd::BACKWARD:
         // 后退：Swing 和 Stance 极性对调
-        matrixEngine(creep, 4, 1, LF_B, LF_F, RF_B, RF_F, LH_B, LH_F, RH_B, RH_F);
+        matrixEngine(creep, 4, 3, LF_B, LF_F, RF_B, RF_F, LH_B, LH_F, RH_B, RH_F);
         break;
     case VoiceCmd::TURN_LEFT:
         // 左转：左边后退极性，右边前进极性
-        matrixEngine(creep, 4, 1, LF_B, LF_F, RF_F, RF_B, LH_B, LH_F, RH_F, RH_B);
+        matrixEngine(creep, 4, 2, LF_B, LF_F, RF_F, RF_B, LH_B, LH_F, RH_F, RH_B);
         break;
     case VoiceCmd::TURN_RIGHT:
         // 右转：左边前进极性，右边后退极性
-        matrixEngine(creep, 4, 1, LF_F, LF_B, RF_B, RF_F, LH_F, LH_B, RH_B, RH_F);
+        matrixEngine(creep, 4, 2, LF_F, LF_B, RF_B, RF_F, LH_F, LH_B, RH_B, RH_F);
         break;
     case VoiceCmd::SHIFT_LEFT:
         // 4自由度无机械侧移能力，用“原地左右扭屁股”代替
