@@ -263,60 +263,7 @@ void task_Mpu6050(void *argument)
         dogImu->Update();
         osDelay(20);
     }
-}void task_bluetooth_test(void *argument)
-{
-    RobotCommand cmd;
-    for (;;)
-    {
-        if (blueTooth->getCommand(cmd))
-        {
-            // 【语音接轨】：收到手机指令时，让语音模块“滴”一声作为确认反馈（需确保SU03T固件支持该串口指令）
-            // voiceModule->playVoice(VoicePlay::BEEP);
-
-            // 在 OLED 屏幕上同步显示蓝牙发来的十六进制指令，最高优先级覆盖语音字符
-            sprintf(last_voice_cmd, "BT: CMD %02X", cmd.cmd_type);
-
-            // 【全动作精确映射】将手机 Hex 控制码完全匹配到系统的 VoiceCmd 枚举
-            switch (cmd.cmd_type)
-            {
-                case 0x01: global_dog_action = VoiceCmd::WAKE_UP; blueTooth->sendString("ACK: WAKE_UP\r\n"); break;
-                case 0x02: global_dog_action = VoiceCmd::SLEEP; blueTooth->sendString("ACK: SLEEP\r\n"); break;
-                case 0x03: global_dog_action = VoiceCmd::REPORT_BAT; 
-                           char bat_msg[32]; sprintf(bat_msg, "Battery: %d%%\r\n", GetBatteryPercentage()); 
-                           blueTooth->sendString(bat_msg); break;
-
-                case 0x10: global_dog_action = VoiceCmd::FORWARD; blueTooth->sendString("ACK: FORWARD\r\n"); break;
-                case 0x11: global_dog_action = VoiceCmd::BACKWARD; blueTooth->sendString("ACK: BACKWARD\r\n"); break;
-                case 0x12: global_dog_action = VoiceCmd::TURN_LEFT; blueTooth->sendString("ACK: TURN_L\r\n"); break;
-                case 0x13: global_dog_action = VoiceCmd::TURN_RIGHT; blueTooth->sendString("ACK: TURN_R\r\n"); break;
-                case 0x14: global_dog_action = VoiceCmd::SHIFT_LEFT; blueTooth->sendString("ACK: SHIFT_L\r\n"); break;
-                case 0x15: global_dog_action = VoiceCmd::SHIFT_RIGHT; blueTooth->sendString("ACK: SHIFT_R\r\n"); break;
-                case 0x16: global_dog_action = VoiceCmd::STOP_MOVE; blueTooth->sendString("ACK: STOP\r\n"); break;
-
-                case 0x20: global_dog_action = VoiceCmd::STAND_UP; blueTooth->sendString("ACK: STAND\r\n"); break;
-                case 0x21: global_dog_action = VoiceCmd::SIT_DOWN; blueTooth->sendString("ACK: SIT\r\n"); break;
-                case 0x22: global_dog_action = VoiceCmd::LIE_DOWN; blueTooth->sendString("ACK: LIE\r\n"); break;
-                case 0x23: global_dog_action = VoiceCmd::LOOK_UP; blueTooth->sendString("ACK: LOOK_UP\r\n"); break;
-                case 0x24: global_dog_action = VoiceCmd::LOOK_DOWN; blueTooth->sendString("ACK: LOOK_DN\r\n"); break;
-                case 0x25: global_dog_action = VoiceCmd::LEAN_LEFT; blueTooth->sendString("ACK: LEAN_L\r\n"); break;
-                case 0x26: global_dog_action = VoiceCmd::LEAN_RIGHT; blueTooth->sendString("ACK: LEAN_R\r\n"); break;
-
-                case 0x30: global_dog_action = VoiceCmd::SHAKE_HAND_L; blueTooth->sendString("ACK: HAND_L\r\n"); break;
-                case 0x31: global_dog_action = VoiceCmd::SHAKE_HAND_R; blueTooth->sendString("ACK: HAND_R\r\n"); break;
-                case 0x32: global_dog_action = VoiceCmd::GREETING; blueTooth->sendString("ACK: GREET\r\n"); break;
-                case 0x33: global_dog_action = VoiceCmd::STRETCH; blueTooth->sendString("ACK: STRETCH\r\n"); break;
-                case 0x34: global_dog_action = VoiceCmd::DANCE; blueTooth->sendString("ACK: DANCE\r\n"); break;
-                case 0x35: global_dog_action = VoiceCmd::ATTACK_MODE; blueTooth->sendString("ACK: ATTACK\r\n"); break;
-
-                case 0x00: global_dog_action = VoiceCmd::SIT_DOWN; blueTooth->sendString("ACK: STOP(LEGACY)\r\n"); break;
-                default:   blueTooth->sendString("ACK: UNKNOWN CMD\r\n"); break;
-            }
-        }
-        // 关键：不阻塞其它系统进程
-        osDelay(10);
-    }
 }
-
 void task_bluetooth_test(void *argument)
 {
     RobotCommand cmd;
