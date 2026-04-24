@@ -114,6 +114,12 @@ void MX_FREERTOS_Init(void) {
 void StartDefaultTask(void *argument)
 {
   /* USER CODE BEGIN StartDefaultTask */
+  extern void App_Main(void);
+  App_Main();
+
+  // 2. App_Main 执行完并成功派发了系统初始化任务后，这个默认任务就没有用了
+  // 直接销毁它，把内存和 CPU 时间全让给你的机器狗任务！
+  osThreadExit();
   /* Infinite loop */
   for(;;)
   {

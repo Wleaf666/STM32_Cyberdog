@@ -6976,421 +6976,422 @@ LOAD D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtn.o
  .text.vPortValidateInterruptPriority
                 0x08008be0       0x80 cmake/stm32cubemx/CMakeFiles/FreeRTOS.dir/__/__/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3/port.c.obj
                 0x08008be0                vPortValidateInterruptPriority
- .text.main     0x08008c60       0x34 CMakeFiles/STM32_CyberDog.dir/Core/Src/main.c.obj
+ .text.main     0x08008c60       0x30 CMakeFiles/STM32_CyberDog.dir/Core/Src/main.c.obj
                 0x08008c60                main
  .text.SystemClock_Config
-                0x08008c94       0xb6 CMakeFiles/STM32_CyberDog.dir/Core/Src/main.c.obj
-                0x08008c94                SystemClock_Config
- *fill*         0x08008d4a        0x2 
+                0x08008c90       0xb6 CMakeFiles/STM32_CyberDog.dir/Core/Src/main.c.obj
+                0x08008c90                SystemClock_Config
+ *fill*         0x08008d46        0x2 
  .text.HAL_TIM_PeriodElapsedCallback
-                0x08008d4c       0x24 CMakeFiles/STM32_CyberDog.dir/Core/Src/main.c.obj
-                0x08008d4c                HAL_TIM_PeriodElapsedCallback
+                0x08008d48       0x24 CMakeFiles/STM32_CyberDog.dir/Core/Src/main.c.obj
+                0x08008d48                HAL_TIM_PeriodElapsedCallback
  .text.Error_Handler
-                0x08008d70        0xc CMakeFiles/STM32_CyberDog.dir/Core/Src/main.c.obj
-                0x08008d70                Error_Handler
+                0x08008d6c        0xc CMakeFiles/STM32_CyberDog.dir/Core/Src/main.c.obj
+                0x08008d6c                Error_Handler
  .text.MX_GPIO_Init
-                0x08008d7c       0xb0 CMakeFiles/STM32_CyberDog.dir/Core/Src/gpio.c.obj
-                0x08008d7c                MX_GPIO_Init
+                0x08008d78       0xb0 CMakeFiles/STM32_CyberDog.dir/Core/Src/gpio.c.obj
+                0x08008d78                MX_GPIO_Init
  .text.MX_FREERTOS_Init
-                0x08008e2c       0x24 CMakeFiles/STM32_CyberDog.dir/Core/Src/freertos.c.obj
-                0x08008e2c                MX_FREERTOS_Init
+                0x08008e28       0x24 CMakeFiles/STM32_CyberDog.dir/Core/Src/freertos.c.obj
+                0x08008e28                MX_FREERTOS_Init
  .text.StartDefaultTask
-                0x08008e50       0x10 CMakeFiles/STM32_CyberDog.dir/Core/Src/freertos.c.obj
-                0x08008e50                StartDefaultTask
+                0x08008e4c       0x10 CMakeFiles/STM32_CyberDog.dir/Core/Src/freertos.c.obj
+                0x08008e4c                StartDefaultTask
  .text.MX_ADC1_Init
-                0x08008e60       0x7c CMakeFiles/STM32_CyberDog.dir/Core/Src/adc.c.obj
-                0x08008e60                MX_ADC1_Init
+                0x08008e5c       0x7c CMakeFiles/STM32_CyberDog.dir/Core/Src/adc.c.obj
+                0x08008e5c                MX_ADC1_Init
  .text.HAL_ADC_MspInit
-                0x08008edc       0x78 CMakeFiles/STM32_CyberDog.dir/Core/Src/adc.c.obj
-                0x08008edc                HAL_ADC_MspInit
+                0x08008ed8       0x78 CMakeFiles/STM32_CyberDog.dir/Core/Src/adc.c.obj
+                0x08008ed8                HAL_ADC_MspInit
  .text.MX_I2C1_Init
-                0x08008f54       0x5c CMakeFiles/STM32_CyberDog.dir/Core/Src/i2c.c.obj
-                0x08008f54                MX_I2C1_Init
+                0x08008f50       0x5c CMakeFiles/STM32_CyberDog.dir/Core/Src/i2c.c.obj
+                0x08008f50                MX_I2C1_Init
  .text.HAL_I2C_MspInit
-                0x08008fb0       0x7c CMakeFiles/STM32_CyberDog.dir/Core/Src/i2c.c.obj
-                0x08008fb0                HAL_I2C_MspInit
+                0x08008fac       0x7c CMakeFiles/STM32_CyberDog.dir/Core/Src/i2c.c.obj
+                0x08008fac                HAL_I2C_MspInit
  .text.HAL_I2C_MspDeInit
-                0x0800902c       0x44 CMakeFiles/STM32_CyberDog.dir/Core/Src/i2c.c.obj
-                0x0800902c                HAL_I2C_MspDeInit
+                0x08009028       0x44 CMakeFiles/STM32_CyberDog.dir/Core/Src/i2c.c.obj
+                0x08009028                HAL_I2C_MspDeInit
  .text.MX_USART1_UART_Init
-                0x08009070       0x54 CMakeFiles/STM32_CyberDog.dir/Core/Src/usart.c.obj
-                0x08009070                MX_USART1_UART_Init
+                0x0800906c       0x54 CMakeFiles/STM32_CyberDog.dir/Core/Src/usart.c.obj
+                0x0800906c                MX_USART1_UART_Init
  .text.MX_USART2_UART_Init
-                0x080090c4       0x54 CMakeFiles/STM32_CyberDog.dir/Core/Src/usart.c.obj
-                0x080090c4                MX_USART2_UART_Init
+                0x080090c0       0x54 CMakeFiles/STM32_CyberDog.dir/Core/Src/usart.c.obj
+                0x080090c0                MX_USART2_UART_Init
  .text.HAL_UART_MspInit
-                0x08009118      0x128 CMakeFiles/STM32_CyberDog.dir/Core/Src/usart.c.obj
-                0x08009118                HAL_UART_MspInit
+                0x08009114      0x128 CMakeFiles/STM32_CyberDog.dir/Core/Src/usart.c.obj
+                0x08009114                HAL_UART_MspInit
  .text.NMI_Handler
-                0x08009240        0x8 CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_it.c.obj
-                0x08009240                NMI_Handler
+                0x0800923c        0x8 CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_it.c.obj
+                0x0800923c                NMI_Handler
  .text.HardFault_Handler
-                0x08009248        0x8 CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_it.c.obj
-                0x08009248                HardFault_Handler
+                0x08009244        0x8 CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_it.c.obj
+                0x08009244                HardFault_Handler
  .text.MemManage_Handler
-                0x08009250        0x8 CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_it.c.obj
-                0x08009250                MemManage_Handler
+                0x0800924c        0x8 CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_it.c.obj
+                0x0800924c                MemManage_Handler
  .text.BusFault_Handler
-                0x08009258        0x8 CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_it.c.obj
-                0x08009258                BusFault_Handler
+                0x08009254        0x8 CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_it.c.obj
+                0x08009254                BusFault_Handler
  .text.UsageFault_Handler
-                0x08009260        0x8 CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_it.c.obj
-                0x08009260                UsageFault_Handler
+                0x0800925c        0x8 CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_it.c.obj
+                0x0800925c                UsageFault_Handler
  .text.DebugMon_Handler
-                0x08009268        0xc CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_it.c.obj
-                0x08009268                DebugMon_Handler
+                0x08009264        0xc CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_it.c.obj
+                0x08009264                DebugMon_Handler
  .text.TIM4_IRQHandler
-                0x08009274       0x14 CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_it.c.obj
-                0x08009274                TIM4_IRQHandler
+                0x08009270       0x14 CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_it.c.obj
+                0x08009270                TIM4_IRQHandler
  .text.USART1_IRQHandler
-                0x08009288       0x14 CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_it.c.obj
-                0x08009288                USART1_IRQHandler
+                0x08009284       0x14 CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_it.c.obj
+                0x08009284                USART1_IRQHandler
  .text.USART2_IRQHandler
-                0x0800929c       0x14 CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_it.c.obj
-                0x0800929c                USART2_IRQHandler
+                0x08009298       0x14 CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_it.c.obj
+                0x08009298                USART2_IRQHandler
  .text.HAL_MspInit
-                0x080092b0       0x70 CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_hal_msp.c.obj
-                0x080092b0                HAL_MspInit
+                0x080092ac       0x70 CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_hal_msp.c.obj
+                0x080092ac                HAL_MspInit
  .text.HAL_InitTick
-                0x08009320       0xfc CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_hal_timebase_tim.c.obj
-                0x08009320                HAL_InitTick
- .text._sbrk    0x0800941c       0x6c CMakeFiles/STM32_CyberDog.dir/Core/Src/sysmem.c.obj
-                0x0800941c                _sbrk
- .text._getpid  0x08009488        0xe CMakeFiles/STM32_CyberDog.dir/Core/Src/syscalls.c.obj
-                0x08009488                _getpid
- .text._kill    0x08009496       0x20 CMakeFiles/STM32_CyberDog.dir/Core/Src/syscalls.c.obj
-                0x08009496                _kill
- .text._exit    0x080094b6       0x16 CMakeFiles/STM32_CyberDog.dir/Core/Src/syscalls.c.obj
-                0x080094b6                _exit
+                0x0800931c       0xfc CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_hal_timebase_tim.c.obj
+                0x0800931c                HAL_InitTick
+ .text._sbrk    0x08009418       0x6c CMakeFiles/STM32_CyberDog.dir/Core/Src/sysmem.c.obj
+                0x08009418                _sbrk
+ .text._getpid  0x08009484        0xe CMakeFiles/STM32_CyberDog.dir/Core/Src/syscalls.c.obj
+                0x08009484                _getpid
+ .text._kill    0x08009492       0x20 CMakeFiles/STM32_CyberDog.dir/Core/Src/syscalls.c.obj
+                0x08009492                _kill
+ .text._exit    0x080094b2       0x16 CMakeFiles/STM32_CyberDog.dir/Core/Src/syscalls.c.obj
+                0x080094b2                _exit
  .text.Reset_Handler
-                0x080094cc       0x48 CMakeFiles/STM32_CyberDog.dir/startup_stm32f103xb.s.obj
-                0x080094cc                Reset_Handler
+                0x080094c8       0x48 CMakeFiles/STM32_CyberDog.dir/startup_stm32f103xb.s.obj
+                0x080094c8                Reset_Handler
  .text.Default_Handler
-                0x08009514        0x2 CMakeFiles/STM32_CyberDog.dir/startup_stm32f103xb.s.obj
-                0x08009514                RTC_Alarm_IRQHandler
-                0x08009514                EXTI2_IRQHandler
-                0x08009514                TIM1_CC_IRQHandler
-                0x08009514                PVD_IRQHandler
-                0x08009514                EXTI3_IRQHandler
-                0x08009514                EXTI0_IRQHandler
-                0x08009514                I2C2_EV_IRQHandler
-                0x08009514                ADC1_2_IRQHandler
-                0x08009514                SPI1_IRQHandler
-                0x08009514                TAMPER_IRQHandler
-                0x08009514                DMA1_Channel4_IRQHandler
-                0x08009514                USART3_IRQHandler
-                0x08009514                RTC_IRQHandler
-                0x08009514                DMA1_Channel7_IRQHandler
-                0x08009514                CAN1_RX1_IRQHandler
-                0x08009514                I2C1_EV_IRQHandler
-                0x08009514                DMA1_Channel6_IRQHandler
-                0x08009514                TIM3_IRQHandler
-                0x08009514                RCC_IRQHandler
-                0x08009514                TIM1_TRG_COM_IRQHandler
-                0x08009514                DMA1_Channel1_IRQHandler
-                0x08009514                Default_Handler
-                0x08009514                EXTI15_10_IRQHandler
-                0x08009514                EXTI9_5_IRQHandler
-                0x08009514                SPI2_IRQHandler
-                0x08009514                DMA1_Channel5_IRQHandler
-                0x08009514                EXTI4_IRQHandler
-                0x08009514                USB_LP_CAN1_RX0_IRQHandler
-                0x08009514                USB_HP_CAN1_TX_IRQHandler
-                0x08009514                DMA1_Channel3_IRQHandler
-                0x08009514                TIM1_UP_IRQHandler
-                0x08009514                WWDG_IRQHandler
-                0x08009514                TIM2_IRQHandler
-                0x08009514                TIM1_BRK_IRQHandler
-                0x08009514                EXTI1_IRQHandler
-                0x08009514                I2C2_ER_IRQHandler
-                0x08009514                DMA1_Channel2_IRQHandler
-                0x08009514                CAN1_SCE_IRQHandler
-                0x08009514                FLASH_IRQHandler
-                0x08009514                I2C1_ER_IRQHandler
-                0x08009514                USBWakeUp_IRQHandler
+                0x08009510        0x2 CMakeFiles/STM32_CyberDog.dir/startup_stm32f103xb.s.obj
+                0x08009510                RTC_Alarm_IRQHandler
+                0x08009510                EXTI2_IRQHandler
+                0x08009510                TIM1_CC_IRQHandler
+                0x08009510                PVD_IRQHandler
+                0x08009510                EXTI3_IRQHandler
+                0x08009510                EXTI0_IRQHandler
+                0x08009510                I2C2_EV_IRQHandler
+                0x08009510                ADC1_2_IRQHandler
+                0x08009510                SPI1_IRQHandler
+                0x08009510                TAMPER_IRQHandler
+                0x08009510                DMA1_Channel4_IRQHandler
+                0x08009510                USART3_IRQHandler
+                0x08009510                RTC_IRQHandler
+                0x08009510                DMA1_Channel7_IRQHandler
+                0x08009510                CAN1_RX1_IRQHandler
+                0x08009510                I2C1_EV_IRQHandler
+                0x08009510                DMA1_Channel6_IRQHandler
+                0x08009510                TIM3_IRQHandler
+                0x08009510                RCC_IRQHandler
+                0x08009510                TIM1_TRG_COM_IRQHandler
+                0x08009510                DMA1_Channel1_IRQHandler
+                0x08009510                Default_Handler
+                0x08009510                EXTI15_10_IRQHandler
+                0x08009510                EXTI9_5_IRQHandler
+                0x08009510                SPI2_IRQHandler
+                0x08009510                DMA1_Channel5_IRQHandler
+                0x08009510                EXTI4_IRQHandler
+                0x08009510                USB_LP_CAN1_RX0_IRQHandler
+                0x08009510                USB_HP_CAN1_TX_IRQHandler
+                0x08009510                DMA1_Channel3_IRQHandler
+                0x08009510                TIM1_UP_IRQHandler
+                0x08009510                WWDG_IRQHandler
+                0x08009510                TIM2_IRQHandler
+                0x08009510                TIM1_BRK_IRQHandler
+                0x08009510                EXTI1_IRQHandler
+                0x08009510                I2C2_ER_IRQHandler
+                0x08009510                DMA1_Channel2_IRQHandler
+                0x08009510                CAN1_SCE_IRQHandler
+                0x08009510                FLASH_IRQHandler
+                0x08009510                I2C1_ER_IRQHandler
+                0x08009510                USBWakeUp_IRQHandler
  .text._ZN7MPU6050C2EP17I2C_HandleTypeDefPv
-                0x08009516       0x24 CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
-                0x08009516                MPU6050::MPU6050(I2C_HandleTypeDef*, void*)
-                0x08009516                MPU6050::MPU6050(I2C_HandleTypeDef*, void*)
+                0x08009512       0x24 CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
+                0x08009512                MPU6050::MPU6050(I2C_HandleTypeDef*, void*)
+                0x08009512                MPU6050::MPU6050(I2C_HandleTypeDef*, void*)
  .text._ZNK7MPU60508GetPitchEv
-                0x0800953a       0x16 CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
-                0x0800953a                MPU6050::GetPitch() const
+                0x08009536       0x16 CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
+                0x08009536                MPU6050::GetPitch() const
  .text._ZNK7MPU60507GetRollEv
-                0x08009550       0x16 CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
-                0x08009550                MPU6050::GetRoll() const
+                0x0800954c       0x16 CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
+                0x0800954c                MPU6050::GetRoll() const
  .text._ZNSt12_Vector_baseIhSaIhEEC2Ev
-                0x08009566       0x1a CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
-                0x08009566                std::_Vector_base<unsigned char, std::allocator<unsigned char> >::_Vector_base()
-                0x08009566                std::_Vector_base<unsigned char, std::allocator<unsigned char> >::_Vector_base()
+                0x08009562       0x1a CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
+                0x08009562                std::_Vector_base<unsigned char, std::allocator<unsigned char> >::_Vector_base()
+                0x08009562                std::_Vector_base<unsigned char, std::allocator<unsigned char> >::_Vector_base()
  .text._ZNSt6vectorIhSaIhEEC2Ev
-                0x08009580       0x1a CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
-                0x08009580                std::vector<unsigned char, std::allocator<unsigned char> >::vector()
-                0x08009580                std::vector<unsigned char, std::allocator<unsigned char> >::vector()
+                0x0800957c       0x1a CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
+                0x0800957c                std::vector<unsigned char, std::allocator<unsigned char> >::vector()
+                0x0800957c                std::vector<unsigned char, std::allocator<unsigned char> >::vector()
  .text._ZN4HC05C2EP20__UART_HandleTypeDefPv
-                0x0800959a       0x2c CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
-                0x0800959a                HC05::HC05(__UART_HandleTypeDef*, void*)
-                0x0800959a                HC05::HC05(__UART_HandleTypeDef*, void*)
+                0x08009596       0x2c CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
+                0x08009596                HC05::HC05(__UART_HandleTypeDef*, void*)
+                0x08009596                HC05::HC05(__UART_HandleTypeDef*, void*)
  .text._ZSt3sinf
-                0x080095c6       0x18 CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
-                0x080095c6                std::sin(float)
- *fill*         0x080095de        0x2 
+                0x080095c2       0x18 CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
+                0x080095c2                std::sin(float)
+ *fill*         0x080095da        0x2 
  .text.HAL_UART_ErrorCallback
-                0x080095e0      0x100 CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
-                0x080095e0                HAL_UART_ErrorCallback
+                0x080095dc      0x100 CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
+                0x080095dc                HAL_UART_ErrorCallback
  .text._Z20GetBatteryPercentagev
-                0x080096e0       0xc0 CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
-                0x080096e0                GetBatteryPercentage()
+                0x080096dc       0xc0 CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
+                0x080096dc                GetBatteryPercentage()
  .text._Z15DrawDynamicFace8VoiceCmdm
-                0x080097a0      0x524 CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
-                0x080097a0                DrawDynamicFace(VoiceCmd, unsigned long)
+                0x0800979c      0x524 CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
+                0x0800979c                DrawDynamicFace(VoiceCmd, unsigned long)
  .text._Z23HC05_RxCallback_WrapperP20__UART_HandleTypeDef
-                0x08009cc4       0x28 CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
-                0x08009cc4                HC05_RxCallback_Wrapper(__UART_HandleTypeDef*)
+                0x08009cc0       0x28 CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
+                0x08009cc0                HC05_RxCallback_Wrapper(__UART_HandleTypeDef*)
  .text._Z24SU03T_RxCallback_WrapperP20__UART_HandleTypeDef
-                0x08009cec       0x28 CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
-                0x08009cec                SU03T_RxCallback_Wrapper(__UART_HandleTypeDef*)
+                0x08009ce8       0x28 CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
+                0x08009ce8                SU03T_RxCallback_Wrapper(__UART_HandleTypeDef*)
  .text._Z18task_voice_handlerPv
-                0x08009d14       0x88 CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
-                0x08009d14                task_voice_handler(void*)
+                0x08009d10       0x88 CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
+                0x08009d10                task_voice_handler(void*)
  .text._Z12task_Mpu6050Pv
-                0x08009d9c       0x2c CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
-                0x08009d9c                task_Mpu6050(void*)
+                0x08009d98       0x2c CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
+                0x08009d98                task_Mpu6050(void*)
  .text._Z19task_bluetooth_testPv
-                0x08009dc8      0x240 CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
-                0x08009dc8                task_bluetooth_test(void*)
+                0x08009dc4      0x240 CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
+                0x08009dc4                task_bluetooth_test(void*)
  .text._Z12task_displayPv
-                0x0800a008       0xd4 CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
-                0x0800a008                task_display(void*)
+                0x0800a004       0xd4 CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
+                0x0800a004                task_display(void*)
  .text._Z19task_motion_controlPv
-                0x0800a0dc       0x98 CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
-                0x0800a0dc                task_motion_control(void*)
+                0x0800a0d8       0x98 CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
+                0x0800a0d8                task_motion_control(void*)
  .text._Z16task_system_initPv
-                0x0800a174       0xf4 CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
-                0x0800a174                task_system_init(void*)
+                0x0800a170       0xf4 CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
+                0x0800a170                task_system_init(void*)
  .text.App_Main
-                0x0800a268      0x158 CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
-                0x0800a268                App_Main
+                0x0800a264      0x158 CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
+                0x0800a264                App_Main
  .text._ZNSt12_Vector_baseIhSaIhEE12_Vector_implC2Ev
-                0x0800a3c0       0x22 CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
-                0x0800a3c0                std::_Vector_base<unsigned char, std::allocator<unsigned char> >::_Vector_impl::_Vector_impl()
-                0x0800a3c0                std::_Vector_base<unsigned char, std::allocator<unsigned char> >::_Vector_impl::_Vector_impl()
+                0x0800a3bc       0x22 CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
+                0x0800a3bc                std::_Vector_base<unsigned char, std::allocator<unsigned char> >::_Vector_impl::_Vector_impl()
+                0x0800a3bc                std::_Vector_base<unsigned char, std::allocator<unsigned char> >::_Vector_impl::_Vector_impl()
  .text._ZNSt12_Vector_baseIhSaIhEE17_Vector_impl_dataC2Ev
-                0x0800a3e2       0x26 CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
-                0x0800a3e2                std::_Vector_base<unsigned char, std::allocator<unsigned char> >::_Vector_impl_data::_Vector_impl_data()
-                0x0800a3e2                std::_Vector_base<unsigned char, std::allocator<unsigned char> >::_Vector_impl_data::_Vector_impl_data()
+                0x0800a3de       0x26 CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
+                0x0800a3de                std::_Vector_base<unsigned char, std::allocator<unsigned char> >::_Vector_impl_data::_Vector_impl_data()
+                0x0800a3de                std::_Vector_base<unsigned char, std::allocator<unsigned char> >::_Vector_impl_data::_Vector_impl_data()
  .text._ZN11StaticArenaILj3072EEC2Ev
-                0x0800a408       0x1c CMakeFiles/STM32_CyberDog.dir/usercode/src/arena.cpp.obj
-                0x0800a408                StaticArena<3072u>::StaticArena()
-                0x0800a408                StaticArena<3072u>::StaticArena()
- .text._Znwj    0x0800a424       0x2c CMakeFiles/STM32_CyberDog.dir/usercode/src/arena.cpp.obj
-                0x0800a424                operator new(unsigned int)
- .text._ZdlPv   0x0800a450       0x12 CMakeFiles/STM32_CyberDog.dir/usercode/src/arena.cpp.obj
-                0x0800a450                operator delete(void*)
+                0x0800a404       0x1c CMakeFiles/STM32_CyberDog.dir/usercode/src/arena.cpp.obj
+                0x0800a404                StaticArena<3072u>::StaticArena()
+                0x0800a404                StaticArena<3072u>::StaticArena()
+ .text._Znwj    0x0800a420       0x2c CMakeFiles/STM32_CyberDog.dir/usercode/src/arena.cpp.obj
+                0x0800a420                operator new(unsigned int)
+ .text._ZdlPv   0x0800a44c       0x12 CMakeFiles/STM32_CyberDog.dir/usercode/src/arena.cpp.obj
+                0x0800a44c                operator delete(void*)
  .text._ZN11StaticArenaILj3072EE8allocateEj
-                0x0800a462       0x50 CMakeFiles/STM32_CyberDog.dir/usercode/src/arena.cpp.obj
-                0x0800a462                StaticArena<3072u>::allocate(unsigned int)
- *fill*         0x0800a4b2        0x2 
+                0x0800a45e       0x50 CMakeFiles/STM32_CyberDog.dir/usercode/src/arena.cpp.obj
+                0x0800a45e                StaticArena<3072u>::allocate(unsigned int)
+ *fill*         0x0800a4ae        0x2 
  .text._Z41__static_initialization_and_destruction_0v
-                0x0800a4b4       0x14 CMakeFiles/STM32_CyberDog.dir/usercode/src/arena.cpp.obj
+                0x0800a4b0       0x14 CMakeFiles/STM32_CyberDog.dir/usercode/src/arena.cpp.obj
  .text._GLOBAL__sub_I__Znwj
-                0x0800a4c8        0xa CMakeFiles/STM32_CyberDog.dir/usercode/src/arena.cpp.obj
- .text._ZnwjPv  0x0800a4d2       0x16 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800a4d2                operator new(unsigned int, void*)
+                0x0800a4c4        0xa CMakeFiles/STM32_CyberDog.dir/usercode/src/arena.cpp.obj
+ .text._ZnwjPv  0x0800a4ce       0x16 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800a4ce                operator new(unsigned int, void*)
  .text._ZN4HC054InitEPv
-                0x0800a4e8       0x5c CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800a4e8                HC05::Init(void*)
+                0x0800a4e4       0x5c CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800a4e4                HC05::Init(void*)
  .text._ZN4HC0510sendStringEPKc
-                0x0800a544       0x5a CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800a544                HC05::sendString(char const*)
+                0x0800a540       0x5a CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800a540                HC05::sendString(char const*)
  .text._ZN4HC0516onRxCpltCallbackEv
-                0x0800a59e       0x3a CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800a59e                HC05::onRxCpltCallback()
+                0x0800a59a       0x3a CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800a59a                HC05::onRxCpltCallback()
  .text._ZN4HC0510getCommandER12RobotCommand
-                0x0800a5d8       0xb8 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800a5d8                HC05::getCommand(RobotCommand&)
+                0x0800a5d4       0xb8 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800a5d4                HC05::getCommand(RobotCommand&)
  .text._ZN4HC0511parsePacketERKSt6vectorIhSaIhEER12RobotCommand
-                0x0800a690       0x60 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800a690                HC05::parsePacket(std::vector<unsigned char, std::allocator<unsigned char> > const&, RobotCommand&)
+                0x0800a68c       0x60 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800a68c                HC05::parsePacket(std::vector<unsigned char, std::allocator<unsigned char> > const&, RobotCommand&)
  .text._ZN4HC056ResumeEv
-                0x0800a6f0       0x34 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800a6f0                HC05::Resume()
+                0x0800a6ec       0x34 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800a6ec                HC05::Resume()
  .text._ZNSt6vectorIhSaIhEE7reserveEj
-                0x0800a724       0xb0 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800a724                std::vector<unsigned char, std::allocator<unsigned char> >::reserve(unsigned int)
+                0x0800a720       0xb0 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800a720                std::vector<unsigned char, std::allocator<unsigned char> >::reserve(unsigned int)
  .text._ZNKSt6vectorIhSaIhEE4sizeEv
-                0x0800a7d4       0x1c CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800a7d4                std::vector<unsigned char, std::allocator<unsigned char> >::size() const
+                0x0800a7d0       0x1c CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800a7d0                std::vector<unsigned char, std::allocator<unsigned char> >::size() const
  .text._ZNSt6vectorIhSaIhEE5clearEv
-                0x0800a7f0       0x1c CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800a7f0                std::vector<unsigned char, std::allocator<unsigned char> >::clear()
+                0x0800a7ec       0x1c CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800a7ec                std::vector<unsigned char, std::allocator<unsigned char> >::clear()
  .text._ZNSt6vectorIhSaIhEE9push_backERKh
-                0x0800a80c       0x6e CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800a80c                std::vector<unsigned char, std::allocator<unsigned char> >::push_back(unsigned char const&)
+                0x0800a808       0x6e CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800a808                std::vector<unsigned char, std::allocator<unsigned char> >::push_back(unsigned char const&)
  .text._ZNSt6vectorIhSaIhEE5frontEv
-                0x0800a87a       0x26 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800a87a                std::vector<unsigned char, std::allocator<unsigned char> >::front()
+                0x0800a876       0x26 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800a876                std::vector<unsigned char, std::allocator<unsigned char> >::front()
  .text._ZNKSt6vectorIhSaIhEEixEj
-                0x0800a8a0       0x1c CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800a8a0                std::vector<unsigned char, std::allocator<unsigned char> >::operator[](unsigned int) const
+                0x0800a89c       0x1c CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800a89c                std::vector<unsigned char, std::allocator<unsigned char> >::operator[](unsigned int) const
  .text._ZNSt12_Vector_baseIhSaIhEE13_M_deallocateEPhj
-                0x0800a8bc       0x32 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800a8bc                std::_Vector_base<unsigned char, std::allocator<unsigned char> >::_M_deallocate(unsigned char*, unsigned int)
+                0x0800a8b8       0x32 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800a8b8                std::_Vector_base<unsigned char, std::allocator<unsigned char> >::_M_deallocate(unsigned char*, unsigned int)
  .text._ZNSt12_Vector_baseIhSaIhEE19_M_get_Tp_allocatorEv
-                0x0800a8ee       0x14 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800a8ee                std::_Vector_base<unsigned char, std::allocator<unsigned char> >::_M_get_Tp_allocator()
+                0x0800a8ea       0x14 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800a8ea                std::_Vector_base<unsigned char, std::allocator<unsigned char> >::_M_get_Tp_allocator()
  .text._ZNKSt6vectorIhSaIhEE8max_sizeEv
-                0x0800a902       0x22 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800a902                std::vector<unsigned char, std::allocator<unsigned char> >::max_size() const
+                0x0800a8fe       0x22 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800a8fe                std::vector<unsigned char, std::allocator<unsigned char> >::max_size() const
  .text._ZNKSt6vectorIhSaIhEE8capacityEv
-                0x0800a924       0x1c CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800a924                std::vector<unsigned char, std::allocator<unsigned char> >::capacity() const
+                0x0800a920       0x1c CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800a920                std::vector<unsigned char, std::allocator<unsigned char> >::capacity() const
  .text._ZNSt12_Vector_baseIhSaIhEE11_M_allocateEj
-                0x0800a940       0x32 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800a940                std::_Vector_base<unsigned char, std::allocator<unsigned char> >::_M_allocate(unsigned int)
+                0x0800a93c       0x32 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800a93c                std::_Vector_base<unsigned char, std::allocator<unsigned char> >::_M_allocate(unsigned int)
  .text._ZNSt6vectorIhSaIhEE11_S_relocateEPhS2_S2_RS0_
-                0x0800a972       0x24 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800a972                std::vector<unsigned char, std::allocator<unsigned char> >::_S_relocate(unsigned char*, unsigned char*, unsigned char*, std::allocator<unsigned char>&)
+                0x0800a96e       0x24 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800a96e                std::vector<unsigned char, std::allocator<unsigned char> >::_S_relocate(unsigned char*, unsigned char*, unsigned char*, std::allocator<unsigned char>&)
  .text._ZNSt6vectorIhSaIhEE15_M_erase_at_endEPh
-                0x0800a996       0x48 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800a996                std::vector<unsigned char, std::allocator<unsigned char> >::_M_erase_at_end(unsigned char*)
+                0x0800a992       0x48 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800a992                std::vector<unsigned char, std::allocator<unsigned char> >::_M_erase_at_end(unsigned char*)
  .text._ZZNSt6vectorIhSaIhEE17_M_realloc_appendIJRKhEEEvDpOT_EN6_GuardC2EPhjRS0_
-                0x0800a9de       0x2c CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800a9de                std::vector<unsigned char, std::allocator<unsigned char> >::_M_realloc_append<unsigned char const&>(unsigned char const&)::_Guard::_Guard(unsigned char*, unsigned int, std::allocator<unsigned char>&)
-                0x0800a9de                std::vector<unsigned char, std::allocator<unsigned char> >::_M_realloc_append<unsigned char const&>(unsigned char const&)::_Guard::_Guard(unsigned char*, unsigned int, std::allocator<unsigned char>&)
+                0x0800a9da       0x2c CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800a9da                std::vector<unsigned char, std::allocator<unsigned char> >::_M_realloc_append<unsigned char const&>(unsigned char const&)::_Guard::_Guard(unsigned char*, unsigned int, std::allocator<unsigned char>&)
+                0x0800a9da                std::vector<unsigned char, std::allocator<unsigned char> >::_M_realloc_append<unsigned char const&>(unsigned char const&)::_Guard::_Guard(unsigned char*, unsigned int, std::allocator<unsigned char>&)
  .text._ZZNSt6vectorIhSaIhEE17_M_realloc_appendIJRKhEEEvDpOT_EN6_GuardD2Ev
-                0x0800aa0a       0x38 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800aa0a                std::vector<unsigned char, std::allocator<unsigned char> >::_M_realloc_append<unsigned char const&>(unsigned char const&)::_Guard::~_Guard()
-                0x0800aa0a                std::vector<unsigned char, std::allocator<unsigned char> >::_M_realloc_append<unsigned char const&>(unsigned char const&)::_Guard::~_Guard()
- *fill*         0x0800aa42        0x2 
+                0x0800aa06       0x38 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800aa06                std::vector<unsigned char, std::allocator<unsigned char> >::_M_realloc_append<unsigned char const&>(unsigned char const&)::_Guard::~_Guard()
+                0x0800aa06                std::vector<unsigned char, std::allocator<unsigned char> >::_M_realloc_append<unsigned char const&>(unsigned char const&)::_Guard::~_Guard()
+ *fill*         0x0800aa3e        0x2 
  .text._ZNSt6vectorIhSaIhEE17_M_realloc_appendIJRKhEEEvDpOT_
-                0x0800aa44      0x110 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800aa44                void std::vector<unsigned char, std::allocator<unsigned char> >::_M_realloc_append<unsigned char const&>(unsigned char const&)
+                0x0800aa40      0x110 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800aa40                void std::vector<unsigned char, std::allocator<unsigned char> >::_M_realloc_append<unsigned char const&>(unsigned char const&)
  .text._ZNSt6vectorIhSaIhEE5beginEv
-                0x0800ab54       0x20 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800ab54                std::vector<unsigned char, std::allocator<unsigned char> >::begin()
+                0x0800ab50       0x20 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800ab50                std::vector<unsigned char, std::allocator<unsigned char> >::begin()
  .text._ZNK9__gnu_cxx17__normal_iteratorIPhSt6vectorIhSaIhEEEdeEv
-                0x0800ab74       0x16 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800ab74                __gnu_cxx::__normal_iterator<unsigned char*, std::vector<unsigned char, std::allocator<unsigned char> > >::operator*() const
+                0x0800ab70       0x16 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800ab70                __gnu_cxx::__normal_iterator<unsigned char*, std::vector<unsigned char, std::allocator<unsigned char> > >::operator*() const
  .text._ZSt8_DestroyIPhEvT_S1_
-                0x0800ab8a       0x1a CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800ab8a                void std::_Destroy<unsigned char*>(unsigned char*, unsigned char*)
+                0x0800ab86       0x1a CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800ab86                void std::_Destroy<unsigned char*>(unsigned char*, unsigned char*)
  .text._ZNSt6vectorIhSaIhEE11_S_max_sizeERKS0_
-                0x0800aba4       0x40 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800aba4                std::vector<unsigned char, std::allocator<unsigned char> >::_S_max_size(std::allocator<unsigned char> const&)
+                0x0800aba0       0x40 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800aba0                std::vector<unsigned char, std::allocator<unsigned char> >::_S_max_size(std::allocator<unsigned char> const&)
  .text._ZNKSt12_Vector_baseIhSaIhEE19_M_get_Tp_allocatorEv
-                0x0800abe4       0x14 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800abe4                std::_Vector_base<unsigned char, std::allocator<unsigned char> >::_M_get_Tp_allocator() const
+                0x0800abe0       0x14 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800abe0                std::_Vector_base<unsigned char, std::allocator<unsigned char> >::_M_get_Tp_allocator() const
  .text._ZSt12__relocate_aIPhS0_SaIhEET0_T_S3_S2_RT1_
-                0x0800abf8       0x3a CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800abf8                unsigned char* std::__relocate_a<unsigned char*, unsigned char*, std::allocator<unsigned char> >(unsigned char*, unsigned char*, unsigned char*, std::allocator<unsigned char>&)
+                0x0800abf4       0x3a CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800abf4                unsigned char* std::__relocate_a<unsigned char*, unsigned char*, std::allocator<unsigned char> >(unsigned char*, unsigned char*, unsigned char*, std::allocator<unsigned char>&)
  .text._ZSt7forwardIRKhEOT_RNSt16remove_referenceIS2_E4typeE
-                0x0800ac32       0x14 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800ac32                unsigned char const& std::forward<unsigned char const&>(std::remove_reference<unsigned char const&>::type&)
+                0x0800ac2e       0x14 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800ac2e                unsigned char const& std::forward<unsigned char const&>(std::remove_reference<unsigned char const&>::type&)
  .text._ZNKSt6vectorIhSaIhEE12_M_check_lenEjPKc
-                0x0800ac46       0x8e CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800ac46                std::vector<unsigned char, std::allocator<unsigned char> >::_M_check_len(unsigned int, char const*) const
+                0x0800ac42       0x8e CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800ac42                std::vector<unsigned char, std::allocator<unsigned char> >::_M_check_len(unsigned int, char const*) const
  .text._ZNSt6vectorIhSaIhEE3endEv
-                0x0800acd4       0x22 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800acd4                std::vector<unsigned char, std::allocator<unsigned char> >::end()
+                0x0800acd0       0x22 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800acd0                std::vector<unsigned char, std::allocator<unsigned char> >::end()
  .text._ZN9__gnu_cxxmiIPhSt6vectorIhSaIhEEEENS_17__normal_iteratorIT_T0_E15difference_typeERKS8_SB_
-                0x0800acf6       0x28 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800acf6                __gnu_cxx::__normal_iterator<unsigned char*, std::vector<unsigned char, std::allocator<unsigned char> > >::difference_type __gnu_cxx::operator-<unsigned char*, std::vector<unsigned char, std::allocator<unsigned char> > >(__gnu_cxx::__normal_iterator<unsigned char*, std::vector<unsigned char, std::allocator<unsigned char> > > const&, __gnu_cxx::__normal_iterator<unsigned char*, std::vector<unsigned char, std::allocator<unsigned char> > > const&)
+                0x0800acf2       0x28 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800acf2                __gnu_cxx::__normal_iterator<unsigned char*, std::vector<unsigned char, std::allocator<unsigned char> > >::difference_type __gnu_cxx::operator-<unsigned char*, std::vector<unsigned char, std::allocator<unsigned char> > >(__gnu_cxx::__normal_iterator<unsigned char*, std::vector<unsigned char, std::allocator<unsigned char> > > const&, __gnu_cxx::__normal_iterator<unsigned char*, std::vector<unsigned char, std::allocator<unsigned char> > > const&)
  .text._ZSt12__to_addressIhEPT_S1_
-                0x0800ad1e       0x14 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800ad1e                unsigned char* std::__to_address<unsigned char>(unsigned char*)
+                0x0800ad1a       0x14 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800ad1a                unsigned char* std::__to_address<unsigned char>(unsigned char*)
  .text._ZN9__gnu_cxx17__normal_iteratorIPhSt6vectorIhSaIhEEEC2ERKS1_
-                0x0800ad32       0x1e CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800ad32                __gnu_cxx::__normal_iterator<unsigned char*, std::vector<unsigned char, std::allocator<unsigned char> > >::__normal_iterator(unsigned char* const&)
-                0x0800ad32                __gnu_cxx::__normal_iterator<unsigned char*, std::vector<unsigned char, std::allocator<unsigned char> > >::__normal_iterator(unsigned char* const&)
+                0x0800ad2e       0x1e CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800ad2e                __gnu_cxx::__normal_iterator<unsigned char*, std::vector<unsigned char, std::allocator<unsigned char> > >::__normal_iterator(unsigned char* const&)
+                0x0800ad2e                __gnu_cxx::__normal_iterator<unsigned char*, std::vector<unsigned char, std::allocator<unsigned char> > >::__normal_iterator(unsigned char* const&)
  .text._ZNSt15__new_allocatorIhE10deallocateEPhj
-                0x0800ad50       0x1a CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800ad50                std::__new_allocator<unsigned char>::deallocate(unsigned char*, unsigned int)
+                0x0800ad4c       0x1a CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800ad4c                std::__new_allocator<unsigned char>::deallocate(unsigned char*, unsigned int)
  .text._ZNSt12_Destroy_auxILb1EE9__destroyIPhEEvT_S3_
-                0x0800ad6a       0x14 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800ad6a                void std::_Destroy_aux<true>::__destroy<unsigned char*>(unsigned char*, unsigned char*)
+                0x0800ad66       0x14 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800ad66                void std::_Destroy_aux<true>::__destroy<unsigned char*>(unsigned char*, unsigned char*)
  .text._ZSt3minIjERKT_S2_S2_
-                0x0800ad7e       0x26 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800ad7e                unsigned int const& std::min<unsigned int>(unsigned int const&, unsigned int const&)
+                0x0800ad7a       0x26 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800ad7a                unsigned int const& std::min<unsigned int>(unsigned int const&, unsigned int const&)
  .text._ZNSt15__new_allocatorIhE8allocateEjPKv
-                0x0800ada4       0x44 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800ada4                std::__new_allocator<unsigned char>::allocate(unsigned int, void const*)
+                0x0800ada0       0x44 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800ada0                std::__new_allocator<unsigned char>::allocate(unsigned int, void const*)
  .text._ZSt12__niter_baseIPhET_S1_
-                0x0800ade8       0x14 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800ade8                unsigned char* std::__niter_base<unsigned char*>(unsigned char*)
+                0x0800ade4       0x14 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800ade4                unsigned char* std::__niter_base<unsigned char*>(unsigned char*)
  .text._ZSt14__relocate_a_1IhhENSt9enable_ifIXsrSt24__is_bitwise_relocatableIT_vE5valueEPS2_E4typeES4_S4_S4_RSaIT0_E
-                0x0800adfc       0x3a CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800adfc                std::enable_if<std::__is_bitwise_relocatable<unsigned char, void>::value, unsigned char*>::type std::__relocate_a_1<unsigned char, unsigned char>(unsigned char*, unsigned char*, unsigned char*, std::allocator<unsigned char>&)
+                0x0800adf8       0x3a CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800adf8                std::enable_if<std::__is_bitwise_relocatable<unsigned char, void>::value, unsigned char*>::type std::__relocate_a_1<unsigned char, unsigned char>(unsigned char*, unsigned char*, unsigned char*, std::allocator<unsigned char>&)
  .text._ZSt3maxIjERKT_S2_S2_
-                0x0800ae36       0x26 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800ae36                unsigned int const& std::max<unsigned int>(unsigned int const&, unsigned int const&)
+                0x0800ae32       0x26 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800ae32                unsigned int const& std::max<unsigned int>(unsigned int const&, unsigned int const&)
  .text._ZNK9__gnu_cxx17__normal_iteratorIPhSt6vectorIhSaIhEEE4baseEv
-                0x0800ae5c       0x14 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800ae5c                __gnu_cxx::__normal_iterator<unsigned char*, std::vector<unsigned char, std::allocator<unsigned char> > >::base() const
+                0x0800ae58       0x14 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800ae58                __gnu_cxx::__normal_iterator<unsigned char*, std::vector<unsigned char, std::allocator<unsigned char> > >::base() const
  .text._ZN10Motion4DOFC2EP7PCA9685
-                0x0800ae70       0x68 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
-                0x0800ae70                Motion4DOF::Motion4DOF(PCA9685*)
-                0x0800ae70                Motion4DOF::Motion4DOF(PCA9685*)
+                0x0800ae6c       0x68 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
+                0x0800ae6c                Motion4DOF::Motion4DOF(PCA9685*)
+                0x0800ae6c                Motion4DOF::Motion4DOF(PCA9685*)
  .text._ZN10Motion4DOF4InitEv
-                0x0800aed8       0x36 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
-                0x0800aed8                Motion4DOF::Init()
+                0x0800aed4       0x36 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
+                0x0800aed4                Motion4DOF::Init()
  .text._ZN10Motion4DOF5RelaxEv
-                0x0800af0e       0x36 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
-                0x0800af0e                Motion4DOF::Relax()
+                0x0800af0a       0x36 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
+                0x0800af0a                Motion4DOF::Relax()
  .text._ZN10Motion4DOF17actionWalkForwardEv
-                0x0800af44      0x11c CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
-                0x0800af44                Motion4DOF::actionWalkForward()
+                0x0800af40      0x11c CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
+                0x0800af40                Motion4DOF::actionWalkForward()
  .text._ZN10Motion4DOF18actionWalkBackwardEv
-                0x0800b060      0x154 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
-                0x0800b060                Motion4DOF::actionWalkBackward()
+                0x0800b05c      0x154 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
+                0x0800b05c                Motion4DOF::actionWalkBackward()
  .text._ZN10Motion4DOF14actionTurnLeftEv
-                0x0800b1b4      0x154 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
-                0x0800b1b4                Motion4DOF::actionTurnLeft()
+                0x0800b1b0      0x154 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
+                0x0800b1b0                Motion4DOF::actionTurnLeft()
  .text._ZN10Motion4DOF15actionTurnRightEv
-                0x0800b308      0x154 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
-                0x0800b308                Motion4DOF::actionTurnRight()
+                0x0800b304      0x154 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
+                0x0800b304                Motion4DOF::actionTurnRight()
  .text._ZN10Motion4DOF14ExecuteCommandE8VoiceCmd
-                0x0800b45c      0x1d4 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
-                0x0800b45c                Motion4DOF::ExecuteCommand(VoiceCmd)
+                0x0800b458      0x1d4 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
+                0x0800b458                Motion4DOF::ExecuteCommand(VoiceCmd)
  .text._ZN10Motion4DOF9StandIdleEv
-                0x0800b630       0x70 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
-                0x0800b630                Motion4DOF::StandIdle()
+                0x0800b62c       0x70 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
+                0x0800b62c                Motion4DOF::StandIdle()
  .text._ZN10Motion4DOF14postureSitDownEv
-                0x0800b6a0       0xa4 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
-                0x0800b6a0                Motion4DOF::postureSitDown()
+                0x0800b69c       0xa4 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
+                0x0800b69c                Motion4DOF::postureSitDown()
  .text._ZN10Motion4DOF14postureLieDownEv
-                0x0800b744       0xd4 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
-                0x0800b744                Motion4DOF::postureLieDown()
+                0x0800b740       0xd4 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
+                0x0800b740                Motion4DOF::postureLieDown()
  .text._ZN10Motion4DOF13postureLookUpEv
-                0x0800b818       0xd4 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
-                0x0800b818                Motion4DOF::postureLookUp()
+                0x0800b814       0xd4 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
+                0x0800b814                Motion4DOF::postureLookUp()
  .text._ZN10Motion4DOF15postureLookDownEv
-                0x0800b8ec       0xd4 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
-                0x0800b8ec                Motion4DOF::postureLookDown()
+                0x0800b8e8       0xd4 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
+                0x0800b8e8                Motion4DOF::postureLookDown()
  .text._ZN10Motion4DOF15postureLeanLeftEv
-                0x0800b9c0       0xa4 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
-                0x0800b9c0                Motion4DOF::postureLeanLeft()
+                0x0800b9bc       0xa4 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
+                0x0800b9bc                Motion4DOF::postureLeanLeft()
  .text._ZN10Motion4DOF16postureLeanRightEv
-                0x0800ba64       0xa4 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
-                0x0800ba64                Motion4DOF::postureLeanRight()
+                0x0800ba60       0xa4 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
+                0x0800ba60                Motion4DOF::postureLeanRight()
  .text._ZN10Motion4DOF15actionShakeHandEb
-                0x0800bb08       0xb8 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
-                0x0800bb08                Motion4DOF::actionShakeHand(bool)
+                0x0800bb04       0xb8 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
+                0x0800bb04                Motion4DOF::actionShakeHand(bool)
  .text._ZN10Motion4DOF14actionGreetingEv
-                0x0800bbc0       0x24 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
-                0x0800bbc0                Motion4DOF::actionGreeting()
+                0x0800bbbc       0x24 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
+                0x0800bbbc                Motion4DOF::actionGreeting()
  .text._ZN10Motion4DOF13actionStretchEv
-                0x0800bbe4       0x74 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
-                0x0800bbe4                Motion4DOF::actionStretch()
+                0x0800bbe0       0x74 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
+                0x0800bbe0                Motion4DOF::actionStretch()
  .text._ZN10Motion4DOF11actionDanceEv
-                0x0800bc58       0x6a CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
-                0x0800bc58                Motion4DOF::actionDance()
- *fill*         0x0800bcc2        0x2 
+                0x0800bc54       0x6a CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
+                0x0800bc54                Motion4DOF::actionDance()
+ *fill*         0x0800bcbe        0x2 
  .text._ZN10Motion4DOF16actionAttackModeEv
-                0x0800bcc4       0x90 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
-                0x0800bcc4                Motion4DOF::actionAttackMode()
+                0x0800bcc0       0x90 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
+                0x0800bcc0                Motion4DOF::actionAttackMode()
  .text._ZN7MPU60504InitEv
-                0x0800bd54      0x134 CMakeFiles/STM32_CyberDog.dir/usercode/src/mpu6050.cpp.obj
-                0x0800bd54                MPU6050::Init()
+                0x0800bd50      0x134 CMakeFiles/STM32_CyberDog.dir/usercode/src/mpu6050.cpp.obj
+                0x0800bd50                MPU6050::Init()
+ *fill*         0x0800be84        0x4 
  .text._ZN7MPU60506UpdateEv
                 0x0800be88      0x3f0 CMakeFiles/STM32_CyberDog.dir/usercode/src/mpu6050.cpp.obj
                 0x0800be88                MPU6050::Update()
@@ -8225,7 +8226,7 @@ LOAD linker stubs
  .comment       0x00000046       0x47 CMakeFiles/STM32_CyberDog.dir/usercode/src/ssd1306.cpp.obj
  .comment       0x00000046       0x47 CMakeFiles/STM32_CyberDog.dir/usercode/src/su03t.cpp.obj
 
-.debug_info     0x00000000    0x2d978
+.debug_info     0x00000000    0x2d92c
  .debug_info    0x00000000      0x222 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Core/Src/system_stm32f1xx.c.obj
  .debug_info    0x00000222     0x2959 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
  .debug_info    0x00002b7b     0x149b cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c.obj
@@ -8245,28 +8246,28 @@ LOAD linker stubs
  .debug_info    0x00012149     0x3990 cmake/stm32cubemx/CMakeFiles/FreeRTOS.dir/__/__/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.c.obj
  .debug_info    0x00015ad9      0x4d5 cmake/stm32cubemx/CMakeFiles/FreeRTOS.dir/__/__/Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.c.obj
  .debug_info    0x00015fae      0x494 cmake/stm32cubemx/CMakeFiles/FreeRTOS.dir/__/__/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3/port.c.obj
- .debug_info    0x00016442      0x92f CMakeFiles/STM32_CyberDog.dir/Core/Src/main.c.obj
- .debug_info    0x00016d71      0x2d3 CMakeFiles/STM32_CyberDog.dir/Core/Src/gpio.c.obj
- .debug_info    0x00017044      0x38d CMakeFiles/STM32_CyberDog.dir/Core/Src/freertos.c.obj
- .debug_info    0x000173d1      0x7b8 CMakeFiles/STM32_CyberDog.dir/Core/Src/adc.c.obj
- .debug_info    0x00017b89      0x7e3 CMakeFiles/STM32_CyberDog.dir/Core/Src/i2c.c.obj
- .debug_info    0x0001836c      0xa48 CMakeFiles/STM32_CyberDog.dir/Core/Src/usart.c.obj
- .debug_info    0x00018db4      0x9f4 CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_it.c.obj
- .debug_info    0x000197a8      0x361 CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_hal_msp.c.obj
- .debug_info    0x00019b09      0x9a8 CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_hal_timebase_tim.c.obj
- .debug_info    0x0001a4b1      0x168 CMakeFiles/STM32_CyberDog.dir/Core/Src/sysmem.c.obj
- .debug_info    0x0001a619      0x6b4 CMakeFiles/STM32_CyberDog.dir/Core/Src/syscalls.c.obj
- .debug_info    0x0001accd       0x30 CMakeFiles/STM32_CyberDog.dir/startup_stm32f103xb.s.obj
- .debug_info    0x0001acfd     0x5679 CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
- .debug_info    0x00020376      0xfe2 CMakeFiles/STM32_CyberDog.dir/usercode/src/arena.cpp.obj
- .debug_info    0x00021358     0x363f CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
- .debug_info    0x00024997     0x268b CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
- .debug_info    0x00027022      0xd87 CMakeFiles/STM32_CyberDog.dir/usercode/src/mpu6050.cpp.obj
- .debug_info    0x00027da9      0xe10 CMakeFiles/STM32_CyberDog.dir/usercode/src/pca9685.cpp.obj
- .debug_info    0x00028bb9     0x1660 CMakeFiles/STM32_CyberDog.dir/usercode/src/ssd1306.cpp.obj
- .debug_info    0x0002a219     0x375f CMakeFiles/STM32_CyberDog.dir/usercode/src/su03t.cpp.obj
+ .debug_info    0x00016442      0x921 CMakeFiles/STM32_CyberDog.dir/Core/Src/main.c.obj
+ .debug_info    0x00016d63      0x2d3 CMakeFiles/STM32_CyberDog.dir/Core/Src/gpio.c.obj
+ .debug_info    0x00017036      0x34f CMakeFiles/STM32_CyberDog.dir/Core/Src/freertos.c.obj
+ .debug_info    0x00017385      0x7b8 CMakeFiles/STM32_CyberDog.dir/Core/Src/adc.c.obj
+ .debug_info    0x00017b3d      0x7e3 CMakeFiles/STM32_CyberDog.dir/Core/Src/i2c.c.obj
+ .debug_info    0x00018320      0xa48 CMakeFiles/STM32_CyberDog.dir/Core/Src/usart.c.obj
+ .debug_info    0x00018d68      0x9f4 CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_it.c.obj
+ .debug_info    0x0001975c      0x361 CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_hal_msp.c.obj
+ .debug_info    0x00019abd      0x9a8 CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_hal_timebase_tim.c.obj
+ .debug_info    0x0001a465      0x168 CMakeFiles/STM32_CyberDog.dir/Core/Src/sysmem.c.obj
+ .debug_info    0x0001a5cd      0x6b4 CMakeFiles/STM32_CyberDog.dir/Core/Src/syscalls.c.obj
+ .debug_info    0x0001ac81       0x30 CMakeFiles/STM32_CyberDog.dir/startup_stm32f103xb.s.obj
+ .debug_info    0x0001acb1     0x5679 CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
+ .debug_info    0x0002032a      0xfe2 CMakeFiles/STM32_CyberDog.dir/usercode/src/arena.cpp.obj
+ .debug_info    0x0002130c     0x363f CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+ .debug_info    0x0002494b     0x268b CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
+ .debug_info    0x00026fd6      0xd87 CMakeFiles/STM32_CyberDog.dir/usercode/src/mpu6050.cpp.obj
+ .debug_info    0x00027d5d      0xe10 CMakeFiles/STM32_CyberDog.dir/usercode/src/pca9685.cpp.obj
+ .debug_info    0x00028b6d     0x1660 CMakeFiles/STM32_CyberDog.dir/usercode/src/ssd1306.cpp.obj
+ .debug_info    0x0002a1cd     0x375f CMakeFiles/STM32_CyberDog.dir/usercode/src/su03t.cpp.obj
 
-.debug_abbrev   0x00000000     0x6c79
+.debug_abbrev   0x00000000     0x6c82
  .debug_abbrev  0x00000000      0x13f cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Core/Src/system_stm32f1xx.c.obj
  .debug_abbrev  0x0000013f      0x277 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
  .debug_abbrev  0x000003b6      0x282 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c.obj
@@ -8286,26 +8287,26 @@ LOAD linker stubs
  .debug_abbrev  0x00002683      0x520 cmake/stm32cubemx/CMakeFiles/FreeRTOS.dir/__/__/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.c.obj
  .debug_abbrev  0x00002ba3      0x21d cmake/stm32cubemx/CMakeFiles/FreeRTOS.dir/__/__/Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.c.obj
  .debug_abbrev  0x00002dc0      0x258 cmake/stm32cubemx/CMakeFiles/FreeRTOS.dir/__/__/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3/port.c.obj
- .debug_abbrev  0x00003018      0x244 CMakeFiles/STM32_CyberDog.dir/Core/Src/main.c.obj
- .debug_abbrev  0x0000325c      0x13f CMakeFiles/STM32_CyberDog.dir/Core/Src/gpio.c.obj
- .debug_abbrev  0x0000339b      0x12c CMakeFiles/STM32_CyberDog.dir/Core/Src/freertos.c.obj
- .debug_abbrev  0x000034c7      0x1e1 CMakeFiles/STM32_CyberDog.dir/Core/Src/adc.c.obj
- .debug_abbrev  0x000036a8      0x1de CMakeFiles/STM32_CyberDog.dir/Core/Src/i2c.c.obj
- .debug_abbrev  0x00003886      0x20b CMakeFiles/STM32_CyberDog.dir/Core/Src/usart.c.obj
- .debug_abbrev  0x00003a91      0x188 CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_it.c.obj
- .debug_abbrev  0x00003c19      0x11c CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_hal_msp.c.obj
- .debug_abbrev  0x00003d35      0x1f3 CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_hal_timebase_tim.c.obj
- .debug_abbrev  0x00003f28       0xbc CMakeFiles/STM32_CyberDog.dir/Core/Src/sysmem.c.obj
- .debug_abbrev  0x00003fe4      0x1bc CMakeFiles/STM32_CyberDog.dir/Core/Src/syscalls.c.obj
- .debug_abbrev  0x000041a0       0x24 CMakeFiles/STM32_CyberDog.dir/startup_stm32f103xb.s.obj
- .debug_abbrev  0x000041c4      0x834 CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
- .debug_abbrev  0x000049f8      0x386 CMakeFiles/STM32_CyberDog.dir/usercode/src/arena.cpp.obj
- .debug_abbrev  0x00004d7e      0x80d CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
- .debug_abbrev  0x0000558b      0x476 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
- .debug_abbrev  0x00005a01      0x2b7 CMakeFiles/STM32_CyberDog.dir/usercode/src/mpu6050.cpp.obj
- .debug_abbrev  0x00005cb8      0x3af CMakeFiles/STM32_CyberDog.dir/usercode/src/pca9685.cpp.obj
- .debug_abbrev  0x00006067      0x391 CMakeFiles/STM32_CyberDog.dir/usercode/src/ssd1306.cpp.obj
- .debug_abbrev  0x000063f8      0x881 CMakeFiles/STM32_CyberDog.dir/usercode/src/su03t.cpp.obj
+ .debug_abbrev  0x00003018      0x22c CMakeFiles/STM32_CyberDog.dir/Core/Src/main.c.obj
+ .debug_abbrev  0x00003244      0x13f CMakeFiles/STM32_CyberDog.dir/Core/Src/gpio.c.obj
+ .debug_abbrev  0x00003383      0x14d CMakeFiles/STM32_CyberDog.dir/Core/Src/freertos.c.obj
+ .debug_abbrev  0x000034d0      0x1e1 CMakeFiles/STM32_CyberDog.dir/Core/Src/adc.c.obj
+ .debug_abbrev  0x000036b1      0x1de CMakeFiles/STM32_CyberDog.dir/Core/Src/i2c.c.obj
+ .debug_abbrev  0x0000388f      0x20b CMakeFiles/STM32_CyberDog.dir/Core/Src/usart.c.obj
+ .debug_abbrev  0x00003a9a      0x188 CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_it.c.obj
+ .debug_abbrev  0x00003c22      0x11c CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_hal_msp.c.obj
+ .debug_abbrev  0x00003d3e      0x1f3 CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_hal_timebase_tim.c.obj
+ .debug_abbrev  0x00003f31       0xbc CMakeFiles/STM32_CyberDog.dir/Core/Src/sysmem.c.obj
+ .debug_abbrev  0x00003fed      0x1bc CMakeFiles/STM32_CyberDog.dir/Core/Src/syscalls.c.obj
+ .debug_abbrev  0x000041a9       0x24 CMakeFiles/STM32_CyberDog.dir/startup_stm32f103xb.s.obj
+ .debug_abbrev  0x000041cd      0x834 CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
+ .debug_abbrev  0x00004a01      0x386 CMakeFiles/STM32_CyberDog.dir/usercode/src/arena.cpp.obj
+ .debug_abbrev  0x00004d87      0x80d CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+ .debug_abbrev  0x00005594      0x476 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
+ .debug_abbrev  0x00005a0a      0x2b7 CMakeFiles/STM32_CyberDog.dir/usercode/src/mpu6050.cpp.obj
+ .debug_abbrev  0x00005cc1      0x3af CMakeFiles/STM32_CyberDog.dir/usercode/src/pca9685.cpp.obj
+ .debug_abbrev  0x00006070      0x391 CMakeFiles/STM32_CyberDog.dir/usercode/src/ssd1306.cpp.obj
+ .debug_abbrev  0x00006401      0x881 CMakeFiles/STM32_CyberDog.dir/usercode/src/su03t.cpp.obj
 
 .debug_aranges  0x00000000     0x1f58
  .debug_aranges
@@ -8673,7 +8674,7 @@ LOAD linker stubs
  .debug_macro   0x00029458       0xde CMakeFiles/STM32_CyberDog.dir/usercode/src/ssd1306.cpp.obj
  .debug_macro   0x00029536      0x498 CMakeFiles/STM32_CyberDog.dir/usercode/src/su03t.cpp.obj
 
-.debug_line     0x00000000    0x216c6
+.debug_line     0x00000000    0x216c2
  .debug_line    0x00000000      0x59e cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Core/Src/system_stm32f1xx.c.obj
  .debug_line    0x0000059e     0x32bd cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
  .debug_line    0x0000385b     0x1693 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c.obj
@@ -8693,26 +8694,26 @@ LOAD linker stubs
  .debug_line    0x000131a7     0x2257 cmake/stm32cubemx/CMakeFiles/FreeRTOS.dir/__/__/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.c.obj
  .debug_line    0x000153fe      0x686 cmake/stm32cubemx/CMakeFiles/FreeRTOS.dir/__/__/Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.c.obj
  .debug_line    0x00015a84      0x550 cmake/stm32cubemx/CMakeFiles/FreeRTOS.dir/__/__/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3/port.c.obj
- .debug_line    0x00015fd4      0x7c0 CMakeFiles/STM32_CyberDog.dir/Core/Src/main.c.obj
- .debug_line    0x00016794      0x52f CMakeFiles/STM32_CyberDog.dir/Core/Src/gpio.c.obj
- .debug_line    0x00016cc3      0x6d7 CMakeFiles/STM32_CyberDog.dir/Core/Src/freertos.c.obj
- .debug_line    0x0001739a      0x597 CMakeFiles/STM32_CyberDog.dir/Core/Src/adc.c.obj
- .debug_line    0x00017931      0x589 CMakeFiles/STM32_CyberDog.dir/Core/Src/i2c.c.obj
- .debug_line    0x00017eba      0x60d CMakeFiles/STM32_CyberDog.dir/Core/Src/usart.c.obj
- .debug_line    0x000184c7      0x5d8 CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_it.c.obj
- .debug_line    0x00018a9f      0x521 CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_hal_msp.c.obj
- .debug_line    0x00018fc0      0x59e CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_hal_timebase_tim.c.obj
- .debug_line    0x0001955e      0x228 CMakeFiles/STM32_CyberDog.dir/Core/Src/sysmem.c.obj
- .debug_line    0x00019786      0x54c CMakeFiles/STM32_CyberDog.dir/Core/Src/syscalls.c.obj
- .debug_line    0x00019cd2       0x78 CMakeFiles/STM32_CyberDog.dir/startup_stm32f103xb.s.obj
- .debug_line    0x00019d4a     0x1372 CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
- .debug_line    0x0001b0bc      0x45a CMakeFiles/STM32_CyberDog.dir/usercode/src/arena.cpp.obj
- .debug_line    0x0001b516     0x1390 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
- .debug_line    0x0001c8a6     0x13e6 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
- .debug_line    0x0001dc8c      0xcef CMakeFiles/STM32_CyberDog.dir/usercode/src/mpu6050.cpp.obj
- .debug_line    0x0001e97b      0xd62 CMakeFiles/STM32_CyberDog.dir/usercode/src/pca9685.cpp.obj
- .debug_line    0x0001f6dd      0xc73 CMakeFiles/STM32_CyberDog.dir/usercode/src/ssd1306.cpp.obj
- .debug_line    0x00020350     0x1376 CMakeFiles/STM32_CyberDog.dir/usercode/src/su03t.cpp.obj
+ .debug_line    0x00015fd4      0x7bf CMakeFiles/STM32_CyberDog.dir/Core/Src/main.c.obj
+ .debug_line    0x00016793      0x52f CMakeFiles/STM32_CyberDog.dir/Core/Src/gpio.c.obj
+ .debug_line    0x00016cc2      0x6d4 CMakeFiles/STM32_CyberDog.dir/Core/Src/freertos.c.obj
+ .debug_line    0x00017396      0x597 CMakeFiles/STM32_CyberDog.dir/Core/Src/adc.c.obj
+ .debug_line    0x0001792d      0x589 CMakeFiles/STM32_CyberDog.dir/Core/Src/i2c.c.obj
+ .debug_line    0x00017eb6      0x60d CMakeFiles/STM32_CyberDog.dir/Core/Src/usart.c.obj
+ .debug_line    0x000184c3      0x5d8 CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_it.c.obj
+ .debug_line    0x00018a9b      0x521 CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_hal_msp.c.obj
+ .debug_line    0x00018fbc      0x59e CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_hal_timebase_tim.c.obj
+ .debug_line    0x0001955a      0x228 CMakeFiles/STM32_CyberDog.dir/Core/Src/sysmem.c.obj
+ .debug_line    0x00019782      0x54c CMakeFiles/STM32_CyberDog.dir/Core/Src/syscalls.c.obj
+ .debug_line    0x00019cce       0x78 CMakeFiles/STM32_CyberDog.dir/startup_stm32f103xb.s.obj
+ .debug_line    0x00019d46     0x1372 CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
+ .debug_line    0x0001b0b8      0x45a CMakeFiles/STM32_CyberDog.dir/usercode/src/arena.cpp.obj
+ .debug_line    0x0001b512     0x1390 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+ .debug_line    0x0001c8a2     0x13e6 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
+ .debug_line    0x0001dc88      0xcef CMakeFiles/STM32_CyberDog.dir/usercode/src/mpu6050.cpp.obj
+ .debug_line    0x0001e977      0xd62 CMakeFiles/STM32_CyberDog.dir/usercode/src/pca9685.cpp.obj
+ .debug_line    0x0001f6d9      0xc73 CMakeFiles/STM32_CyberDog.dir/usercode/src/ssd1306.cpp.obj
+ .debug_line    0x0002034c     0x1376 CMakeFiles/STM32_CyberDog.dir/usercode/src/su03t.cpp.obj
 
 .debug_str      0x00000000    0xad141
  .debug_str     0x00000000    0xad141 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Core/Src/system_stm32f1xx.c.obj
@@ -8735,9 +8736,9 @@ LOAD linker stubs
  .debug_str     0x000ad141    0x94017 cmake/stm32cubemx/CMakeFiles/FreeRTOS.dir/__/__/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.c.obj
  .debug_str     0x000ad141     0xadcc cmake/stm32cubemx/CMakeFiles/FreeRTOS.dir/__/__/Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.c.obj
  .debug_str     0x000ad141     0x8586 cmake/stm32cubemx/CMakeFiles/FreeRTOS.dir/__/__/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3/port.c.obj
- .debug_str     0x000ad141    0x8eb05 CMakeFiles/STM32_CyberDog.dir/Core/Src/main.c.obj
+ .debug_str     0x000ad141    0x8eafc CMakeFiles/STM32_CyberDog.dir/Core/Src/main.c.obj
  .debug_str     0x000ad141    0x89b2c CMakeFiles/STM32_CyberDog.dir/Core/Src/gpio.c.obj
- .debug_str     0x000ad141    0x8e805 CMakeFiles/STM32_CyberDog.dir/Core/Src/freertos.c.obj
+ .debug_str     0x000ad141    0x8e79f CMakeFiles/STM32_CyberDog.dir/Core/Src/freertos.c.obj
  .debug_str     0x000ad141    0x89ed1 CMakeFiles/STM32_CyberDog.dir/Core/Src/adc.c.obj
  .debug_str     0x000ad141    0x89fe6 CMakeFiles/STM32_CyberDog.dir/Core/Src/i2c.c.obj
  .debug_str     0x000ad141    0x8a382 CMakeFiles/STM32_CyberDog.dir/Core/Src/usart.c.obj
