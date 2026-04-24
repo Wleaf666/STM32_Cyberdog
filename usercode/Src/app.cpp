@@ -263,6 +263,58 @@ void task_Mpu6050(void *argument)
         dogImu->Update();
         osDelay(20);
     }
+}void task_bluetooth_test(void *argument)
+{
+    RobotCommand cmd;
+    for (;;)
+    {
+        if (blueTooth->getCommand(cmd))
+        {
+            // 【语音接轨】：收到手机指令时，让语音模块“滴”一声作为确认反馈（需确保SU03T固件支持该串口指令）
+            // voiceModule->playVoice(VoicePlay::BEEP);
+
+            // 在 OLED 屏幕上同步显示蓝牙发来的十六进制指令，最高优先级覆盖语音字符
+            sprintf(last_voice_cmd, "BT: CMD %02X", cmd.cmd_type);
+
+            // 【全动作精确映射】将手机 Hex 控制码完全匹配到系统的 VoiceCmd 枚举
+            switch (cmd.cmd_type)
+            {
+                case 0x01: global_dog_action = VoiceCmd::WAKE_UP; blueTooth->sendString("ACK: WAKE_UP\r\n"); break;
+                case 0x02: global_dog_action = VoiceCmd::SLEEP; blueTooth->sendString("ACK: SLEEP\r\n"); break;
+                case 0x03: global_dog_action = VoiceCmd::REPORT_BAT; 
+                           char bat_msg[32]; sprintf(bat_msg, "Battery: %d%%\r\n", GetBatteryPercentage()); 
+                           blueTooth->sendString(bat_msg); break;
+
+                case 0x10: global_dog_action = VoiceCmd::FORWARD; blueTooth->sendString("ACK: FORWARD\r\n"); break;
+                case 0x11: global_dog_action = VoiceCmd::BACKWARD; blueTooth->sendString("ACK: BACKWARD\r\n"); break;
+                case 0x12: global_dog_action = VoiceCmd::TURN_LEFT; blueTooth->sendString("ACK: TURN_L\r\n"); break;
+                case 0x13: global_dog_action = VoiceCmd::TURN_RIGHT; blueTooth->sendString("ACK: TURN_R\r\n"); break;
+                case 0x14: global_dog_action = VoiceCmd::SHIFT_LEFT; blueTooth->sendString("ACK: SHIFT_L\r\n"); break;
+                case 0x15: global_dog_action = VoiceCmd::SHIFT_RIGHT; blueTooth->sendString("ACK: SHIFT_R\r\n"); break;
+                case 0x16: global_dog_action = VoiceCmd::STOP_MOVE; blueTooth->sendString("ACK: STOP\r\n"); break;
+
+                case 0x20: global_dog_action = VoiceCmd::STAND_UP; blueTooth->sendString("ACK: STAND\r\n"); break;
+                case 0x21: global_dog_action = VoiceCmd::SIT_DOWN; blueTooth->sendString("ACK: SIT\r\n"); break;
+                case 0x22: global_dog_action = VoiceCmd::LIE_DOWN; blueTooth->sendString("ACK: LIE\r\n"); break;
+                case 0x23: global_dog_action = VoiceCmd::LOOK_UP; blueTooth->sendString("ACK: LOOK_UP\r\n"); break;
+                case 0x24: global_dog_action = VoiceCmd::LOOK_DOWN; blueTooth->sendString("ACK: LOOK_DN\r\n"); break;
+                case 0x25: global_dog_action = VoiceCmd::LEAN_LEFT; blueTooth->sendString("ACK: LEAN_L\r\n"); break;
+                case 0x26: global_dog_action = VoiceCmd::LEAN_RIGHT; blueTooth->sendString("ACK: LEAN_R\r\n"); break;
+
+                case 0x30: global_dog_action = VoiceCmd::SHAKE_HAND_L; blueTooth->sendString("ACK: HAND_L\r\n"); break;
+                case 0x31: global_dog_action = VoiceCmd::SHAKE_HAND_R; blueTooth->sendString("ACK: HAND_R\r\n"); break;
+                case 0x32: global_dog_action = VoiceCmd::GREETING; blueTooth->sendString("ACK: GREET\r\n"); break;
+                case 0x33: global_dog_action = VoiceCmd::STRETCH; blueTooth->sendString("ACK: STRETCH\r\n"); break;
+                case 0x34: global_dog_action = VoiceCmd::DANCE; blueTooth->sendString("ACK: DANCE\r\n"); break;
+                case 0x35: global_dog_action = VoiceCmd::ATTACK_MODE; blueTooth->sendString("ACK: ATTACK\r\n"); break;
+
+                case 0x00: global_dog_action = VoiceCmd::SIT_DOWN; blueTooth->sendString("ACK: STOP(LEGACY)\r\n"); break;
+                default:   blueTooth->sendString("ACK: UNKNOWN CMD\r\n"); break;
+            }
+        }
+        // 关键：不阻塞其它系统进程
+        osDelay(10);
+    }
 }
 
 void task_bluetooth_test(void *argument)
@@ -272,159 +324,171 @@ void task_bluetooth_test(void *argument)
     {
         if (blueTooth->getCommand(cmd))
         {
-            // 收到手机指令时，让狗叫一声作为反馈（根据需要取消注释）
-            voiceModule->playVoice(VoicePlay::BEEP);
+            // 【语音接轨】：收到手机指令时，让语音模块“滴”一声作为确认反馈（需确保SU03T固件支持该串口指令）
+            // voiceModule->playVoice(VoicePlay::BEEP);
 
-            // =========================================================
-            // 【全动作映射区】
-            // 将手机发来的 Hex 控制码 (cmd.cmd_type) 完美映射到全局枚举
-            // 手机按键配置格式为：AA XX 55 (其中 XX 为下方的 Case 值)
-            // =========================================================
+            // 在 OLED 屏幕上同步显示蓝牙发来的十六进制指令，最高优先级覆盖语音字符
+            sprintf(last_voice_cmd, "BT: CMD %02X", cmd.cmd_type);
+
+            // 【全动作精确映射】将手机 Hex 控制码完全匹配到系统的 VoiceCmd 枚举
             switch (cmd.cmd_type)
             {
-            // --- 1. 系统与状态控制 ---
             case 0x01:
                 global_dog_action = VoiceCmd::WAKE_UP;
+                blueTooth->sendString("ACK: WAKE_UP\r\n");
                 break;
             case 0x02:
                 global_dog_action = VoiceCmd::SLEEP;
+                blueTooth->sendString("ACK: SLEEP\r\n");
                 break;
             case 0x03:
                 global_dog_action = VoiceCmd::REPORT_BAT;
+                char bat_msg[32];
+                sprintf(bat_msg, "Battery: %d%%\r\n", GetBatteryPercentage());
+                blueTooth->sendString(bat_msg);
                 break;
 
-            // --- 2. 基础移动指令 ---
             case 0x10:
                 global_dog_action = VoiceCmd::FORWARD;
-                blueTooth->sendString("forward\r\n"); // 串口反馈
+                blueTooth->sendString("ACK: FORWARD\r\n");
                 break;
             case 0x11:
                 global_dog_action = VoiceCmd::BACKWARD;
-                blueTooth->sendString("backward\r\n");
+                blueTooth->sendString("ACK: BACKWARD\r\n");
                 break;
             case 0x12:
                 global_dog_action = VoiceCmd::TURN_LEFT;
-                blueTooth->sendString("turn left\r\n");
+                blueTooth->sendString("ACK: TURN_L\r\n");
                 break;
             case 0x13:
                 global_dog_action = VoiceCmd::TURN_RIGHT;
-                blueTooth->sendString("turn right\r\n");
+                blueTooth->sendString("ACK: TURN_R\r\n");
                 break;
             case 0x14:
                 global_dog_action = VoiceCmd::SHIFT_LEFT;
+                blueTooth->sendString("ACK: SHIFT_L\r\n");
                 break;
             case 0x15:
                 global_dog_action = VoiceCmd::SHIFT_RIGHT;
+                blueTooth->sendString("ACK: SHIFT_R\r\n");
                 break;
             case 0x16:
                 global_dog_action = VoiceCmd::STOP_MOVE;
+                blueTooth->sendString("ACK: STOP\r\n");
                 break;
 
-            // --- 3. 静态姿态控制 ---
             case 0x20:
                 global_dog_action = VoiceCmd::STAND_UP;
+                blueTooth->sendString("ACK: STAND\r\n");
                 break;
             case 0x21:
                 global_dog_action = VoiceCmd::SIT_DOWN;
+                blueTooth->sendString("ACK: SIT\r\n");
                 break;
             case 0x22:
                 global_dog_action = VoiceCmd::LIE_DOWN;
+                blueTooth->sendString("ACK: LIE\r\n");
                 break;
             case 0x23:
                 global_dog_action = VoiceCmd::LOOK_UP;
+                blueTooth->sendString("ACK: LOOK_UP\r\n");
                 break;
             case 0x24:
                 global_dog_action = VoiceCmd::LOOK_DOWN;
+                blueTooth->sendString("ACK: LOOK_DN\r\n");
                 break;
             case 0x25:
                 global_dog_action = VoiceCmd::LEAN_LEFT;
+                blueTooth->sendString("ACK: LEAN_L\r\n");
                 break;
             case 0x26:
                 global_dog_action = VoiceCmd::LEAN_RIGHT;
+                blueTooth->sendString("ACK: LEAN_R\r\n");
                 break;
 
-            // --- 4. 互动与花式动作 ---
             case 0x30:
                 global_dog_action = VoiceCmd::SHAKE_HAND_L;
+                blueTooth->sendString("ACK: HAND_L\r\n");
                 break;
             case 0x31:
                 global_dog_action = VoiceCmd::SHAKE_HAND_R;
+                blueTooth->sendString("ACK: HAND_R\r\n");
                 break;
             case 0x32:
                 global_dog_action = VoiceCmd::GREETING;
+                blueTooth->sendString("ACK: GREET\r\n");
                 break;
             case 0x33:
                 global_dog_action = VoiceCmd::STRETCH;
+                blueTooth->sendString("ACK: STRETCH\r\n");
                 break;
             case 0x34:
                 global_dog_action = VoiceCmd::DANCE;
+                blueTooth->sendString("ACK: DANCE\r\n");
                 break;
             case 0x35:
                 global_dog_action = VoiceCmd::ATTACK_MODE;
+                blueTooth->sendString("ACK: ATTACK\r\n");
                 break;
 
-            // --- 兼容旧版本的停止指令 ---
             case 0x00:
                 global_dog_action = VoiceCmd::SIT_DOWN;
+                blueTooth->sendString("ACK: STOP(LEGACY)\r\n");
                 break;
-
             default:
-                break; // 收到未定义的码，忽略
+                blueTooth->sendString("ACK: UNKNOWN CMD\r\n");
+                break;
             }
-
-            // 在 OLED 屏幕上同步显示蓝牙发来的十六进制指令，方便你对照调试
-            sprintf(last_voice_cmd, "BT: CMD %02X", cmd.cmd_type);
         }
-
-        // 【极其关键】osDelay 必须放在 if 的外面，for 循环的底部！
-        // 这样在没有收到蓝牙数据时，任务会主动休眠 10ms 把 CPU 让给步态控制任务
+        // 关键：不阻塞其它系统进程
         osDelay(10);
     }
 }
 
 void task_display(void *argument)
 {
-    char text_buffer[32];
+    char text_buffer[16];
     for (;;)
     {
         oled->Clear();
 
-        // 1. 获取系统运行的毫秒数，这是所有动画的“时间引擎”
+        // 获取系统运行毫秒数，驱动表情动画
         uint32_t current_tick = osKernelGetTickCount();
 
-        // 2. 渲染带时间参数的动态表情！
+        // 【核心】：渲染动态表情（包括待机、运动、眨眼、睡觉动画）
         DrawDynamicFace(global_dog_action, current_tick);
 
-        // 3. 右上角依然保留非常实用的电池 UI (去掉了顶层的 Voice 文字)
+        // 【核心】：右上角电量显示
         uint8_t bat_percent = GetBatteryPercentage();
-        oled->DrawBattery(104, 0, bat_percent);
+        oled->DrawBattery(104, 0, bat_percent); // 画电池图标
         sprintf(text_buffer, "%d%%", bat_percent);
-        oled->DrawString(106, 12, text_buffer);
+        oled->DrawString(106, 12, text_buffer); // 显示百分比数字
 
-        // 4. 左下角极客仪表盘 (如果你以后觉得碍眼，把这两行删掉就是一张极其纯粹的脸了)
-        sprintf(text_buffer, "P:%d R:%d", (int16_t)dogImu->GetPitch(), (int16_t)dogImu->GetRoll());
-        oled->DrawString(0, 54, text_buffer);
+        // --- 已彻底删除：左下角的 P: R: 仪表盘和所有指令文字显示 ---
 
         oled->Update();
-
-        // 【关键】：为了让动画顺滑，将屏幕刷新率提速到 50ms 一帧 (相当于 20 FPS)
-        // 配合硬件 I2C，这个帧率既不拖累单片机，又能让人眼感觉极其丝滑
-        osDelay(50);
+        osDelay(50); // 维持 20FPS 的丝滑刷新率
     }
 }
 
 void task_motion_control(void *argument)
 {
+    // 等待系统外设完全起飞
     osDelay(2000);
+
     for (;;)
     {
+        // 锁定当前周期的指令，防止在执行一半时被其他任务篡改
         VoiceCmd current_cmd = global_dog_action;
+
+        // 驱动底层舵机矩阵计算
         motionBrain->ExecuteCommand(current_cmd);
 
+        // 如果执行完整个动作周期后，外部没有发来新指令：
         if (global_dog_action == current_cmd)
         {
-            // 【核心修复】：白名单机制！只有走路、转弯或一次性表演动作，执行完才自动起立。
-            // 坐下、趴下、歪头等静态动作被排除在外，它们将被永久保持，直到下一次命令打断！
+            // 【核心防鬼畜机制】：只对“动态位移”和“一次性表演”进行状态复位。
+            // 静态姿态（如坐下、睡觉、歪头）绝不能复位，否则狗会抽搐回弹。
             if (current_cmd == VoiceCmd::FORWARD ||
                 current_cmd == VoiceCmd::BACKWARD ||
                 current_cmd == VoiceCmd::TURN_LEFT ||
@@ -438,10 +502,12 @@ void task_motion_control(void *argument)
                 current_cmd == VoiceCmd::DANCE ||
                 current_cmd == VoiceCmd::ATTACK_MODE)
             {
+                // 动作做完后，自动切回无害的待机状态
                 global_dog_action = VoiceCmd::WAKE_UP;
             }
         }
 
+        // 留出 CPU 喘息时间
         osDelay(20);
     }
 }
