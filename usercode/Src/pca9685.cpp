@@ -4,7 +4,7 @@
 
 PCA9685::PCA9685(I2C_HandleTypeDef *_hi2c, uint8_t _address, osMutexId_t _i2cMutex ) : hi2c(_hi2c), address(_address), i2cMutex(_i2cMutex) 
 {
-    for (int i = 0; i < 4;i++)
+    for (int i = 0; i < 5;i++)
     {
         servoConfigs[i] = {0.0f, 180.0f, 102, 512, static_cast<uint16_t>(i * 1000)};
     }

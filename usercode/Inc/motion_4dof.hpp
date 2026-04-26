@@ -21,10 +21,33 @@ public:
     void ExecuteCommand(VoiceCmd cmd);
     void StandIdle();
     void Relax();
+    void actionWalkForward();
+
+    void actionWalkBackward();
+
+    void actionTurnLeft();
+
+    void actionTurnRight();
+    void postureSitDown();
+    void postureLieDown();
+    void postureLookUp();
+    void postureLookDown();
+    void postureLeanLeft();
+    void postureLeanRight();
+
+    // ==========================================
+    // 互动花式动作库 (关键帧动画)
+    // ==========================================
+    void actionShakeHand(bool left);
+    void actionGreeting();
+    void actionStretch();
+    void actionDance();
+    void actionAttackMode();
+    void actionWagTail();
 
 private:
     PCA9685 *servoDriver;
-    float cur_angles[4];
+    float cur_angles[5];
 
     // 基础运动参数
     const float amp = 25.0f; // 步幅
@@ -41,30 +64,10 @@ private:
     //                   float lf_s, float lf_e, float rf_s, float rf_e,
     //                   float lh_s, float lh_e, float rh_s, float rh_e);
 
-    void actionWalkForward();
 
-    void actionWalkBackward();
-
-    void actionTurnLeft();
-
-    void actionTurnRight();
 
     // ==========================================
     // 静态姿态库 (IK 基础姿态)
     // ==========================================
-    void postureSitDown();
-    void postureLieDown();
-    void postureLookUp();
-    void postureLookDown();
-    void postureLeanLeft();
-    void postureLeanRight();
-
-    // ==========================================
-    // 互动花式动作库 (关键帧动画)
-    // ==========================================
-    void actionShakeHand(bool left);
-    void actionGreeting();
-    void actionStretch();
-    void actionDance();
-    void actionAttackMode();
+    
 };

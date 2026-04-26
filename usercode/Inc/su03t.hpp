@@ -85,6 +85,8 @@ public:
     void playVoice(VoicePlay audio_id);
 
     void Resume(); // 硬件级防死锁复苏
+
+    void sendPacket(uint8_t cmd_data);
 };
 
 // C 语言中断的回调包装器

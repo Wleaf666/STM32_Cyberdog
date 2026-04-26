@@ -34,6 +34,61 @@ SU03T *voiceModule = nullptr;
 PCA9685 *pca9685 = nullptr;
 Motion4DOF *motionBrain = nullptr; // 【新增】声明运动小脑指针
 
+uint8_t MapCmdToHex(VoiceCmd cmd)
+{
+    switch (cmd)
+    {
+    case VoiceCmd::WAKE_UP:
+        return 0x01;
+    case VoiceCmd::SLEEP:
+        return 0x02;
+    case VoiceCmd::REPORT_BAT:
+        return 0x03;
+    case VoiceCmd::FORWARD:
+        return 0x10;
+    case VoiceCmd::BACKWARD:
+        return 0x11;
+    case VoiceCmd::TURN_LEFT:
+        return 0x12;
+    case VoiceCmd::TURN_RIGHT:
+        return 0x13;
+    case VoiceCmd::SHIFT_LEFT:
+        return 0x14;
+    case VoiceCmd::SHIFT_RIGHT:
+        return 0x15;
+    case VoiceCmd::STOP_MOVE:
+        return 0x16;
+    case VoiceCmd::STAND_UP:
+        return 0x20;
+    case VoiceCmd::SIT_DOWN:
+        return 0x21;
+    case VoiceCmd::LIE_DOWN:
+        return 0x22;
+    case VoiceCmd::LOOK_UP:
+        return 0x23;
+    case VoiceCmd::LOOK_DOWN:
+        return 0x24;
+    case VoiceCmd::LEAN_LEFT:
+        return 0x25;
+    case VoiceCmd::LEAN_RIGHT:
+        return 0x26;
+    case VoiceCmd::SHAKE_HAND_L:
+        return 0x30;
+    case VoiceCmd::SHAKE_HAND_R:
+        return 0x31;
+    case VoiceCmd::GREETING:
+        return 0x32;
+    case VoiceCmd::STRETCH:
+        return 0x33;
+    case VoiceCmd::DANCE:
+        return 0x34;
+    case VoiceCmd::ATTACK_MODE:
+        return 0x35;
+    default:
+        return 0xFF; // 未知动作不发送
+    }
+}
+
 extern "C" void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
 {
     // 1. 规范清除错误标志位 (绝对不要在这里强行 Unlock！)
@@ -423,10 +478,27 @@ void task_motion_control(void *argument)
     // 等待系统外设完全起飞
     osDelay(2000);
 
+    // 【核心防堵塞变量】：记录上一次执行的动作，确保只在“改变”时发一次串口
+    VoiceCmd last_executed_cmd = VoiceCmd::NONE;
+
     for (;;)
     {
-        // 锁定当前周期的指令，防止在执行一半时被其他任务篡改
+        // 锁定当前周期的指令
         VoiceCmd current_cmd = global_dog_action;
+
+        // ===============================================
+        // 【关键新增】：动作发生切换瞬间，向 SU03T 发送反馈包
+        // ===============================================
+        if (current_cmd != last_executed_cmd)
+        {
+            uint8_t hex_code = MapCmdToHex(current_cmd);
+            if (hex_code != 0xFF)
+            {
+                // 发送形如 AA 10 55 的数据包到语音模块
+                voiceModule->sendPacket(hex_code);
+            }
+            last_executed_cmd = current_cmd; // 更新记录
+        }
 
         // 驱动底层舵机矩阵计算
         motionBrain->ExecuteCommand(current_cmd);
@@ -434,8 +506,7 @@ void task_motion_control(void *argument)
         // 如果执行完整个动作周期后，外部没有发来新指令：
         if (global_dog_action == current_cmd)
         {
-            // 【核心防鬼畜机制】：只对“动态位移”和“一次性表演”进行状态复位。
-            // 静态姿态（如坐下、睡觉、歪头）绝不能复位，否则狗会抽搐回弹。
+            // 对“动态位移”和“一次性表演”进行状态复位。静态姿态绝不复位。
             if (current_cmd == VoiceCmd::FORWARD ||
                 current_cmd == VoiceCmd::BACKWARD ||
                 current_cmd == VoiceCmd::TURN_LEFT ||
@@ -449,13 +520,45 @@ void task_motion_control(void *argument)
                 current_cmd == VoiceCmd::DANCE ||
                 current_cmd == VoiceCmd::ATTACK_MODE)
             {
-                // 动作做完后，自动切回无害的待机状态
+                // 动作做完后自动切回待机状态
+                // （注意：切回待机时，下一个循环检测到状态变为了 WAKE_UP，
+                // 也会向语音模块发送一次 AA 01 55 的包，表示动作结束/狗已站稳）
                 global_dog_action = VoiceCmd::WAKE_UP;
             }
         }
 
         // 留出 CPU 喘息时间
         osDelay(20);
+    }
+}
+
+void task_tail_control(void *argument)
+{
+    osDelay(2000); // 等待系统初始化完成
+    for (;;)
+    {
+        // 如果狗处于睡觉状态，尾巴就停止摇摆，自然下垂
+        if (global_dog_action == VoiceCmd::SLEEP)
+        {
+            pca9685->setAngle(LegChanel::Tail, 90.0f); // 假设 90 度是正中
+            osDelay(500);
+        }
+        else
+        {
+            uint32_t tick = osKernelGetTickCount();
+
+            // ==========================================
+            // 【精确控速区】：1秒转一个来回
+            // 算法：sin(当前秒数 * 2π) * 摆动幅度
+            // ==========================================
+            float tail_offset = sin((tick / 1000.0f) * 6.28318f) * 35.0f;
+
+            pca9685->setAngle(LegChanel::Tail, 90.0f + tail_offset);
+
+            // 20ms 一帧 (50FPS)，保证尾巴摇起来像真狗一样顺滑
+            osDelay(20);
+
+        }
     }
 }
 
@@ -479,6 +582,7 @@ void task_system_init(void *argument)
     osThreadNew(task_Mpu6050, &test_count1, &default_attr);
     osThreadNew(task_voice_handler, NULL, &default_attr);
     osThreadNew(task_motion_control, NULL, &default_attr);
+    osThreadNew(task_tail_control, NULL, &default_attr);
 
     // 初始化任务完成使命，自杀释放内存
     osThreadExit();

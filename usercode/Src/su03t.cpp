@@ -90,3 +90,16 @@ void SU03T::Resume()
     __HAL_UNLOCK(huart);
     HAL_UART_Receive_IT(huart, &rxByte, 1);
 }
+
+void SU03T::sendPacket(uint8_t cmd_data)
+{
+    // 组装数据包：帧头 0xAA，数据位 cmd_data，帧尾 0x55
+    uint8_t packet[4] = {0xAA, cmd_data,cmd_data, 0x55};
+
+    // 使用原有的 txMutex 确保串口发送不冲突
+    if (txMutex != nullptr && osMutexAcquire(txMutex, osWaitForever) == osOK)
+    {
+        HAL_UART_Transmit(huart, packet, 4, 100);
+        osMutexRelease(txMutex);
+    }
+}

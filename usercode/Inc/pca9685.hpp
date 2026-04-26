@@ -8,7 +8,8 @@ enum class LegChanel : uint8_t
     FrontLeft = 0,
     FrontRight = 1,
     RearLeft = 2,
-    RearRight = 3
+    RearRight = 3, 
+    Tail = 4
 };
 
 struct  ServoConfig
@@ -28,7 +29,7 @@ class PCA9685
         uint8_t address;
         osMutexId_t i2cMutex;
 
-        ServoConfig servoConfigs[4];
+        ServoConfig servoConfigs[5];
 
         bool device_ready;
 

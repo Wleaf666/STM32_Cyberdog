@@ -379,6 +379,7 @@ void Motion4DOF::StandIdle()
     cur_angles[1] = mid;
     cur_angles[2] = mid;
     cur_angles[3] = mid;
+
 }
 
 void Motion4DOF::postureSitDown()

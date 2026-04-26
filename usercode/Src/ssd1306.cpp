@@ -113,28 +113,29 @@ void SSD1306::Update()
 {
     if (!device_ready)
         return;
-    if (i2cMutex != nullptr && osMutexAcquire(i2cMutex, osWaitForever) == osOK)
+    // 【核心改造】：把获取锁的动作，放到循环的内部！
+    for (uint8_t i = 0; i < 8; i++)
     {
-        for (uint8_t i = 0; i < 8; i++)
+        // 每次只申请锁，来刷 1/8 的屏幕
+        if (i2cMutex != nullptr && osMutexAcquire(i2cMutex, osWaitForever) == osOK)
         {
-            // 1. 瞄准行
             uint8_t page_cmd = 0xB0 + i;
             HAL_I2C_Mem_Write(hi2c, address, 0x00, 1, &page_cmd, 1, 10);
 
-            // ==========================================
-            // 【核心修正区】：1.3寸屏幕 (SH1106) 的 2 像素偏移量
-            // ==========================================
-            uint8_t col_low = 0x02; // <---- 原来是 0x00，必须改成 0x02！
+            uint8_t col_low = 0x02; // SH1106 的 2 像素偏移
             uint8_t col_high = 0x10;
 
             HAL_I2C_Mem_Write(hi2c, address, 0x00, 1, &col_low, 1, 10);
             HAL_I2C_Mem_Write(hi2c, address, 0x00, 1, &col_high, 1, 10);
 
-            // 3. 稳稳地刷入 128 字节
             HAL_I2C_Mem_Write(hi2c, address, 0x40, 1, &buffer[i * 128], 128, 100);
+
+            // 🚨 【极其关键】：刷完这一行，立刻交出 I2C 总线控制权！
+            osMutexRelease(i2cMutex);
         }
-        osMutexRelease(i2cMutex);
-        osDelay(1);
+
+        // 🚨 【强制让权】：主动休眠 2 毫秒，让尾巴线程和 MPU6050 趁机把数据发出去！
+        osDelay(2);
     }
 }
 
