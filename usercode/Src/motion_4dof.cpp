@@ -370,16 +370,22 @@ void Motion4DOF::ExecuteCommand(VoiceCmd cmd)
 
 void Motion4DOF::StandIdle()
 {
+    if (cur_angles[0] == mid && cur_angles[1] == mid &&
+        cur_angles[2] == mid && cur_angles[3] == mid)
+    {
+        return;
+    }
+
     servoDriver->setAngle(LegChanel::FrontLeft, mid);
     servoDriver->setAngle(LegChanel::FrontRight, mid);
     servoDriver->setAngle(LegChanel::RearLeft, mid);
     servoDriver->setAngle(LegChanel::RearRight, mid);
-    // 【关键】：同步更新记忆！
+
+    // 更新记忆
     cur_angles[0] = mid;
     cur_angles[1] = mid;
     cur_angles[2] = mid;
     cur_angles[3] = mid;
-
 }
 
 void Motion4DOF::postureSitDown()

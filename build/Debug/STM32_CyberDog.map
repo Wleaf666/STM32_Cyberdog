@@ -53,7 +53,7 @@ D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp\libgcc.a(_arm_a
 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp\libgcc.a(_arm_muldivsf3.o)
                               CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj (__aeabi_fdiv)
 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp\libgcc.a(_arm_cmpsf2.o)
-                              D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libm.a(libm_a-ef_rem_pio2.o) (__aeabi_fcmpeq)
+                              CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj (__aeabi_fcmpeq)
 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp\libgcc.a(_arm_fixsfsi.o)
                               CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj (__aeabi_f2iz)
 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp\libgcc.a(_arm_fixunssfsi.o)
@@ -6371,7 +6371,7 @@ LOAD D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtn.o
                 0x08000000                g_pfnVectors
                 0x0800010c                        . = ALIGN (0x4)
 
-.text           0x08000110     0xf33c
+.text           0x08000110     0xf3cc
                 0x08000110                        . = ALIGN (0x4)
  *(.text)
  .text          0x08000110      0x378 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp\libgcc.a(_arm_addsubdf3.o)
@@ -7165,564 +7165,566 @@ LOAD D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtn.o
                 0x0800a3dc       0xac CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
                 0x0800a3dc                task_tail_control(void*)
  .text._Z16task_system_initPv
-                0x0800a488      0x108 CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
+                0x0800a488      0x138 CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
                 0x0800a488                task_system_init(void*)
  .text.App_Main
-                0x0800a590      0x158 CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
-                0x0800a590                App_Main
+                0x0800a5c0      0x158 CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
+                0x0800a5c0                App_Main
  .text._ZNSt12_Vector_baseIhSaIhEE12_Vector_implC2Ev
-                0x0800a6e8       0x22 CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
-                0x0800a6e8                std::_Vector_base<unsigned char, std::allocator<unsigned char> >::_Vector_impl::_Vector_impl()
-                0x0800a6e8                std::_Vector_base<unsigned char, std::allocator<unsigned char> >::_Vector_impl::_Vector_impl()
+                0x0800a718       0x22 CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
+                0x0800a718                std::_Vector_base<unsigned char, std::allocator<unsigned char> >::_Vector_impl::_Vector_impl()
+                0x0800a718                std::_Vector_base<unsigned char, std::allocator<unsigned char> >::_Vector_impl::_Vector_impl()
  .text._ZNSt12_Vector_baseIhSaIhEE17_Vector_impl_dataC2Ev
-                0x0800a70a       0x26 CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
-                0x0800a70a                std::_Vector_base<unsigned char, std::allocator<unsigned char> >::_Vector_impl_data::_Vector_impl_data()
-                0x0800a70a                std::_Vector_base<unsigned char, std::allocator<unsigned char> >::_Vector_impl_data::_Vector_impl_data()
+                0x0800a73a       0x26 CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
+                0x0800a73a                std::_Vector_base<unsigned char, std::allocator<unsigned char> >::_Vector_impl_data::_Vector_impl_data()
+                0x0800a73a                std::_Vector_base<unsigned char, std::allocator<unsigned char> >::_Vector_impl_data::_Vector_impl_data()
  .text._ZN11StaticArenaILj3072EEC2Ev
-                0x0800a730       0x1c CMakeFiles/STM32_CyberDog.dir/usercode/src/arena.cpp.obj
-                0x0800a730                StaticArena<3072u>::StaticArena()
-                0x0800a730                StaticArena<3072u>::StaticArena()
- .text._Znwj    0x0800a74c       0x2c CMakeFiles/STM32_CyberDog.dir/usercode/src/arena.cpp.obj
-                0x0800a74c                operator new(unsigned int)
- .text._ZdlPv   0x0800a778       0x12 CMakeFiles/STM32_CyberDog.dir/usercode/src/arena.cpp.obj
-                0x0800a778                operator delete(void*)
+                0x0800a760       0x1c CMakeFiles/STM32_CyberDog.dir/usercode/src/arena.cpp.obj
+                0x0800a760                StaticArena<3072u>::StaticArena()
+                0x0800a760                StaticArena<3072u>::StaticArena()
+ .text._Znwj    0x0800a77c       0x2c CMakeFiles/STM32_CyberDog.dir/usercode/src/arena.cpp.obj
+                0x0800a77c                operator new(unsigned int)
+ .text._ZdlPv   0x0800a7a8       0x12 CMakeFiles/STM32_CyberDog.dir/usercode/src/arena.cpp.obj
+                0x0800a7a8                operator delete(void*)
  .text._ZN11StaticArenaILj3072EE8allocateEj
-                0x0800a78a       0x50 CMakeFiles/STM32_CyberDog.dir/usercode/src/arena.cpp.obj
-                0x0800a78a                StaticArena<3072u>::allocate(unsigned int)
- *fill*         0x0800a7da        0x2 
+                0x0800a7ba       0x50 CMakeFiles/STM32_CyberDog.dir/usercode/src/arena.cpp.obj
+                0x0800a7ba                StaticArena<3072u>::allocate(unsigned int)
+ *fill*         0x0800a80a        0x2 
  .text._Z41__static_initialization_and_destruction_0v
-                0x0800a7dc       0x14 CMakeFiles/STM32_CyberDog.dir/usercode/src/arena.cpp.obj
+                0x0800a80c       0x14 CMakeFiles/STM32_CyberDog.dir/usercode/src/arena.cpp.obj
  .text._GLOBAL__sub_I__Znwj
-                0x0800a7f0        0xa CMakeFiles/STM32_CyberDog.dir/usercode/src/arena.cpp.obj
- .text._ZnwjPv  0x0800a7fa       0x16 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800a7fa                operator new(unsigned int, void*)
+                0x0800a820        0xa CMakeFiles/STM32_CyberDog.dir/usercode/src/arena.cpp.obj
+ .text._ZnwjPv  0x0800a82a       0x16 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800a82a                operator new(unsigned int, void*)
  .text._ZN4HC054InitEPv
-                0x0800a810       0x5c CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800a810                HC05::Init(void*)
+                0x0800a840       0x5c CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800a840                HC05::Init(void*)
  .text._ZN4HC0510sendStringEPKc
-                0x0800a86c       0x5a CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800a86c                HC05::sendString(char const*)
+                0x0800a89c       0x5a CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800a89c                HC05::sendString(char const*)
  .text._ZN4HC0516onRxCpltCallbackEv
-                0x0800a8c6       0x3a CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800a8c6                HC05::onRxCpltCallback()
+                0x0800a8f6       0x3a CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800a8f6                HC05::onRxCpltCallback()
  .text._ZN4HC0510getCommandER12RobotCommand
-                0x0800a900       0xb8 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800a900                HC05::getCommand(RobotCommand&)
+                0x0800a930       0xb8 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800a930                HC05::getCommand(RobotCommand&)
  .text._ZN4HC0511parsePacketERKSt6vectorIhSaIhEER12RobotCommand
-                0x0800a9b8       0x60 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800a9b8                HC05::parsePacket(std::vector<unsigned char, std::allocator<unsigned char> > const&, RobotCommand&)
+                0x0800a9e8       0x60 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800a9e8                HC05::parsePacket(std::vector<unsigned char, std::allocator<unsigned char> > const&, RobotCommand&)
  .text._ZN4HC056ResumeEv
-                0x0800aa18       0x34 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800aa18                HC05::Resume()
+                0x0800aa48       0x34 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800aa48                HC05::Resume()
  .text._ZNSt6vectorIhSaIhEE7reserveEj
-                0x0800aa4c       0xb0 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800aa4c                std::vector<unsigned char, std::allocator<unsigned char> >::reserve(unsigned int)
+                0x0800aa7c       0xb0 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800aa7c                std::vector<unsigned char, std::allocator<unsigned char> >::reserve(unsigned int)
  .text._ZNKSt6vectorIhSaIhEE4sizeEv
-                0x0800aafc       0x1c CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800aafc                std::vector<unsigned char, std::allocator<unsigned char> >::size() const
+                0x0800ab2c       0x1c CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800ab2c                std::vector<unsigned char, std::allocator<unsigned char> >::size() const
  .text._ZNSt6vectorIhSaIhEE5clearEv
-                0x0800ab18       0x1c CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800ab18                std::vector<unsigned char, std::allocator<unsigned char> >::clear()
+                0x0800ab48       0x1c CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800ab48                std::vector<unsigned char, std::allocator<unsigned char> >::clear()
  .text._ZNSt6vectorIhSaIhEE9push_backERKh
-                0x0800ab34       0x6e CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800ab34                std::vector<unsigned char, std::allocator<unsigned char> >::push_back(unsigned char const&)
+                0x0800ab64       0x6e CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800ab64                std::vector<unsigned char, std::allocator<unsigned char> >::push_back(unsigned char const&)
  .text._ZNSt6vectorIhSaIhEE5frontEv
-                0x0800aba2       0x26 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800aba2                std::vector<unsigned char, std::allocator<unsigned char> >::front()
+                0x0800abd2       0x26 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800abd2                std::vector<unsigned char, std::allocator<unsigned char> >::front()
  .text._ZNKSt6vectorIhSaIhEEixEj
-                0x0800abc8       0x1c CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800abc8                std::vector<unsigned char, std::allocator<unsigned char> >::operator[](unsigned int) const
+                0x0800abf8       0x1c CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800abf8                std::vector<unsigned char, std::allocator<unsigned char> >::operator[](unsigned int) const
  .text._ZNSt12_Vector_baseIhSaIhEE13_M_deallocateEPhj
-                0x0800abe4       0x32 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800abe4                std::_Vector_base<unsigned char, std::allocator<unsigned char> >::_M_deallocate(unsigned char*, unsigned int)
+                0x0800ac14       0x32 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800ac14                std::_Vector_base<unsigned char, std::allocator<unsigned char> >::_M_deallocate(unsigned char*, unsigned int)
  .text._ZNSt12_Vector_baseIhSaIhEE19_M_get_Tp_allocatorEv
-                0x0800ac16       0x14 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800ac16                std::_Vector_base<unsigned char, std::allocator<unsigned char> >::_M_get_Tp_allocator()
+                0x0800ac46       0x14 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800ac46                std::_Vector_base<unsigned char, std::allocator<unsigned char> >::_M_get_Tp_allocator()
  .text._ZNKSt6vectorIhSaIhEE8max_sizeEv
-                0x0800ac2a       0x22 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800ac2a                std::vector<unsigned char, std::allocator<unsigned char> >::max_size() const
+                0x0800ac5a       0x22 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800ac5a                std::vector<unsigned char, std::allocator<unsigned char> >::max_size() const
  .text._ZNKSt6vectorIhSaIhEE8capacityEv
-                0x0800ac4c       0x1c CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800ac4c                std::vector<unsigned char, std::allocator<unsigned char> >::capacity() const
+                0x0800ac7c       0x1c CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800ac7c                std::vector<unsigned char, std::allocator<unsigned char> >::capacity() const
  .text._ZNSt12_Vector_baseIhSaIhEE11_M_allocateEj
-                0x0800ac68       0x32 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800ac68                std::_Vector_base<unsigned char, std::allocator<unsigned char> >::_M_allocate(unsigned int)
+                0x0800ac98       0x32 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800ac98                std::_Vector_base<unsigned char, std::allocator<unsigned char> >::_M_allocate(unsigned int)
  .text._ZNSt6vectorIhSaIhEE11_S_relocateEPhS2_S2_RS0_
-                0x0800ac9a       0x24 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800ac9a                std::vector<unsigned char, std::allocator<unsigned char> >::_S_relocate(unsigned char*, unsigned char*, unsigned char*, std::allocator<unsigned char>&)
+                0x0800acca       0x24 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800acca                std::vector<unsigned char, std::allocator<unsigned char> >::_S_relocate(unsigned char*, unsigned char*, unsigned char*, std::allocator<unsigned char>&)
  .text._ZNSt6vectorIhSaIhEE15_M_erase_at_endEPh
-                0x0800acbe       0x48 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800acbe                std::vector<unsigned char, std::allocator<unsigned char> >::_M_erase_at_end(unsigned char*)
+                0x0800acee       0x48 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800acee                std::vector<unsigned char, std::allocator<unsigned char> >::_M_erase_at_end(unsigned char*)
  .text._ZZNSt6vectorIhSaIhEE17_M_realloc_appendIJRKhEEEvDpOT_EN6_GuardC2EPhjRS0_
-                0x0800ad06       0x2c CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800ad06                std::vector<unsigned char, std::allocator<unsigned char> >::_M_realloc_append<unsigned char const&>(unsigned char const&)::_Guard::_Guard(unsigned char*, unsigned int, std::allocator<unsigned char>&)
-                0x0800ad06                std::vector<unsigned char, std::allocator<unsigned char> >::_M_realloc_append<unsigned char const&>(unsigned char const&)::_Guard::_Guard(unsigned char*, unsigned int, std::allocator<unsigned char>&)
+                0x0800ad36       0x2c CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800ad36                std::vector<unsigned char, std::allocator<unsigned char> >::_M_realloc_append<unsigned char const&>(unsigned char const&)::_Guard::_Guard(unsigned char*, unsigned int, std::allocator<unsigned char>&)
+                0x0800ad36                std::vector<unsigned char, std::allocator<unsigned char> >::_M_realloc_append<unsigned char const&>(unsigned char const&)::_Guard::_Guard(unsigned char*, unsigned int, std::allocator<unsigned char>&)
  .text._ZZNSt6vectorIhSaIhEE17_M_realloc_appendIJRKhEEEvDpOT_EN6_GuardD2Ev
-                0x0800ad32       0x38 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800ad32                std::vector<unsigned char, std::allocator<unsigned char> >::_M_realloc_append<unsigned char const&>(unsigned char const&)::_Guard::~_Guard()
-                0x0800ad32                std::vector<unsigned char, std::allocator<unsigned char> >::_M_realloc_append<unsigned char const&>(unsigned char const&)::_Guard::~_Guard()
- *fill*         0x0800ad6a        0x2 
+                0x0800ad62       0x38 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800ad62                std::vector<unsigned char, std::allocator<unsigned char> >::_M_realloc_append<unsigned char const&>(unsigned char const&)::_Guard::~_Guard()
+                0x0800ad62                std::vector<unsigned char, std::allocator<unsigned char> >::_M_realloc_append<unsigned char const&>(unsigned char const&)::_Guard::~_Guard()
+ *fill*         0x0800ad9a        0x2 
  .text._ZNSt6vectorIhSaIhEE17_M_realloc_appendIJRKhEEEvDpOT_
-                0x0800ad6c      0x110 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800ad6c                void std::vector<unsigned char, std::allocator<unsigned char> >::_M_realloc_append<unsigned char const&>(unsigned char const&)
+                0x0800ad9c      0x110 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800ad9c                void std::vector<unsigned char, std::allocator<unsigned char> >::_M_realloc_append<unsigned char const&>(unsigned char const&)
  .text._ZNSt6vectorIhSaIhEE5beginEv
-                0x0800ae7c       0x20 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800ae7c                std::vector<unsigned char, std::allocator<unsigned char> >::begin()
+                0x0800aeac       0x20 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800aeac                std::vector<unsigned char, std::allocator<unsigned char> >::begin()
  .text._ZNK9__gnu_cxx17__normal_iteratorIPhSt6vectorIhSaIhEEEdeEv
-                0x0800ae9c       0x16 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800ae9c                __gnu_cxx::__normal_iterator<unsigned char*, std::vector<unsigned char, std::allocator<unsigned char> > >::operator*() const
+                0x0800aecc       0x16 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800aecc                __gnu_cxx::__normal_iterator<unsigned char*, std::vector<unsigned char, std::allocator<unsigned char> > >::operator*() const
  .text._ZSt8_DestroyIPhEvT_S1_
-                0x0800aeb2       0x1a CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800aeb2                void std::_Destroy<unsigned char*>(unsigned char*, unsigned char*)
+                0x0800aee2       0x1a CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800aee2                void std::_Destroy<unsigned char*>(unsigned char*, unsigned char*)
  .text._ZNSt6vectorIhSaIhEE11_S_max_sizeERKS0_
-                0x0800aecc       0x40 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800aecc                std::vector<unsigned char, std::allocator<unsigned char> >::_S_max_size(std::allocator<unsigned char> const&)
+                0x0800aefc       0x40 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800aefc                std::vector<unsigned char, std::allocator<unsigned char> >::_S_max_size(std::allocator<unsigned char> const&)
  .text._ZNKSt12_Vector_baseIhSaIhEE19_M_get_Tp_allocatorEv
-                0x0800af0c       0x14 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800af0c                std::_Vector_base<unsigned char, std::allocator<unsigned char> >::_M_get_Tp_allocator() const
+                0x0800af3c       0x14 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800af3c                std::_Vector_base<unsigned char, std::allocator<unsigned char> >::_M_get_Tp_allocator() const
  .text._ZSt12__relocate_aIPhS0_SaIhEET0_T_S3_S2_RT1_
-                0x0800af20       0x3a CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800af20                unsigned char* std::__relocate_a<unsigned char*, unsigned char*, std::allocator<unsigned char> >(unsigned char*, unsigned char*, unsigned char*, std::allocator<unsigned char>&)
+                0x0800af50       0x3a CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800af50                unsigned char* std::__relocate_a<unsigned char*, unsigned char*, std::allocator<unsigned char> >(unsigned char*, unsigned char*, unsigned char*, std::allocator<unsigned char>&)
  .text._ZSt7forwardIRKhEOT_RNSt16remove_referenceIS2_E4typeE
-                0x0800af5a       0x14 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800af5a                unsigned char const& std::forward<unsigned char const&>(std::remove_reference<unsigned char const&>::type&)
+                0x0800af8a       0x14 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800af8a                unsigned char const& std::forward<unsigned char const&>(std::remove_reference<unsigned char const&>::type&)
  .text._ZNKSt6vectorIhSaIhEE12_M_check_lenEjPKc
-                0x0800af6e       0x8e CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800af6e                std::vector<unsigned char, std::allocator<unsigned char> >::_M_check_len(unsigned int, char const*) const
+                0x0800af9e       0x8e CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800af9e                std::vector<unsigned char, std::allocator<unsigned char> >::_M_check_len(unsigned int, char const*) const
  .text._ZNSt6vectorIhSaIhEE3endEv
-                0x0800affc       0x22 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800affc                std::vector<unsigned char, std::allocator<unsigned char> >::end()
+                0x0800b02c       0x22 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800b02c                std::vector<unsigned char, std::allocator<unsigned char> >::end()
  .text._ZN9__gnu_cxxmiIPhSt6vectorIhSaIhEEEENS_17__normal_iteratorIT_T0_E15difference_typeERKS8_SB_
-                0x0800b01e       0x28 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800b01e                __gnu_cxx::__normal_iterator<unsigned char*, std::vector<unsigned char, std::allocator<unsigned char> > >::difference_type __gnu_cxx::operator-<unsigned char*, std::vector<unsigned char, std::allocator<unsigned char> > >(__gnu_cxx::__normal_iterator<unsigned char*, std::vector<unsigned char, std::allocator<unsigned char> > > const&, __gnu_cxx::__normal_iterator<unsigned char*, std::vector<unsigned char, std::allocator<unsigned char> > > const&)
+                0x0800b04e       0x28 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800b04e                __gnu_cxx::__normal_iterator<unsigned char*, std::vector<unsigned char, std::allocator<unsigned char> > >::difference_type __gnu_cxx::operator-<unsigned char*, std::vector<unsigned char, std::allocator<unsigned char> > >(__gnu_cxx::__normal_iterator<unsigned char*, std::vector<unsigned char, std::allocator<unsigned char> > > const&, __gnu_cxx::__normal_iterator<unsigned char*, std::vector<unsigned char, std::allocator<unsigned char> > > const&)
  .text._ZSt12__to_addressIhEPT_S1_
-                0x0800b046       0x14 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800b046                unsigned char* std::__to_address<unsigned char>(unsigned char*)
+                0x0800b076       0x14 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800b076                unsigned char* std::__to_address<unsigned char>(unsigned char*)
  .text._ZN9__gnu_cxx17__normal_iteratorIPhSt6vectorIhSaIhEEEC2ERKS1_
-                0x0800b05a       0x1e CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800b05a                __gnu_cxx::__normal_iterator<unsigned char*, std::vector<unsigned char, std::allocator<unsigned char> > >::__normal_iterator(unsigned char* const&)
-                0x0800b05a                __gnu_cxx::__normal_iterator<unsigned char*, std::vector<unsigned char, std::allocator<unsigned char> > >::__normal_iterator(unsigned char* const&)
+                0x0800b08a       0x1e CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800b08a                __gnu_cxx::__normal_iterator<unsigned char*, std::vector<unsigned char, std::allocator<unsigned char> > >::__normal_iterator(unsigned char* const&)
+                0x0800b08a                __gnu_cxx::__normal_iterator<unsigned char*, std::vector<unsigned char, std::allocator<unsigned char> > >::__normal_iterator(unsigned char* const&)
  .text._ZNSt15__new_allocatorIhE10deallocateEPhj
-                0x0800b078       0x1a CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800b078                std::__new_allocator<unsigned char>::deallocate(unsigned char*, unsigned int)
+                0x0800b0a8       0x1a CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800b0a8                std::__new_allocator<unsigned char>::deallocate(unsigned char*, unsigned int)
  .text._ZNSt12_Destroy_auxILb1EE9__destroyIPhEEvT_S3_
-                0x0800b092       0x14 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800b092                void std::_Destroy_aux<true>::__destroy<unsigned char*>(unsigned char*, unsigned char*)
+                0x0800b0c2       0x14 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800b0c2                void std::_Destroy_aux<true>::__destroy<unsigned char*>(unsigned char*, unsigned char*)
  .text._ZSt3minIjERKT_S2_S2_
-                0x0800b0a6       0x26 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800b0a6                unsigned int const& std::min<unsigned int>(unsigned int const&, unsigned int const&)
+                0x0800b0d6       0x26 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800b0d6                unsigned int const& std::min<unsigned int>(unsigned int const&, unsigned int const&)
  .text._ZNSt15__new_allocatorIhE8allocateEjPKv
-                0x0800b0cc       0x44 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800b0cc                std::__new_allocator<unsigned char>::allocate(unsigned int, void const*)
+                0x0800b0fc       0x44 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800b0fc                std::__new_allocator<unsigned char>::allocate(unsigned int, void const*)
  .text._ZSt12__niter_baseIPhET_S1_
-                0x0800b110       0x14 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800b110                unsigned char* std::__niter_base<unsigned char*>(unsigned char*)
+                0x0800b140       0x14 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800b140                unsigned char* std::__niter_base<unsigned char*>(unsigned char*)
  .text._ZSt14__relocate_a_1IhhENSt9enable_ifIXsrSt24__is_bitwise_relocatableIT_vE5valueEPS2_E4typeES4_S4_S4_RSaIT0_E
-                0x0800b124       0x3a CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800b124                std::enable_if<std::__is_bitwise_relocatable<unsigned char, void>::value, unsigned char*>::type std::__relocate_a_1<unsigned char, unsigned char>(unsigned char*, unsigned char*, unsigned char*, std::allocator<unsigned char>&)
+                0x0800b154       0x3a CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800b154                std::enable_if<std::__is_bitwise_relocatable<unsigned char, void>::value, unsigned char*>::type std::__relocate_a_1<unsigned char, unsigned char>(unsigned char*, unsigned char*, unsigned char*, std::allocator<unsigned char>&)
  .text._ZSt3maxIjERKT_S2_S2_
-                0x0800b15e       0x26 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800b15e                unsigned int const& std::max<unsigned int>(unsigned int const&, unsigned int const&)
+                0x0800b18e       0x26 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800b18e                unsigned int const& std::max<unsigned int>(unsigned int const&, unsigned int const&)
  .text._ZNK9__gnu_cxx17__normal_iteratorIPhSt6vectorIhSaIhEEE4baseEv
-                0x0800b184       0x14 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
-                0x0800b184                __gnu_cxx::__normal_iterator<unsigned char*, std::vector<unsigned char, std::allocator<unsigned char> > >::base() const
+                0x0800b1b4       0x14 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+                0x0800b1b4                __gnu_cxx::__normal_iterator<unsigned char*, std::vector<unsigned char, std::allocator<unsigned char> > >::base() const
  .text._ZN10Motion4DOFC2EP7PCA9685
-                0x0800b198       0x68 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
-                0x0800b198                Motion4DOF::Motion4DOF(PCA9685*)
-                0x0800b198                Motion4DOF::Motion4DOF(PCA9685*)
+                0x0800b1c8       0x68 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
+                0x0800b1c8                Motion4DOF::Motion4DOF(PCA9685*)
+                0x0800b1c8                Motion4DOF::Motion4DOF(PCA9685*)
  .text._ZN10Motion4DOF4InitEv
-                0x0800b200       0x36 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
-                0x0800b200                Motion4DOF::Init()
+                0x0800b230       0x36 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
+                0x0800b230                Motion4DOF::Init()
  .text._ZN10Motion4DOF5RelaxEv
-                0x0800b236       0x36 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
-                0x0800b236                Motion4DOF::Relax()
+                0x0800b266       0x36 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
+                0x0800b266                Motion4DOF::Relax()
  .text._ZN10Motion4DOF17actionWalkForwardEv
-                0x0800b26c      0x11c CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
-                0x0800b26c                Motion4DOF::actionWalkForward()
+                0x0800b29c      0x11c CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
+                0x0800b29c                Motion4DOF::actionWalkForward()
  .text._ZN10Motion4DOF18actionWalkBackwardEv
-                0x0800b388      0x154 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
-                0x0800b388                Motion4DOF::actionWalkBackward()
+                0x0800b3b8      0x154 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
+                0x0800b3b8                Motion4DOF::actionWalkBackward()
  .text._ZN10Motion4DOF14actionTurnLeftEv
-                0x0800b4dc      0x154 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
-                0x0800b4dc                Motion4DOF::actionTurnLeft()
+                0x0800b50c      0x154 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
+                0x0800b50c                Motion4DOF::actionTurnLeft()
  .text._ZN10Motion4DOF15actionTurnRightEv
-                0x0800b630      0x154 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
-                0x0800b630                Motion4DOF::actionTurnRight()
+                0x0800b660      0x154 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
+                0x0800b660                Motion4DOF::actionTurnRight()
  .text._ZN10Motion4DOF14ExecuteCommandE8VoiceCmd
-                0x0800b784      0x1d4 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
-                0x0800b784                Motion4DOF::ExecuteCommand(VoiceCmd)
+                0x0800b7b4      0x1d4 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
+                0x0800b7b4                Motion4DOF::ExecuteCommand(VoiceCmd)
  .text._ZN10Motion4DOF9StandIdleEv
-                0x0800b958       0x70 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
-                0x0800b958                Motion4DOF::StandIdle()
+                0x0800b988       0xca CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
+                0x0800b988                Motion4DOF::StandIdle()
+ *fill*         0x0800ba52        0x2 
  .text._ZN10Motion4DOF14postureSitDownEv
-                0x0800b9c8       0xa4 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
-                0x0800b9c8                Motion4DOF::postureSitDown()
+                0x0800ba54       0xa4 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
+                0x0800ba54                Motion4DOF::postureSitDown()
  .text._ZN10Motion4DOF14postureLieDownEv
-                0x0800ba6c       0xd4 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
-                0x0800ba6c                Motion4DOF::postureLieDown()
+                0x0800baf8       0xd4 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
+                0x0800baf8                Motion4DOF::postureLieDown()
  .text._ZN10Motion4DOF13postureLookUpEv
-                0x0800bb40       0xd4 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
-                0x0800bb40                Motion4DOF::postureLookUp()
+                0x0800bbcc       0xd4 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
+                0x0800bbcc                Motion4DOF::postureLookUp()
  .text._ZN10Motion4DOF15postureLookDownEv
-                0x0800bc14       0xd4 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
-                0x0800bc14                Motion4DOF::postureLookDown()
+                0x0800bca0       0xd4 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
+                0x0800bca0                Motion4DOF::postureLookDown()
  .text._ZN10Motion4DOF15postureLeanLeftEv
-                0x0800bce8       0xa4 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
-                0x0800bce8                Motion4DOF::postureLeanLeft()
+                0x0800bd74       0xa4 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
+                0x0800bd74                Motion4DOF::postureLeanLeft()
  .text._ZN10Motion4DOF16postureLeanRightEv
-                0x0800bd8c       0xa4 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
-                0x0800bd8c                Motion4DOF::postureLeanRight()
+                0x0800be18       0xa4 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
+                0x0800be18                Motion4DOF::postureLeanRight()
  .text._ZN10Motion4DOF15actionShakeHandEb
-                0x0800be30       0xb8 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
-                0x0800be30                Motion4DOF::actionShakeHand(bool)
+                0x0800bebc       0xb8 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
+                0x0800bebc                Motion4DOF::actionShakeHand(bool)
  .text._ZN10Motion4DOF14actionGreetingEv
-                0x0800bee8       0x24 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
-                0x0800bee8                Motion4DOF::actionGreeting()
+                0x0800bf74       0x24 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
+                0x0800bf74                Motion4DOF::actionGreeting()
  .text._ZN10Motion4DOF13actionStretchEv
-                0x0800bf0c       0x74 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
-                0x0800bf0c                Motion4DOF::actionStretch()
+                0x0800bf98       0x74 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
+                0x0800bf98                Motion4DOF::actionStretch()
  .text._ZN10Motion4DOF11actionDanceEv
-                0x0800bf80       0x6a CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
-                0x0800bf80                Motion4DOF::actionDance()
- *fill*         0x0800bfea        0x2 
+                0x0800c00c       0x6a CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
+                0x0800c00c                Motion4DOF::actionDance()
+ *fill*         0x0800c076        0x2 
  .text._ZN10Motion4DOF16actionAttackModeEv
-                0x0800bfec       0x90 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
-                0x0800bfec                Motion4DOF::actionAttackMode()
+                0x0800c078       0x90 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
+                0x0800c078                Motion4DOF::actionAttackMode()
  .text._ZN7MPU60504InitEv
-                0x0800c07c      0x134 CMakeFiles/STM32_CyberDog.dir/usercode/src/mpu6050.cpp.obj
-                0x0800c07c                MPU6050::Init()
+                0x0800c108      0x134 CMakeFiles/STM32_CyberDog.dir/usercode/src/mpu6050.cpp.obj
+                0x0800c108                MPU6050::Init()
+ *fill*         0x0800c23c        0x4 
  .text._ZN7MPU60506UpdateEv
-                0x0800c1b0      0x3f0 CMakeFiles/STM32_CyberDog.dir/usercode/src/mpu6050.cpp.obj
-                0x0800c1b0                MPU6050::Update()
+                0x0800c240      0x3f0 CMakeFiles/STM32_CyberDog.dir/usercode/src/mpu6050.cpp.obj
+                0x0800c240                MPU6050::Update()
  .text._ZSt5roundf
-                0x0800c5a0       0x18 CMakeFiles/STM32_CyberDog.dir/usercode/src/pca9685.cpp.obj
-                0x0800c5a0                std::round(float)
+                0x0800c630       0x18 CMakeFiles/STM32_CyberDog.dir/usercode/src/pca9685.cpp.obj
+                0x0800c630                std::round(float)
  .text._ZN7PCA9685C2EP17I2C_HandleTypeDefhPv
-                0x0800c5b8       0xa8 CMakeFiles/STM32_CyberDog.dir/usercode/src/pca9685.cpp.obj
-                0x0800c5b8                PCA9685::PCA9685(I2C_HandleTypeDef*, unsigned char, void*)
-                0x0800c5b8                PCA9685::PCA9685(I2C_HandleTypeDef*, unsigned char, void*)
+                0x0800c648       0xa8 CMakeFiles/STM32_CyberDog.dir/usercode/src/pca9685.cpp.obj
+                0x0800c648                PCA9685::PCA9685(I2C_HandleTypeDef*, unsigned char, void*)
+                0x0800c648                PCA9685::PCA9685(I2C_HandleTypeDef*, unsigned char, void*)
  .text._ZN7PCA96854InitEf
-                0x0800c660       0x62 CMakeFiles/STM32_CyberDog.dir/usercode/src/pca9685.cpp.obj
-                0x0800c660                PCA9685::Init(float)
- *fill*         0x0800c6c2        0x2 
+                0x0800c6f0       0x62 CMakeFiles/STM32_CyberDog.dir/usercode/src/pca9685.cpp.obj
+                0x0800c6f0                PCA9685::Init(float)
+ *fill*         0x0800c752        0x2 
  .text._ZN7PCA968510setPWMFreqEf
-                0x0800c6c4       0xd4 CMakeFiles/STM32_CyberDog.dir/usercode/src/pca9685.cpp.obj
-                0x0800c6c4                PCA9685::setPWMFreq(float)
+                0x0800c754       0xd4 CMakeFiles/STM32_CyberDog.dir/usercode/src/pca9685.cpp.obj
+                0x0800c754                PCA9685::setPWMFreq(float)
  .text._ZN7PCA96856setPWMEhtt
-                0x0800c798       0xd8 CMakeFiles/STM32_CyberDog.dir/usercode/src/pca9685.cpp.obj
-                0x0800c798                PCA9685::setPWM(unsigned char, unsigned short, unsigned short)
+                0x0800c828       0xd8 CMakeFiles/STM32_CyberDog.dir/usercode/src/pca9685.cpp.obj
+                0x0800c828                PCA9685::setPWM(unsigned char, unsigned short, unsigned short)
  .text._ZN7PCA96858setAngleE9LegChanelf
-                0x0800c870       0xee CMakeFiles/STM32_CyberDog.dir/usercode/src/pca9685.cpp.obj
-                0x0800c870                PCA9685::setAngle(LegChanel, float)
+                0x0800c900       0xee CMakeFiles/STM32_CyberDog.dir/usercode/src/pca9685.cpp.obj
+                0x0800c900                PCA9685::setAngle(LegChanel, float)
  .text._ZN7PCA968513writeRegisterEhh
-                0x0800c95e       0x82 CMakeFiles/STM32_CyberDog.dir/usercode/src/pca9685.cpp.obj
-                0x0800c95e                PCA9685::writeRegister(unsigned char, unsigned char)
+                0x0800c9ee       0x82 CMakeFiles/STM32_CyberDog.dir/usercode/src/pca9685.cpp.obj
+                0x0800c9ee                PCA9685::writeRegister(unsigned char, unsigned char)
  .text._ZN7PCA968512readRegisterEh
-                0x0800c9e0       0x6c CMakeFiles/STM32_CyberDog.dir/usercode/src/pca9685.cpp.obj
-                0x0800c9e0                PCA9685::readRegister(unsigned char)
+                0x0800ca70       0x6c CMakeFiles/STM32_CyberDog.dir/usercode/src/pca9685.cpp.obj
+                0x0800ca70                PCA9685::readRegister(unsigned char)
  .text._ZN7SSD1306C2EP17I2C_HandleTypeDefPvh
-                0x0800ca4c       0x3a CMakeFiles/STM32_CyberDog.dir/usercode/src/ssd1306.cpp.obj
-                0x0800ca4c                SSD1306::SSD1306(I2C_HandleTypeDef*, void*, unsigned char)
-                0x0800ca4c                SSD1306::SSD1306(I2C_HandleTypeDef*, void*, unsigned char)
+                0x0800cadc       0x3a CMakeFiles/STM32_CyberDog.dir/usercode/src/ssd1306.cpp.obj
+                0x0800cadc                SSD1306::SSD1306(I2C_HandleTypeDef*, void*, unsigned char)
+                0x0800cadc                SSD1306::SSD1306(I2C_HandleTypeDef*, void*, unsigned char)
  .text._ZN7SSD130612WriteCommandEh
-                0x0800ca86       0x62 CMakeFiles/STM32_CyberDog.dir/usercode/src/ssd1306.cpp.obj
-                0x0800ca86                SSD1306::WriteCommand(unsigned char)
+                0x0800cb16       0x62 CMakeFiles/STM32_CyberDog.dir/usercode/src/ssd1306.cpp.obj
+                0x0800cb16                SSD1306::WriteCommand(unsigned char)
  .text._ZN7SSD13064InitEv
-                0x0800cae8       0xc0 CMakeFiles/STM32_CyberDog.dir/usercode/src/ssd1306.cpp.obj
-                0x0800cae8                SSD1306::Init()
+                0x0800cb78       0xc0 CMakeFiles/STM32_CyberDog.dir/usercode/src/ssd1306.cpp.obj
+                0x0800cb78                SSD1306::Init()
  .text._ZN7SSD13065ClearEv
-                0x0800cba8       0x20 CMakeFiles/STM32_CyberDog.dir/usercode/src/ssd1306.cpp.obj
-                0x0800cba8                SSD1306::Clear()
+                0x0800cc38       0x20 CMakeFiles/STM32_CyberDog.dir/usercode/src/ssd1306.cpp.obj
+                0x0800cc38                SSD1306::Clear()
  .text._ZN7SSD13069DrawPixelEssb
-                0x0800cbc8       0xfa CMakeFiles/STM32_CyberDog.dir/usercode/src/ssd1306.cpp.obj
-                0x0800cbc8                SSD1306::DrawPixel(short, short, bool)
+                0x0800cc58       0xfa CMakeFiles/STM32_CyberDog.dir/usercode/src/ssd1306.cpp.obj
+                0x0800cc58                SSD1306::DrawPixel(short, short, bool)
  .text._ZN7SSD13066UpdateEv
-                0x0800ccc2      0x100 CMakeFiles/STM32_CyberDog.dir/usercode/src/ssd1306.cpp.obj
-                0x0800ccc2                SSD1306::Update()
- *fill*         0x0800cdc2        0x2 
+                0x0800cd52      0x100 CMakeFiles/STM32_CyberDog.dir/usercode/src/ssd1306.cpp.obj
+                0x0800cd52                SSD1306::Update()
+ *fill*         0x0800ce52        0x2 
  .text._ZN7SSD13068DrawCharEssc
-                0x0800cdc4       0xa4 CMakeFiles/STM32_CyberDog.dir/usercode/src/ssd1306.cpp.obj
-                0x0800cdc4                SSD1306::DrawChar(short, short, char)
+                0x0800ce54       0xa4 CMakeFiles/STM32_CyberDog.dir/usercode/src/ssd1306.cpp.obj
+                0x0800ce54                SSD1306::DrawChar(short, short, char)
  .text._ZN7SSD130610DrawStringEssPKc
-                0x0800ce68       0x5a CMakeFiles/STM32_CyberDog.dir/usercode/src/ssd1306.cpp.obj
-                0x0800ce68                SSD1306::DrawString(short, short, char const*)
+                0x0800cef8       0x5a CMakeFiles/STM32_CyberDog.dir/usercode/src/ssd1306.cpp.obj
+                0x0800cef8                SSD1306::DrawString(short, short, char const*)
  .text._ZN7SSD13068DrawLineEssssb
-                0x0800cec2       0xf8 CMakeFiles/STM32_CyberDog.dir/usercode/src/ssd1306.cpp.obj
-                0x0800cec2                SSD1306::DrawLine(short, short, short, short, bool)
+                0x0800cf52       0xf8 CMakeFiles/STM32_CyberDog.dir/usercode/src/ssd1306.cpp.obj
+                0x0800cf52                SSD1306::DrawLine(short, short, short, short, bool)
  .text._ZN7SSD13068FillRectEssssb
-                0x0800cfba       0x7e CMakeFiles/STM32_CyberDog.dir/usercode/src/ssd1306.cpp.obj
-                0x0800cfba                SSD1306::FillRect(short, short, short, short, bool)
+                0x0800d04a       0x7e CMakeFiles/STM32_CyberDog.dir/usercode/src/ssd1306.cpp.obj
+                0x0800d04a                SSD1306::FillRect(short, short, short, short, bool)
  .text._ZN7SSD130611DrawBatteryEssh
-                0x0800d038      0x194 CMakeFiles/STM32_CyberDog.dir/usercode/src/ssd1306.cpp.obj
-                0x0800d038                SSD1306::DrawBattery(short, short, unsigned char)
+                0x0800d0c8      0x194 CMakeFiles/STM32_CyberDog.dir/usercode/src/ssd1306.cpp.obj
+                0x0800d0c8                SSD1306::DrawBattery(short, short, unsigned char)
  .text._ZN5SU03TC2EP20__UART_HandleTypeDefPv
-                0x0800d1cc       0x2c CMakeFiles/STM32_CyberDog.dir/usercode/src/su03t.cpp.obj
-                0x0800d1cc                SU03T::SU03T(__UART_HandleTypeDef*, void*)
-                0x0800d1cc                SU03T::SU03T(__UART_HandleTypeDef*, void*)
+                0x0800d25c       0x2c CMakeFiles/STM32_CyberDog.dir/usercode/src/su03t.cpp.obj
+                0x0800d25c                SU03T::SU03T(__UART_HandleTypeDef*, void*)
+                0x0800d25c                SU03T::SU03T(__UART_HandleTypeDef*, void*)
  .text._ZN5SU03T4InitEPv
-                0x0800d1f8       0x5c CMakeFiles/STM32_CyberDog.dir/usercode/src/su03t.cpp.obj
-                0x0800d1f8                SU03T::Init(void*)
+                0x0800d288       0x5c CMakeFiles/STM32_CyberDog.dir/usercode/src/su03t.cpp.obj
+                0x0800d288                SU03T::Init(void*)
  .text._ZN5SU03T16onRxCpltCallbackEv
-                0x0800d254       0x3a CMakeFiles/STM32_CyberDog.dir/usercode/src/su03t.cpp.obj
-                0x0800d254                SU03T::onRxCpltCallback()
+                0x0800d2e4       0x3a CMakeFiles/STM32_CyberDog.dir/usercode/src/su03t.cpp.obj
+                0x0800d2e4                SU03T::onRxCpltCallback()
  .text._ZN5SU03T10getCommandEv
-                0x0800d28e       0xce CMakeFiles/STM32_CyberDog.dir/usercode/src/su03t.cpp.obj
-                0x0800d28e                SU03T::getCommand()
+                0x0800d31e       0xce CMakeFiles/STM32_CyberDog.dir/usercode/src/su03t.cpp.obj
+                0x0800d31e                SU03T::getCommand()
  .text._ZN5SU03T11parsePacketERKSt6vectorIhSaIhEE
-                0x0800d35c       0x58 CMakeFiles/STM32_CyberDog.dir/usercode/src/su03t.cpp.obj
-                0x0800d35c                SU03T::parsePacket(std::vector<unsigned char, std::allocator<unsigned char> > const&)
+                0x0800d3ec       0x58 CMakeFiles/STM32_CyberDog.dir/usercode/src/su03t.cpp.obj
+                0x0800d3ec                SU03T::parsePacket(std::vector<unsigned char, std::allocator<unsigned char> > const&)
  .text._ZN5SU03T6ResumeEv
-                0x0800d3b4       0x34 CMakeFiles/STM32_CyberDog.dir/usercode/src/su03t.cpp.obj
-                0x0800d3b4                SU03T::Resume()
+                0x0800d444       0x34 CMakeFiles/STM32_CyberDog.dir/usercode/src/su03t.cpp.obj
+                0x0800d444                SU03T::Resume()
  .text._ZN5SU03T10sendPacketEh
-                0x0800d3e8       0x68 CMakeFiles/STM32_CyberDog.dir/usercode/src/su03t.cpp.obj
-                0x0800d3e8                SU03T::sendPacket(unsigned char)
- .text._ZdlPvj  0x0800d450        0x4 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libstdc++_nano.a(del_ops.o)
-                0x0800d450                operator delete(void*, unsigned int)
+                0x0800d478       0x68 CMakeFiles/STM32_CyberDog.dir/usercode/src/su03t.cpp.obj
+                0x0800d478                SU03T::sendPacket(unsigned char)
+ .text._ZdlPvj  0x0800d4e0        0x4 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libstdc++_nano.a(del_ops.o)
+                0x0800d4e0                operator delete(void*, unsigned int)
  .text.unlikely._ZSt17__throw_bad_allocv
-                0x0800d454        0x6 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libstdc++_nano.a(functexcept.o)
-                0x0800d454                std::__throw_bad_alloc()
+                0x0800d4e4        0x6 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libstdc++_nano.a(functexcept.o)
+                0x0800d4e4                std::__throw_bad_alloc()
  .text.unlikely._ZSt20__throw_length_errorPKc
-                0x0800d45a        0x6 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libstdc++_nano.a(functexcept.o)
-                0x0800d45a                std::__throw_length_error(char const*)
- .text.atan2    0x0800d460        0x4 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libm.a(libm_a-w_atan2.o)
-                0x0800d460                atan2
- .text.sqrt     0x0800d464       0x50 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libm.a(libm_a-w_sqrt.o)
-                0x0800d464                sqrt
- .text.sinf     0x0800d4b4       0x6c D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libm.a(libm_a-sf_sin.o)
-                0x0800d4b4                sinf
+                0x0800d4ea        0x6 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libstdc++_nano.a(functexcept.o)
+                0x0800d4ea                std::__throw_length_error(char const*)
+ .text.atan2    0x0800d4f0        0x4 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libm.a(libm_a-w_atan2.o)
+                0x0800d4f0                atan2
+ .text.sqrt     0x0800d4f4       0x50 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libm.a(libm_a-w_sqrt.o)
+                0x0800d4f4                sqrt
+ .text.sinf     0x0800d544       0x6c D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libm.a(libm_a-sf_sin.o)
+                0x0800d544                sinf
  .text.__ieee754_sqrt
-                0x0800d520      0x1dc D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libm.a(libm_a-e_sqrt.o)
-                0x0800d520                __ieee754_sqrt
- .text.roundf   0x0800d6fc       0x48 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libm.a(libm_a-sf_round.o)
-                0x0800d6fc                roundf
- *fill*         0x0800d744        0x4 
+                0x0800d5b0      0x1dc D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libm.a(libm_a-e_sqrt.o)
+                0x0800d5b0                __ieee754_sqrt
+ .text.roundf   0x0800d78c       0x48 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libm.a(libm_a-sf_round.o)
+                0x0800d78c                roundf
+ *fill*         0x0800d7d4        0x4 
  .text.__ieee754_atan2
-                0x0800d748      0x194 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libm.a(libm_a-e_atan2.o)
-                0x0800d748                __ieee754_atan2
- *fill*         0x0800d8dc        0x4 
- .text.atan     0x0800d8e0      0x338 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libm.a(libm_a-s_atan.o)
-                0x0800d8e0                atan
- .text.fabs     0x0800dc18        0x8 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libm.a(libm_a-s_fabs.o)
-                0x0800dc18                fabs
+                0x0800d7d8      0x194 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libm.a(libm_a-e_atan2.o)
+                0x0800d7d8                __ieee754_atan2
+ *fill*         0x0800d96c        0x4 
+ .text.atan     0x0800d970      0x338 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libm.a(libm_a-s_atan.o)
+                0x0800d970                atan
+ .text.fabs     0x0800dca8        0x8 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libm.a(libm_a-s_fabs.o)
+                0x0800dca8                fabs
  .text.__kernel_cosf
-                0x0800dc20      0x190 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libm.a(libm_a-kf_cos.o)
-                0x0800dc20                __kernel_cosf
+                0x0800dcb0      0x190 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libm.a(libm_a-kf_cos.o)
+                0x0800dcb0                __kernel_cosf
  .text.__kernel_sinf
-                0x0800ddb0       0xec D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libm.a(libm_a-kf_sin.o)
-                0x0800ddb0                __kernel_sinf
+                0x0800de40       0xec D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libm.a(libm_a-kf_sin.o)
+                0x0800de40                __kernel_sinf
  .text.__ieee754_rem_pio2f
-                0x0800de9c      0x2dc D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libm.a(libm_a-ef_rem_pio2.o)
-                0x0800de9c                __ieee754_rem_pio2f
- .text.fabsf    0x0800e178        0x8 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libm.a(libm_a-sf_fabs.o)
-                0x0800e178                fabsf
+                0x0800df2c      0x2dc D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libm.a(libm_a-ef_rem_pio2.o)
+                0x0800df2c                __ieee754_rem_pio2f
+ .text.fabsf    0x0800e208        0x8 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libm.a(libm_a-sf_fabs.o)
+                0x0800e208                fabsf
  .text.__kernel_rem_pio2f
-                0x0800e180      0x770 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libm.a(libm_a-kf_rem_pio2.o)
-                0x0800e180                __kernel_rem_pio2f
- .text.scalbnf  0x0800e8f0       0xb0 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libm.a(libm_a-sf_scalbn.o)
-                0x0800e8f0                scalbnf
- .text.floorf   0x0800e9a0       0x8c D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libm.a(libm_a-sf_floor.o)
-                0x0800e9a0                floorf
- .text.abort    0x0800ea2c        0xe D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-abort.o)
-                0x0800ea2c                abort
- *fill*         0x0800ea3a        0x2 
- .text.sprintf  0x0800ea3c       0x44 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-sprintf.o)
-                0x0800ea3c                siprintf
-                0x0800ea3c                sprintf
- .text.memset   0x0800ea80       0x10 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-memset.o)
-                0x0800ea80                memset
+                0x0800e210      0x770 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libm.a(libm_a-kf_rem_pio2.o)
+                0x0800e210                __kernel_rem_pio2f
+ .text.scalbnf  0x0800e980       0xb0 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libm.a(libm_a-sf_scalbn.o)
+                0x0800e980                scalbnf
+ .text.floorf   0x0800ea30       0x8c D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libm.a(libm_a-sf_floor.o)
+                0x0800ea30                floorf
+ .text.abort    0x0800eabc        0xe D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-abort.o)
+                0x0800eabc                abort
+ *fill*         0x0800eaca        0x2 
+ .text.sprintf  0x0800eacc       0x44 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-sprintf.o)
+                0x0800eacc                siprintf
+                0x0800eacc                sprintf
+ .text.memset   0x0800eb10       0x10 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-memset.o)
+                0x0800eb10                memset
  .text._raise_r
-                0x0800ea90       0x50 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-signal.o)
-                0x0800ea90                _raise_r
- .text.raise    0x0800eae0       0x10 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-signal.o)
-                0x0800eae0                raise
- .text._kill_r  0x0800eaf0       0x24 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-signalr.o)
-                0x0800eaf0                _kill_r
+                0x0800eb20       0x50 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-signal.o)
+                0x0800eb20                _raise_r
+ .text.raise    0x0800eb70       0x10 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-signal.o)
+                0x0800eb70                raise
+ .text._kill_r  0x0800eb80       0x24 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-signalr.o)
+                0x0800eb80                _kill_r
  .text._getpid_r
-                0x0800eb14        0x4 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-signalr.o)
-                0x0800eb14                _getpid_r
- .text.__errno  0x0800eb18        0xc D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-errno.o)
-                0x0800eb18                __errno
+                0x0800eba4        0x4 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-signalr.o)
+                0x0800eba4                _getpid_r
+ .text.__errno  0x0800eba8        0xc D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-errno.o)
+                0x0800eba8                __errno
  .text.__libc_init_array
-                0x0800eb24       0x48 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-init.o)
-                0x0800eb24                __libc_init_array
+                0x0800ebb4       0x48 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-init.o)
+                0x0800ebb4                __libc_init_array
  .text.__retarget_lock_acquire_recursive
-                0x0800eb6c        0x2 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-lock.o)
-                0x0800eb6c                __retarget_lock_acquire_recursive
+                0x0800ebfc        0x2 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-lock.o)
+                0x0800ebfc                __retarget_lock_acquire_recursive
  .text.__retarget_lock_release_recursive
-                0x0800eb6e        0x2 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-lock.o)
-                0x0800eb6e                __retarget_lock_release_recursive
- .text.memcpy   0x0800eb70       0x1c D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-memcpy-stub.o)
-                0x0800eb70                memcpy
- .text._free_r  0x0800eb8c       0x90 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-freer.o)
-                0x0800eb8c                _free_r
+                0x0800ebfe        0x2 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-lock.o)
+                0x0800ebfe                __retarget_lock_release_recursive
+ .text.memcpy   0x0800ec00       0x1c D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-memcpy-stub.o)
+                0x0800ec00                memcpy
+ .text._free_r  0x0800ec1c       0x90 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-freer.o)
+                0x0800ec1c                _free_r
  .text.sbrk_aligned
-                0x0800ec1c       0x44 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-mallocr.o)
+                0x0800ecac       0x44 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-mallocr.o)
  .text._malloc_r
-                0x0800ec60      0x100 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-mallocr.o)
-                0x0800ec60                _malloc_r
+                0x0800ecf0      0x100 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-mallocr.o)
+                0x0800ecf0                _malloc_r
  .text.__malloc_lock
-                0x0800ed60        0xc D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-mlock.o)
-                0x0800ed60                __malloc_lock
+                0x0800edf0        0xc D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-mlock.o)
+                0x0800edf0                __malloc_lock
  .text.__malloc_unlock
-                0x0800ed6c        0xc D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-mlock.o)
-                0x0800ed6c                __malloc_unlock
+                0x0800edfc        0xc D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-mlock.o)
+                0x0800edfc                __malloc_unlock
  .text.__ssputs_r
-                0x0800ed78       0xc0 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-nano-svfprintf.o)
-                0x0800ed78                __ssputs_r
+                0x0800ee08       0xc0 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-nano-svfprintf.o)
+                0x0800ee08                __ssputs_r
  .text._svfprintf_r
-                0x0800ee38      0x1f0 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-nano-svfprintf.o)
-                0x0800ee38                _svfiprintf_r
-                0x0800ee38                _svfprintf_r
+                0x0800eec8      0x1f0 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-nano-svfprintf.o)
+                0x0800eec8                _svfiprintf_r
+                0x0800eec8                _svfprintf_r
  .text._printf_common
-                0x0800f028       0xe4 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-nano-vfprintf_i.o)
-                0x0800f028                _printf_common
+                0x0800f0b8       0xe4 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-nano-vfprintf_i.o)
+                0x0800f0b8                _printf_common
  .text._printf_i
-                0x0800f10c      0x24c D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-nano-vfprintf_i.o)
-                0x0800f10c                _printf_i
- .text.memmove  0x0800f358       0x32 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-memmove.o)
-                0x0800f358                memmove
- *fill*         0x0800f38a        0x2 
- .text._sbrk_r  0x0800f38c       0x20 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-sbrkr.o)
-                0x0800f38c                _sbrk_r
- .text.memchr   0x0800f3ac       0x1c D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-memchr-stub.o)
-                0x0800f3ac                memchr
+                0x0800f19c      0x24c D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-nano-vfprintf_i.o)
+                0x0800f19c                _printf_i
+ .text.memmove  0x0800f3e8       0x32 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-memmove.o)
+                0x0800f3e8                memmove
+ *fill*         0x0800f41a        0x2 
+ .text._sbrk_r  0x0800f41c       0x20 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-sbrkr.o)
+                0x0800f41c                _sbrk_r
+ .text.memchr   0x0800f43c       0x1c D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-memchr-stub.o)
+                0x0800f43c                memchr
  .text._realloc_r
-                0x0800f3c8       0x5c D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-reallocr.o)
-                0x0800f3c8                _realloc_r
+                0x0800f458       0x5c D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-reallocr.o)
+                0x0800f458                _realloc_r
  .text._malloc_usable_size_r
-                0x0800f424       0x10 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-msizer.o)
-                0x0800f424                _malloc_usable_size_r
+                0x0800f4b4       0x10 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-msizer.o)
+                0x0800f4b4                _malloc_usable_size_r
  *(.glue_7)
- .glue_7        0x0800f434        0x0 linker stubs
+ .glue_7        0x0800f4c4        0x0 linker stubs
  *(.glue_7t)
- .glue_7t       0x0800f434        0x0 linker stubs
+ .glue_7t       0x0800f4c4        0x0 linker stubs
  *(.eh_frame)
- .eh_frame      0x0800f434        0x0 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtbegin.o
+ .eh_frame      0x0800f4c4        0x0 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtbegin.o
  *(.init)
- .init          0x0800f434        0x4 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crti.o
-                0x0800f434                _init
- .init          0x0800f438        0x8 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtn.o
+ .init          0x0800f4c4        0x4 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crti.o
+                0x0800f4c4                _init
+ .init          0x0800f4c8        0x8 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtn.o
  *(.fini)
- .fini          0x0800f440        0x4 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crti.o
-                0x0800f440                _fini
- .fini          0x0800f444        0x8 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtn.o
-                0x0800f44c                        . = ALIGN (0x4)
-                0x0800f44c                        _etext = .
+ .fini          0x0800f4d0        0x4 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crti.o
+                0x0800f4d0                _fini
+ .fini          0x0800f4d4        0x8 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtn.o
+                0x0800f4dc                        . = ALIGN (0x4)
+                0x0800f4dc                        _etext = .
 
-.vfp11_veneer   0x0800f44c        0x0
- .vfp11_veneer  0x0800f44c        0x0 linker stubs
+.vfp11_veneer   0x0800f4dc        0x0
+ .vfp11_veneer  0x0800f4dc        0x0 linker stubs
 
-.v4_bx          0x0800f44c        0x0
- .v4_bx         0x0800f44c        0x0 linker stubs
+.v4_bx          0x0800f4dc        0x0
+ .v4_bx         0x0800f4dc        0x0 linker stubs
 
-.iplt           0x0800f44c        0x0
- .iplt          0x0800f44c        0x0 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtbegin.o
+.iplt           0x0800f4dc        0x0
+ .iplt          0x0800f4dc        0x0 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtbegin.o
 
-.rodata         0x0800f450      0x94c
-                0x0800f450                        . = ALIGN (0x4)
+.rodata         0x0800f4e0      0x94c
+                0x0800f4e0                        . = ALIGN (0x4)
  *(.rodata)
- .rodata        0x0800f450        0x5 cmake/stm32cubemx/CMakeFiles/FreeRTOS.dir/__/__/Middlewares/Third_Party/FreeRTOS/Source/tasks.c.obj
- *fill*         0x0800f455        0x3 
- .rodata        0x0800f458        0xd cmake/stm32cubemx/CMakeFiles/FreeRTOS.dir/__/__/Middlewares/Third_Party/FreeRTOS/Source/timers.c.obj
- *fill*         0x0800f465        0x3 
- .rodata        0x0800f468        0xc CMakeFiles/STM32_CyberDog.dir/Core/Src/freertos.c.obj
- .rodata        0x0800f474      0x1e5 CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
- *fill*         0x0800f659        0x3 
- .rodata        0x0800f65c       0x2a CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+ .rodata        0x0800f4e0        0x5 cmake/stm32cubemx/CMakeFiles/FreeRTOS.dir/__/__/Middlewares/Third_Party/FreeRTOS/Source/tasks.c.obj
+ *fill*         0x0800f4e5        0x3 
+ .rodata        0x0800f4e8        0xd cmake/stm32cubemx/CMakeFiles/FreeRTOS.dir/__/__/Middlewares/Third_Party/FreeRTOS/Source/timers.c.obj
+ *fill*         0x0800f4f5        0x3 
+ .rodata        0x0800f4f8        0xc CMakeFiles/STM32_CyberDog.dir/Core/Src/freertos.c.obj
+ .rodata        0x0800f504      0x1e5 CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
+ *fill*         0x0800f6e9        0x3 
+ .rodata        0x0800f6ec       0x2a CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
  *(.rodata*)
- *fill*         0x0800f686        0x2 
+ *fill*         0x0800f716        0x2 
  .rodata.AHBPrescTable
-                0x0800f688       0x10 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Core/Src/system_stm32f1xx.c.obj
-                0x0800f688                AHBPrescTable
+                0x0800f718       0x10 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Core/Src/system_stm32f1xx.c.obj
+                0x0800f718                AHBPrescTable
  .rodata.APBPrescTable
-                0x0800f698        0x8 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Core/Src/system_stm32f1xx.c.obj
-                0x0800f698                APBPrescTable
+                0x0800f728        0x8 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Core/Src/system_stm32f1xx.c.obj
+                0x0800f728                APBPrescTable
  .rodata.aPLLMULFactorTable.1
-                0x0800f6a0       0x10 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj
+                0x0800f730       0x10 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj
  .rodata.aPredivFactorTable.0
-                0x0800f6b0        0x2 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj
- *fill*         0x0800f6b2        0x2 
+                0x0800f740        0x2 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj
+ *fill*         0x0800f742        0x2 
  .rodata.aPLLMULFactorTable.1
-                0x0800f6b4       0x10 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c.obj
+                0x0800f744       0x10 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c.obj
  .rodata.aPredivFactorTable.0
-                0x0800f6c4        0x2 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c.obj
- *fill*         0x0800f6c6        0x2 
+                0x0800f754        0x2 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c.obj
+ *fill*         0x0800f756        0x2 
  .rodata.defaultTask_attributes
-                0x0800f6c8       0x24 CMakeFiles/STM32_CyberDog.dir/Core/Src/freertos.c.obj
-                0x0800f6c8                defaultTask_attributes
+                0x0800f758       0x24 CMakeFiles/STM32_CyberDog.dir/Core/Src/freertos.c.obj
+                0x0800f758                defaultTask_attributes
  .rodata._ZL7Font6x8
-                0x0800f6ec      0x228 CMakeFiles/STM32_CyberDog.dir/usercode/src/ssd1306.cpp.obj
- *fill*         0x0800f914        0x4 
- .rodata.tiny   0x0800f918        0x8 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libm.a(libm_a-e_sqrt.o)
- .rodata.one    0x0800f920        0x8 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libm.a(libm_a-e_sqrt.o)
+                0x0800f77c      0x228 CMakeFiles/STM32_CyberDog.dir/usercode/src/ssd1306.cpp.obj
+ *fill*         0x0800f9a4        0x4 
+ .rodata.tiny   0x0800f9a8        0x8 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libm.a(libm_a-e_sqrt.o)
+ .rodata.one    0x0800f9b0        0x8 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libm.a(libm_a-e_sqrt.o)
  .rodata.CSWTCH.9
-                0x0800f928       0x18 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libm.a(libm_a-e_atan2.o)
+                0x0800f9b8       0x18 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libm.a(libm_a-e_atan2.o)
  .rodata.CSWTCH.8
-                0x0800f940       0x18 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libm.a(libm_a-e_atan2.o)
+                0x0800f9d0       0x18 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libm.a(libm_a-e_atan2.o)
  .rodata.atanlo
-                0x0800f958       0x20 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libm.a(libm_a-s_atan.o)
+                0x0800f9e8       0x20 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libm.a(libm_a-s_atan.o)
  .rodata.atanhi
-                0x0800f978       0x20 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libm.a(libm_a-s_atan.o)
+                0x0800fa08       0x20 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libm.a(libm_a-s_atan.o)
  .rodata.npio2_hw
-                0x0800f998       0x80 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libm.a(libm_a-ef_rem_pio2.o)
+                0x0800fa28       0x80 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libm.a(libm_a-ef_rem_pio2.o)
  .rodata.two_over_pi
-                0x0800fa18      0x318 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libm.a(libm_a-ef_rem_pio2.o)
- .rodata.PIo2   0x0800fd30       0x2c D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libm.a(libm_a-kf_rem_pio2.o)
+                0x0800faa8      0x318 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libm.a(libm_a-ef_rem_pio2.o)
+ .rodata.PIo2   0x0800fdc0       0x2c D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libm.a(libm_a-kf_rem_pio2.o)
  .rodata.init_jk
-                0x0800fd5c        0xc D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libm.a(libm_a-kf_rem_pio2.o)
+                0x0800fdec        0xc D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libm.a(libm_a-kf_rem_pio2.o)
  .rodata._svfprintf_r.str1.1
-                0x0800fd68       0x33 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-nano-svfprintf.o)
+                0x0800fdf8       0x33 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-nano-svfprintf.o)
                                  0x11 (size before relaxing)
  .rodata._printf_i.str1.1
-                0x0800fd9b       0x22 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-nano-vfprintf_i.o)
-                0x0800fdc0                        . = ALIGN (0x4)
- *fill*         0x0800fd9b        0x1 
+                0x0800fe2b       0x22 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-nano-vfprintf_i.o)
+                0x0800fe50                        . = ALIGN (0x4)
+ *fill*         0x0800fe2b        0x1 
 
-.ARM.extab      0x0800fd9c        0x0
-                0x0800fd9c                        . = ALIGN (0x4)
+.ARM.extab      0x0800fe2c        0x0
+                0x0800fe2c                        . = ALIGN (0x4)
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x0800fd9c                        . = ALIGN (0x4)
+                0x0800fe2c                        . = ALIGN (0x4)
 
-.ARM            0x0800fd9c        0x8
-                0x0800fd9c                        . = ALIGN (0x4)
-                0x0800fd9c                        __exidx_start = .
+.ARM            0x0800fe2c        0x8
+                0x0800fe2c                        . = ALIGN (0x4)
+                0x0800fe2c                        __exidx_start = .
  *(.ARM.exidx*)
- .ARM.exidx     0x0800fd9c        0x8 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-strlen.o)
-                0x0800fda4                        __exidx_end = .
-                0x0800fda4                        . = ALIGN (0x4)
+ .ARM.exidx     0x0800fe2c        0x8 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libg_nano.a(libc_a-strlen.o)
+                0x0800fe34                        __exidx_end = .
+                0x0800fe34                        . = ALIGN (0x4)
 
-.preinit_array  0x0800fda4        0x0
-                0x0800fda4                        . = ALIGN (0x4)
-                0x0800fda4                        PROVIDE (__preinit_array_start = .)
+.preinit_array  0x0800fe34        0x0
+                0x0800fe34                        . = ALIGN (0x4)
+                0x0800fe34                        PROVIDE (__preinit_array_start = .)
  *(.preinit_array*)
-                0x0800fda4                        PROVIDE (__preinit_array_end = .)
-                0x0800fda4                        . = ALIGN (0x4)
+                0x0800fe34                        PROVIDE (__preinit_array_end = .)
+                0x0800fe34                        . = ALIGN (0x4)
 
-.init_array     0x0800fda4        0x8
-                0x0800fda4                        . = ALIGN (0x4)
-                0x0800fda4                        PROVIDE (__init_array_start = .)
+.init_array     0x0800fe34        0x8
+                0x0800fe34                        . = ALIGN (0x4)
+                0x0800fe34                        PROVIDE (__init_array_start = .)
  *(SORT_BY_NAME(.init_array.*))
  *(.init_array*)
- .init_array    0x0800fda4        0x4 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtbegin.o
- .init_array    0x0800fda8        0x4 CMakeFiles/STM32_CyberDog.dir/usercode/src/arena.cpp.obj
-                0x0800fdac                        PROVIDE (__init_array_end = .)
-                0x0800fdac                        . = ALIGN (0x4)
+ .init_array    0x0800fe34        0x4 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtbegin.o
+ .init_array    0x0800fe38        0x4 CMakeFiles/STM32_CyberDog.dir/usercode/src/arena.cpp.obj
+                0x0800fe3c                        PROVIDE (__init_array_end = .)
+                0x0800fe3c                        . = ALIGN (0x4)
 
-.fini_array     0x0800fdac        0x4
-                0x0800fdac                        . = ALIGN (0x4)
+.fini_array     0x0800fe3c        0x4
+                0x0800fe3c                        . = ALIGN (0x4)
                 [!provide]                        PROVIDE (__fini_array_start = .)
  *(SORT_BY_NAME(.fini_array.*))
  *(.fini_array*)
- .fini_array    0x0800fdac        0x4 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtbegin.o
+ .fini_array    0x0800fe3c        0x4 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtbegin.o
                 [!provide]                        PROVIDE (__fini_array_end = .)
-                0x0800fdb0                        . = ALIGN (0x4)
-                0x0800fdb0                        _sidata = LOADADDR (.data)
+                0x0800fe40                        . = ALIGN (0x4)
+                0x0800fe40                        _sidata = LOADADDR (.data)
 
-.rel.dyn        0x0800fdb0        0x0
- .rel.iplt      0x0800fdb0        0x0 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtbegin.o
+.rel.dyn        0x0800fe40        0x0
+ .rel.iplt      0x0800fe40        0x0 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtbegin.o
 
-.data           0x20000000       0x84 load address 0x0800fdb0
+.data           0x20000000       0x84 load address 0x0800fe40
                 0x20000000                        . = ALIGN (0x4)
                 0x20000000                        _sdata = .
  *(.data)
@@ -7757,16 +7759,16 @@ LOAD D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtn.o
                 0x20000084                        . = ALIGN (0x4)
 
 .tm_clone_table
-                0x20000084        0x0 load address 0x0800fe34
+                0x20000084        0x0 load address 0x0800fec4
  .tm_clone_table
                 0x20000084        0x0 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtbegin.o
  .tm_clone_table
                 0x20000084        0x0 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtend.o
 
-.igot.plt       0x20000084        0x0 load address 0x0800fe34
+.igot.plt       0x20000084        0x0 load address 0x0800fec4
  .igot.plt      0x20000084        0x0 D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtbegin.o
 
-.tdata          0x20000084        0x0 load address 0x0800fe34
+.tdata          0x20000084        0x0 load address 0x0800fec4
  *(.tdata .tdata.* .gnu.linkonce.td.*)
                 0x20000084                        . = ALIGN (0x4)
                 0x20000084                        _edata = .
@@ -7783,7 +7785,7 @@ LOAD D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtn.o
                 [!provide]                        PROVIDE (__data_source_end = __tdata_source_end)
                 [!provide]                        PROVIDE (__data_source_size = (__data_source_end - __data_source))
 
-.tbss           0x20000084        0x0 load address 0x0800fe34
+.tbss           0x20000084        0x0 load address 0x0800fec4
                 0x20000084                        _sbss = .
                 0x20000084                        __bss_start__ = _sbss
  *(.tbss .tbss.*)
@@ -7800,7 +7802,7 @@ LOAD D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtn.o
                 [!provide]                        PROVIDE (__arm32_tls_tcb_offset = MAX (0x8, __tls_align))
                 [!provide]                        PROVIDE (__arm64_tls_tcb_offset = MAX (0x10, __tls_align))
 
-.bss            0x20000084     0x3cb4 load address 0x0800fe34
+.bss            0x20000084     0x3cb4 load address 0x0800fec4
  *(.bss)
  *(.bss*)
  .bss.completed.1
@@ -7978,7 +7980,7 @@ LOAD D:/14.3 rel1/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtn.o
                 [!provide]                        PROVIDE (__bss_size = (__bss_end - __bss_start))
 
 ._user_heap_stack
-                0x20003d38      0x600 load address 0x0800fe34
+                0x20003d38      0x600 load address 0x0800fec4
                 0x20003d38                        . = ALIGN (0x8)
                 [!provide]                        PROVIDE (end = .)
                 0x20003d38                        PROVIDE (_end = .)
@@ -8225,7 +8227,7 @@ LOAD linker stubs
  .comment       0x00000046       0x47 CMakeFiles/STM32_CyberDog.dir/usercode/src/ssd1306.cpp.obj
  .comment       0x00000046       0x47 CMakeFiles/STM32_CyberDog.dir/usercode/src/su03t.cpp.obj
 
-.debug_info     0x00000000    0x2daaf
+.debug_info     0x00000000    0x2dad0
  .debug_info    0x00000000      0x222 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Core/Src/system_stm32f1xx.c.obj
  .debug_info    0x00000222     0x2959 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
  .debug_info    0x00002b7b     0x149b cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c.obj
@@ -8257,14 +8259,14 @@ LOAD linker stubs
  .debug_info    0x0001a465      0x168 CMakeFiles/STM32_CyberDog.dir/Core/Src/sysmem.c.obj
  .debug_info    0x0001a5cd      0x6b4 CMakeFiles/STM32_CyberDog.dir/Core/Src/syscalls.c.obj
  .debug_info    0x0001ac81       0x30 CMakeFiles/STM32_CyberDog.dir/startup_stm32f103xb.s.obj
- .debug_info    0x0001acb1     0x5741 CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
- .debug_info    0x000203f2      0xfe2 CMakeFiles/STM32_CyberDog.dir/usercode/src/arena.cpp.obj
- .debug_info    0x000213d4     0x363f CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
- .debug_info    0x00024a13     0x26cb CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
- .debug_info    0x000270de      0xd87 CMakeFiles/STM32_CyberDog.dir/usercode/src/mpu6050.cpp.obj
- .debug_info    0x00027e65      0xe18 CMakeFiles/STM32_CyberDog.dir/usercode/src/pca9685.cpp.obj
- .debug_info    0x00028c7d     0x1660 CMakeFiles/STM32_CyberDog.dir/usercode/src/ssd1306.cpp.obj
- .debug_info    0x0002a2dd     0x37d2 CMakeFiles/STM32_CyberDog.dir/usercode/src/su03t.cpp.obj
+ .debug_info    0x0001acb1     0x5762 CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
+ .debug_info    0x00020413      0xfe2 CMakeFiles/STM32_CyberDog.dir/usercode/src/arena.cpp.obj
+ .debug_info    0x000213f5     0x363f CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+ .debug_info    0x00024a34     0x26cb CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
+ .debug_info    0x000270ff      0xd87 CMakeFiles/STM32_CyberDog.dir/usercode/src/mpu6050.cpp.obj
+ .debug_info    0x00027e86      0xe18 CMakeFiles/STM32_CyberDog.dir/usercode/src/pca9685.cpp.obj
+ .debug_info    0x00028c9e     0x1660 CMakeFiles/STM32_CyberDog.dir/usercode/src/ssd1306.cpp.obj
+ .debug_info    0x0002a2fe     0x37d2 CMakeFiles/STM32_CyberDog.dir/usercode/src/su03t.cpp.obj
 
 .debug_abbrev   0x00000000     0x6c52
  .debug_abbrev  0x00000000      0x13f cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Core/Src/system_stm32f1xx.c.obj
@@ -8388,7 +8390,7 @@ LOAD linker stubs
                 0x00001dc0      0x1a0 CMakeFiles/STM32_CyberDog.dir/usercode/src/su03t.cpp.obj
 
 .debug_rnglists
-                0x00000000     0x1842
+                0x00000000     0x1843
  .debug_rnglists
                 0x00000000       0x1a cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Core/Src/system_stm32f1xx.c.obj
  .debug_rnglists
@@ -8458,15 +8460,15 @@ LOAD linker stubs
  .debug_rnglists
                 0x00001496      0x119 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
  .debug_rnglists
-                0x000015af       0x92 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
+                0x000015af       0x93 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
  .debug_rnglists
-                0x00001641       0x1b CMakeFiles/STM32_CyberDog.dir/usercode/src/mpu6050.cpp.obj
+                0x00001642       0x1b CMakeFiles/STM32_CyberDog.dir/usercode/src/mpu6050.cpp.obj
  .debug_rnglists
-                0x0000165c       0x4e CMakeFiles/STM32_CyberDog.dir/usercode/src/pca9685.cpp.obj
+                0x0000165d       0x4e CMakeFiles/STM32_CyberDog.dir/usercode/src/pca9685.cpp.obj
  .debug_rnglists
-                0x000016aa       0x61 CMakeFiles/STM32_CyberDog.dir/usercode/src/ssd1306.cpp.obj
+                0x000016ab       0x61 CMakeFiles/STM32_CyberDog.dir/usercode/src/ssd1306.cpp.obj
  .debug_rnglists
-                0x0000170b      0x137 CMakeFiles/STM32_CyberDog.dir/usercode/src/su03t.cpp.obj
+                0x0000170c      0x137 CMakeFiles/STM32_CyberDog.dir/usercode/src/su03t.cpp.obj
 
 .debug_macro    0x00000000    0x299ce
  .debug_macro   0x00000000      0x1c1 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Core/Src/system_stm32f1xx.c.obj
@@ -8673,7 +8675,7 @@ LOAD linker stubs
  .debug_macro   0x00029458       0xde CMakeFiles/STM32_CyberDog.dir/usercode/src/ssd1306.cpp.obj
  .debug_macro   0x00029536      0x498 CMakeFiles/STM32_CyberDog.dir/usercode/src/su03t.cpp.obj
 
-.debug_line     0x00000000    0x21774
+.debug_line     0x00000000    0x217b9
  .debug_line    0x00000000      0x59e cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Core/Src/system_stm32f1xx.c.obj
  .debug_line    0x0000059e     0x32bd cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
  .debug_line    0x0000385b     0x1693 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c.obj
@@ -8705,56 +8707,56 @@ LOAD linker stubs
  .debug_line    0x0001955a      0x228 CMakeFiles/STM32_CyberDog.dir/Core/Src/sysmem.c.obj
  .debug_line    0x00019782      0x54c CMakeFiles/STM32_CyberDog.dir/Core/Src/syscalls.c.obj
  .debug_line    0x00019cce       0x78 CMakeFiles/STM32_CyberDog.dir/startup_stm32f103xb.s.obj
- .debug_line    0x00019d46     0x13df CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
- .debug_line    0x0001b125      0x45a CMakeFiles/STM32_CyberDog.dir/usercode/src/arena.cpp.obj
- .debug_line    0x0001b57f     0x1390 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
- .debug_line    0x0001c90f     0x13e6 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
- .debug_line    0x0001dcf5      0xcef CMakeFiles/STM32_CyberDog.dir/usercode/src/mpu6050.cpp.obj
- .debug_line    0x0001e9e4      0xd62 CMakeFiles/STM32_CyberDog.dir/usercode/src/pca9685.cpp.obj
- .debug_line    0x0001f746      0xc6f CMakeFiles/STM32_CyberDog.dir/usercode/src/ssd1306.cpp.obj
- .debug_line    0x000203b5     0x13bf CMakeFiles/STM32_CyberDog.dir/usercode/src/su03t.cpp.obj
+ .debug_line    0x00019d46     0x13e9 CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
+ .debug_line    0x0001b12f      0x45a CMakeFiles/STM32_CyberDog.dir/usercode/src/arena.cpp.obj
+ .debug_line    0x0001b589     0x1390 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+ .debug_line    0x0001c919     0x1421 CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
+ .debug_line    0x0001dd3a      0xcef CMakeFiles/STM32_CyberDog.dir/usercode/src/mpu6050.cpp.obj
+ .debug_line    0x0001ea29      0xd62 CMakeFiles/STM32_CyberDog.dir/usercode/src/pca9685.cpp.obj
+ .debug_line    0x0001f78b      0xc6f CMakeFiles/STM32_CyberDog.dir/usercode/src/ssd1306.cpp.obj
+ .debug_line    0x000203fa     0x13bf CMakeFiles/STM32_CyberDog.dir/usercode/src/su03t.cpp.obj
 
-.debug_str      0x00000000    0xad21a
- .debug_str     0x00000000    0xad21a cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Core/Src/system_stm32f1xx.c.obj
+.debug_str      0x00000000    0xad231
+ .debug_str     0x00000000    0xad231 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Core/Src/system_stm32f1xx.c.obj
                               0x89adf (size before relaxing)
- .debug_str     0x000ad21a    0x8af10 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
- .debug_str     0x000ad21a    0x8a71c cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c.obj
- .debug_str     0x000ad21a    0x8a1c3 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_adc.c.obj
- .debug_str     0x000ad21a    0x8a212 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.obj
- .debug_str     0x000ad21a    0x89f0e cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj
- .debug_str     0x000ad21a    0x89c5e cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c.obj
- .debug_str     0x000ad21a    0x89e65 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.obj
- .debug_str     0x000ad21a    0x89e88 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c.obj
- .debug_str     0x000ad21a    0x8a15e cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.obj
- .debug_str     0x000ad21a    0x8aba6 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.c.obj
- .debug_str     0x000ad21a    0x8a88a cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.obj
- .debug_str     0x000ad21a     0xa48a cmake/stm32cubemx/CMakeFiles/FreeRTOS.dir/__/__/Middlewares/Third_Party/FreeRTOS/Source/list.c.obj
- .debug_str     0x000ad21a     0xbf7a cmake/stm32cubemx/CMakeFiles/FreeRTOS.dir/__/__/Middlewares/Third_Party/FreeRTOS/Source/queue.c.obj
- .debug_str     0x000ad21a     0xca37 cmake/stm32cubemx/CMakeFiles/FreeRTOS.dir/__/__/Middlewares/Third_Party/FreeRTOS/Source/tasks.c.obj
- .debug_str     0x000ad21a     0xc4fc cmake/stm32cubemx/CMakeFiles/FreeRTOS.dir/__/__/Middlewares/Third_Party/FreeRTOS/Source/timers.c.obj
- .debug_str     0x000ad21a    0x94017 cmake/stm32cubemx/CMakeFiles/FreeRTOS.dir/__/__/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.c.obj
- .debug_str     0x000ad21a     0xadcc cmake/stm32cubemx/CMakeFiles/FreeRTOS.dir/__/__/Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.c.obj
- .debug_str     0x000ad21a     0x8586 cmake/stm32cubemx/CMakeFiles/FreeRTOS.dir/__/__/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3/port.c.obj
- .debug_str     0x000ad21a    0x8eafc CMakeFiles/STM32_CyberDog.dir/Core/Src/main.c.obj
- .debug_str     0x000ad21a    0x89b2c CMakeFiles/STM32_CyberDog.dir/Core/Src/gpio.c.obj
- .debug_str     0x000ad21a    0x8e79f CMakeFiles/STM32_CyberDog.dir/Core/Src/freertos.c.obj
- .debug_str     0x000ad21a    0x89ed1 CMakeFiles/STM32_CyberDog.dir/Core/Src/adc.c.obj
- .debug_str     0x000ad21a    0x89fe6 CMakeFiles/STM32_CyberDog.dir/Core/Src/i2c.c.obj
- .debug_str     0x000ad21a    0x8a382 CMakeFiles/STM32_CyberDog.dir/Core/Src/usart.c.obj
- .debug_str     0x000ad21a    0x8a2c4 CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_it.c.obj
- .debug_str     0x000ad21a    0x89da8 CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_hal_msp.c.obj
- .debug_str     0x000ad21a    0x8a3a7 CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_hal_timebase_tim.c.obj
- .debug_str     0x000ad21a     0x70ab CMakeFiles/STM32_CyberDog.dir/Core/Src/sysmem.c.obj
- .debug_str     0x000ad21a     0x93a6 CMakeFiles/STM32_CyberDog.dir/Core/Src/syscalls.c.obj
- .debug_str     0x000ad21a       0x72 CMakeFiles/STM32_CyberDog.dir/startup_stm32f103xb.s.obj
- .debug_str     0x000ad21a    0x9bbe8 CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
- .debug_str     0x000ad21a     0xc6bd CMakeFiles/STM32_CyberDog.dir/usercode/src/arena.cpp.obj
- .debug_str     0x000ad21a    0x96dd1 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
- .debug_str     0x000ad21a    0x97f0d CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
- .debug_str     0x000ad21a    0x9677d CMakeFiles/STM32_CyberDog.dir/usercode/src/mpu6050.cpp.obj
- .debug_str     0x000ad21a    0x9667b CMakeFiles/STM32_CyberDog.dir/usercode/src/pca9685.cpp.obj
- .debug_str     0x000ad21a    0x9221d CMakeFiles/STM32_CyberDog.dir/usercode/src/ssd1306.cpp.obj
- .debug_str     0x000ad21a    0x9434f CMakeFiles/STM32_CyberDog.dir/usercode/src/su03t.cpp.obj
+ .debug_str     0x000ad231    0x8af10 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj
+ .debug_str     0x000ad231    0x8a71c cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c.obj
+ .debug_str     0x000ad231    0x8a1c3 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_adc.c.obj
+ .debug_str     0x000ad231    0x8a212 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.obj
+ .debug_str     0x000ad231    0x89f0e cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj
+ .debug_str     0x000ad231    0x89c5e cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c.obj
+ .debug_str     0x000ad231    0x89e65 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.obj
+ .debug_str     0x000ad231    0x89e88 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c.obj
+ .debug_str     0x000ad231    0x8a15e cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.obj
+ .debug_str     0x000ad231    0x8aba6 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.c.obj
+ .debug_str     0x000ad231    0x8a88a cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.obj
+ .debug_str     0x000ad231     0xa48a cmake/stm32cubemx/CMakeFiles/FreeRTOS.dir/__/__/Middlewares/Third_Party/FreeRTOS/Source/list.c.obj
+ .debug_str     0x000ad231     0xbf7a cmake/stm32cubemx/CMakeFiles/FreeRTOS.dir/__/__/Middlewares/Third_Party/FreeRTOS/Source/queue.c.obj
+ .debug_str     0x000ad231     0xca37 cmake/stm32cubemx/CMakeFiles/FreeRTOS.dir/__/__/Middlewares/Third_Party/FreeRTOS/Source/tasks.c.obj
+ .debug_str     0x000ad231     0xc4fc cmake/stm32cubemx/CMakeFiles/FreeRTOS.dir/__/__/Middlewares/Third_Party/FreeRTOS/Source/timers.c.obj
+ .debug_str     0x000ad231    0x94017 cmake/stm32cubemx/CMakeFiles/FreeRTOS.dir/__/__/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.c.obj
+ .debug_str     0x000ad231     0xadcc cmake/stm32cubemx/CMakeFiles/FreeRTOS.dir/__/__/Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.c.obj
+ .debug_str     0x000ad231     0x8586 cmake/stm32cubemx/CMakeFiles/FreeRTOS.dir/__/__/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3/port.c.obj
+ .debug_str     0x000ad231    0x8eafc CMakeFiles/STM32_CyberDog.dir/Core/Src/main.c.obj
+ .debug_str     0x000ad231    0x89b2c CMakeFiles/STM32_CyberDog.dir/Core/Src/gpio.c.obj
+ .debug_str     0x000ad231    0x8e79f CMakeFiles/STM32_CyberDog.dir/Core/Src/freertos.c.obj
+ .debug_str     0x000ad231    0x89ed1 CMakeFiles/STM32_CyberDog.dir/Core/Src/adc.c.obj
+ .debug_str     0x000ad231    0x89fe6 CMakeFiles/STM32_CyberDog.dir/Core/Src/i2c.c.obj
+ .debug_str     0x000ad231    0x8a382 CMakeFiles/STM32_CyberDog.dir/Core/Src/usart.c.obj
+ .debug_str     0x000ad231    0x8a2c4 CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_it.c.obj
+ .debug_str     0x000ad231    0x89da8 CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_hal_msp.c.obj
+ .debug_str     0x000ad231    0x8a3a7 CMakeFiles/STM32_CyberDog.dir/Core/Src/stm32f1xx_hal_timebase_tim.c.obj
+ .debug_str     0x000ad231     0x70ab CMakeFiles/STM32_CyberDog.dir/Core/Src/sysmem.c.obj
+ .debug_str     0x000ad231     0x93a6 CMakeFiles/STM32_CyberDog.dir/Core/Src/syscalls.c.obj
+ .debug_str     0x000ad231       0x72 CMakeFiles/STM32_CyberDog.dir/startup_stm32f103xb.s.obj
+ .debug_str     0x000ad231    0x9bbff CMakeFiles/STM32_CyberDog.dir/usercode/src/app.cpp.obj
+ .debug_str     0x000ad231     0xc6bd CMakeFiles/STM32_CyberDog.dir/usercode/src/arena.cpp.obj
+ .debug_str     0x000ad231    0x96dd1 CMakeFiles/STM32_CyberDog.dir/usercode/src/hc05.cpp.obj
+ .debug_str     0x000ad231    0x97f0d CMakeFiles/STM32_CyberDog.dir/usercode/src/motion_4dof.cpp.obj
+ .debug_str     0x000ad231    0x9677d CMakeFiles/STM32_CyberDog.dir/usercode/src/mpu6050.cpp.obj
+ .debug_str     0x000ad231    0x9667b CMakeFiles/STM32_CyberDog.dir/usercode/src/pca9685.cpp.obj
+ .debug_str     0x000ad231    0x9221d CMakeFiles/STM32_CyberDog.dir/usercode/src/ssd1306.cpp.obj
+ .debug_str     0x000ad231    0x9434f CMakeFiles/STM32_CyberDog.dir/usercode/src/su03t.cpp.obj
 
 .debug_frame    0x00000000     0x91f4
  .debug_frame   0x00000000       0x58 cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir/__/__/Core/Src/system_stm32f1xx.c.obj

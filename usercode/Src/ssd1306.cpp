@@ -113,6 +113,7 @@ void SSD1306::Update()
 {
     if (!device_ready)
         return;
+    
     // 【核心改造】：把获取锁的动作，放到循环的内部！
     for (uint8_t i = 0; i < 8; i++)
     {

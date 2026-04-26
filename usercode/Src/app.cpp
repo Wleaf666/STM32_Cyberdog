@@ -556,8 +556,7 @@ void task_tail_control(void *argument)
             pca9685->setAngle(LegChanel::Tail, 90.0f + tail_offset);
 
             // 20ms 一帧 (50FPS)，保证尾巴摇起来像真狗一样顺滑
-            osDelay(20);
-
+            osDelay(50);
         }
     }
 }
@@ -577,12 +576,18 @@ void task_system_init(void *argument)
 
     // 初始化完成后，再点火启动所有干活的线程
     osThreadAttr_t default_attr = {.priority = osPriorityNormal};
+    osThreadAttr_t display_attr = {.priority = osPriorityNormal};
+    display_attr.stack_size = 256 * 4;
+
+    // 3. 给需要做浮点 sin() 运算的尾巴和运动任务更大的栈
+    osThreadAttr_t math_attr = {.priority = osPriorityNormal};
+    math_attr.stack_size = 256 * 4;
     osThreadNew(task_bluetooth_test, &test_count, &default_attr);
-    osThreadNew(task_display, NULL, &default_attr);
+    osThreadNew(task_display, NULL, &display_attr);
     osThreadNew(task_Mpu6050, &test_count1, &default_attr);
     osThreadNew(task_voice_handler, NULL, &default_attr);
-    osThreadNew(task_motion_control, NULL, &default_attr);
-    osThreadNew(task_tail_control, NULL, &default_attr);
+    osThreadNew(task_motion_control, NULL, &math_attr);
+    osThreadNew(task_tail_control, NULL, &math_attr);
 
     // 初始化任务完成使命，自杀释放内存
     osThreadExit();
