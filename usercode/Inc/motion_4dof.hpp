@@ -1,7 +1,7 @@
 #pragma once
 #include "pca9685.hpp"
 #include <math.h>
-#include "su03t.hpp" // 引用 VoiceCmd 定义
+#include "su03t.hpp" 
 #include "cmsis_os2.h"
 
 struct Leg4DOF
@@ -59,15 +59,5 @@ private:
     const float LH_F = 90 - 25, LH_B = 90 + 25;
     const float RH_F = 90 + 25, RH_B = 90 - 25;
 
-    // 高级矩阵引擎：支持动态极性覆盖
-    // void matrixEngine(const int (*gait)[4], int phases, int repeats,
-    //                   float lf_s, float lf_e, float rf_s, float rf_e,
-    //                   float lh_s, float lh_e, float rh_s, float rh_e);
-
-
-
-    // ==========================================
-    // 静态姿态库 (IK 基础姿态)
-    // ==========================================
     
 };

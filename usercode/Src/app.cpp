@@ -9,30 +9,26 @@
 #include "stdio.h"
 #include "su03t.hpp"
 #include "pca9685.hpp"
-#include "motion_4dof.hpp" // 【新增】引入步态控制库
-#include "adc.h"           // 确保你的 CubeMX 生成了 adc.h
-#include <cmath>
+#include "motion_4dof.hpp" 
+#include "adc.h"           
 
 volatile VoiceCmd global_dog_action = VoiceCmd::WAKE_UP;
+char last_voice_cmd[32] = "Voice: None";
 
-osMessageQueueId_t my_hc05_queue;
+osMessageQueueId_t my_hc05_queue=nullptr;
 osMessageQueueId_t my_su03t_queue = nullptr;
 
-// 以后所有的 C++ 头文件（比如你的 static_arena.hpp）都在这里尽情 include！
-uint32_t test_count = 0;
-uint32_t test_count1 = 0;
-char last_voice_cmd[32] = "Voice: None";
 
 osMutexId_t i2c1_mutex = nullptr;
 osMutexId_t uart_mutex = nullptr;
-osMutexId_t uart2_mutex = nullptr; // 给串口2单独开一把锁
+osMutexId_t uart2_mutex = nullptr; 
 
 MPU6050 *dogImu = nullptr;
 HC05 *blueTooth = nullptr;
 SSD1306 *oled = nullptr;
 SU03T *voiceModule = nullptr;
 PCA9685 *pca9685 = nullptr;
-Motion4DOF *motionBrain = nullptr; // 【新增】声明运动小脑指针
+Motion4DOF *motionBrain = nullptr; 
 
 uint8_t MapCmdToHex(VoiceCmd cmd)
 {
@@ -118,23 +114,38 @@ extern "C" void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
 
 uint8_t GetBatteryPercentage()
 {
-    // 启动 ADC 采样
+    // 用 uint32_t 代替 float，单位全部转换为 毫伏 (mV)
+    static uint32_t filtered_mv = 0;
+    static bool is_first_read = true;
+
     HAL_ADC_Start(&hadc1);
     if (HAL_ADC_PollForConversion(&hadc1, 10) == HAL_OK)
     {
         uint32_t raw_adc = HAL_ADC_GetValue(&hadc1);
 
-        // 【极其重要】：你测的是 7.4V，单片机只能测 3.3V 以内。
-        // 你必定使用了电阻分压。假设你用了 10k 和 2k 的电阻分压，比例就是 (10+2)/2 = 6.0倍。
-        // ⚠️ 请把这里的 6.0f 替换成你真实的硬件分压倍数！
-        float divide_ratio = 6.0f;
+        // 【优化】：用整数乘除代替浮点运算
+        // 原始浮点计算: (raw_adc / 4096.0) * 3.3 * 6.0 = raw_adc * 19.8 / 4096
+        // 整数毫伏计算: raw_adc * 19800 / 4096
+        uint32_t current_mv = (raw_adc * 19800) / 4096;
 
-        float voltage = (raw_adc / 4096.0f) * 3.3f * divide_ratio;
+        // 整数版低通滤波 (系数 0.95 和 0.05 放大 100 倍计算)
+        if (is_first_read)
+        {
+            filtered_mv = current_mv;
+            is_first_read = false;
+        }
+        else
+        {
+            // 公式：(历史值 * 95 + 当前值 * 5) / 100
+            filtered_mv = (filtered_mv * 95 + current_mv * 5) / 100;
+        }
 
-        // 2S 锂电池：满电约 8.4V，没电保护约 6.4V
-        float percent_f = (voltage - 6.4f) / (8.4f - 6.4f) * 100.0f;
+        // 计算电量百分比
+        // 满电 8.4V = 8400mV，没电 6.4V = 6400mV
+        // 原始浮点: (V - 6.4) / 2.0 * 100
+        // 整数化简: (mV - 6400) * 100 / (8400 - 6400) = (mV - 6400) / 20
+        int percent = (int)(filtered_mv - 6400) / 20;
 
-        int percent = (int)percent_f;
         if (percent > 100)
             percent = 100;
         if (percent < 0)
@@ -142,7 +153,7 @@ uint8_t GetBatteryPercentage()
 
         return (uint8_t)percent;
     }
-    return 0; // 读取失败默认返回0
+    return 0;
 }
 
 // ==========================================
@@ -151,7 +162,8 @@ uint8_t GetBatteryPercentage()
 void DrawDynamicFace(VoiceCmd cmd, uint32_t tick)
 {
     // 计算全局平滑悬浮偏移量 (利用正弦波产生呼吸感，周期约1.2秒，上下浮动3像素)
-    int y_breathe = (int)(sin(tick / 200.0f) * 3.0f);
+    int phase = tick % 1200;
+    int y_breathe = (phase < 600) ? (phase / 100 - 3) : ((1200 - phase) / 100 - 3);
 
     // 计算全局眨眼触发器 (每隔 4000 毫秒，触发一次 150 毫秒的闭眼)
     bool is_blinking = (tick % 4000) < 150;
@@ -314,7 +326,6 @@ void task_Mpu6050(void *argument)
     for (;;)
     {
         (*(uint32_t *)argument)++;
-        // HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
         dogImu->Update();
         osDelay(20);
     }
@@ -327,10 +338,7 @@ void task_bluetooth_test(void *argument)
         if (blueTooth->getCommand(cmd))
         {
             // 【语音接轨】：收到手机指令时，让语音模块“滴”一声作为确认反馈（需确保SU03T固件支持该串口指令）
-            // voiceModule->playVoice(VoicePlay::BEEP);
-
-            // 在 OLED 屏幕上同步显示蓝牙发来的十六进制指令，最高优先级覆盖语音字符
-            sprintf(last_voice_cmd, "BT: CMD %02X", cmd.cmd_type);
+            voiceModule->playVoice(VoicePlay::BEEP);
 
             // 【全动作精确映射】将手机 Hex 控制码完全匹配到系统的 VoiceCmd 枚举
             switch (cmd.cmd_type)
@@ -457,16 +465,20 @@ void task_display(void *argument)
         // 获取系统运行毫秒数，驱动表情动画
         uint32_t current_tick = osKernelGetTickCount();
 
-        // 【核心】：渲染动态表情（包括待机、运动、眨眼、睡觉动画）
+        // 渲染动态表情
         DrawDynamicFace(global_dog_action, current_tick);
 
-        // 【核心】：右上角电量显示
+        // ==========================================
+        // 【核心修改】：左上角平滑电量显示
+        // ==========================================
         uint8_t bat_percent = GetBatteryPercentage();
-        oled->DrawBattery(104, 0, bat_percent); // 画电池图标
-        sprintf(text_buffer, "%d%%", bat_percent);
-        oled->DrawString(106, 12, text_buffer); // 显示百分比数字
 
-        // --- 已彻底删除：左下角的 P: R: 仪表盘和所有指令文字显示 ---
+        // 坐标修改为 X=0, Y=0 (屏幕极左上角)
+        oled->DrawBattery(0, 0, bat_percent);
+
+        // 坐标修改为 X=2, Y=12 (在电池图标正下方居中显示文字)
+        sprintf(text_buffer, "%d%%", bat_percent);
+        oled->DrawString(2, 12, text_buffer);
 
         oled->Update();
         osDelay(50); // 维持 20FPS 的丝滑刷新率
@@ -547,11 +559,9 @@ void task_tail_control(void *argument)
         {
             uint32_t tick = osKernelGetTickCount();
 
-            // ==========================================
-            // 【精确控速区】：1秒转一个来回
-            // 算法：sin(当前秒数 * 2π) * 摆动幅度
-            // ==========================================
-            float tail_offset = sin((tick / 1000.0f) * 6.28318f) * 35.0f;
+      
+            int phase = tick % 1000;
+            float tail_offset = (phase < 500) ? (phase * 70.0f / 500.0f - 35.0f) : ((1000 - phase) * 70.0f / 500.0f - 35.0f);
 
             pca9685->setAngle(LegChanel::Tail, 90.0f + tail_offset);
 
@@ -582,9 +592,9 @@ void task_system_init(void *argument)
     // 3. 给需要做浮点 sin() 运算的尾巴和运动任务更大的栈
     osThreadAttr_t math_attr = {.priority = osPriorityNormal};
     math_attr.stack_size = 256 * 4;
-    osThreadNew(task_bluetooth_test, &test_count, &default_attr);
+    osThreadNew(task_bluetooth_test, NULL, &default_attr);
     osThreadNew(task_display, NULL, &display_attr);
-    osThreadNew(task_Mpu6050, &test_count1, &default_attr);
+    osThreadNew(task_Mpu6050, NULL, &default_attr);
     osThreadNew(task_voice_handler, NULL, &default_attr);
     osThreadNew(task_motion_control, NULL, &math_attr);
     osThreadNew(task_tail_control, NULL, &math_attr);
@@ -607,32 +617,11 @@ void App_Main()
     dogImu = new MPU6050(&hi2c1, i2c1_mutex);
     blueTooth = new HC05(&huart1, uart_mutex);
     pca9685 = new PCA9685(&hi2c1, 0x80, i2c1_mutex);
-    motionBrain = new Motion4DOF(pca9685); // 【新增】实例化小脑，把肌肉(pca9685)传进去
+    motionBrain = new Motion4DOF(pca9685); 
 
     my_hc05_queue = osMessageQueueNew(64, sizeof(uint8_t), NULL);
     my_su03t_queue = osMessageQueueNew(32, sizeof(uint8_t), NULL);
 
-    // oled->Init();
-    // dogImu->Init();
-    // blueTooth->Init(my_hc05_queue);
-    // voiceModule->Init(my_su03t_queue);
-    // pca9685->Init();
-    // motionBrain->Init(); // 【新增】初始化步态相位参数
-
-    // osThreadAttr_t task_bluetooth_test_attr = {.priority = osPriorityNormal};
-    // osThreadAttr_t task_Mpu6050_attr = {.priority = osPriorityNormal};
-    // osThreadAttr_t task_display_attr = {.priority = osPriorityNormal};
-    // osThreadAttr_t task_voice_attr = {.priority = osPriorityNormal};
-
-    // osThreadAttr_t task_motion_attr = {.priority = osPriorityNormal};
-
-    // osThreadNew(task_bluetooth_test, &test_count, &task_bluetooth_test_attr);
-    // osThreadNew(task_display, NULL, &task_display_attr);
-    // osThreadNew(task_Mpu6050, &test_count1, &task_Mpu6050_attr);
-
-    // osThreadNew(task_voice_handler, NULL, &task_voice_attr);
-
-    // osThreadNew(task_motion_control, NULL, &task_motion_attr);
     osThreadAttr_t init_attr = {.priority = osPriorityHigh};
     osThreadNew(task_system_init, NULL, &init_attr);
 }

@@ -75,12 +75,12 @@ VoiceCmd SU03T::parsePacket(const std::vector<uint8_t> &packet)
 void SU03T::playVoice(VoicePlay audio_id)
 {
     // 组装发送给语音模块的指令包
-    uint8_t txData[3] = {0xAA, static_cast<uint8_t>(audio_id), 0x55};
+    uint8_t txData[4] = {0xAA, 0x01, static_cast<uint8_t>(audio_id), 0x55};
 
     if (txMutex != nullptr && osMutexAcquire(txMutex, osWaitForever) == osOK)
     {
         // 发送给模块，让它说话
-        HAL_UART_Transmit(huart, txData, 3, 100);
+        HAL_UART_Transmit(huart, txData, 4, 100);
         osMutexRelease(txMutex);
     }
 }

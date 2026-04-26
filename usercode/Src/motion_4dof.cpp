@@ -128,29 +128,36 @@ void Motion4DOF::Relax()
 
 void Motion4DOF::actionWalkForward()
 {
-    int speed = 250; // 稍微拉长一点时间，让跳舞的重心摇摆充分发挥物理惯性
+    int speed = 250;
     for (int i = 0; i < 2; i++)
     {
         if (global_dog_action != VoiceCmd::FORWARD)
             return;
 
-        // 【跳舞式前进 - Phase 1】：向左倾斜
-        // 左侧腿外翻压低（撑起重心），右侧腿伸直放松（借着摇摆惯性往前蹭）
+        // 【Phase 1】：左侧向前伸展，右侧直立支撑
         servoDriver->setAngle(LegChanel::FrontLeft, mid - 40);
         servoDriver->setAngle(LegChanel::RearLeft, mid + 40);
         servoDriver->setAngle(LegChanel::FrontRight, mid);
         servoDriver->setAngle(LegChanel::RearRight, mid);
+        // 🚨 核心修复：必须同步更新角度记忆，否则 StandIdle 无法起作用！
+        cur_angles[0] = mid - 40;
+        cur_angles[1] = mid;
+        cur_angles[2] = mid + 40;
+        cur_angles[3] = mid;
         osDelay(speed);
 
         if (global_dog_action != VoiceCmd::FORWARD)
             return;
 
-        // 【跳舞式前进 - Phase 2】：向右倾斜
-        // 右侧腿外翻压低（撑起重心），左侧腿伸直放松（借着摇摆惯性往前蹭）
+        // 【Phase 2】：左侧恢复直立(产生前进推力)，右侧向前伸展
         servoDriver->setAngle(LegChanel::FrontLeft, mid);
         servoDriver->setAngle(LegChanel::RearLeft, mid);
         servoDriver->setAngle(LegChanel::FrontRight, mid + 40);
         servoDriver->setAngle(LegChanel::RearRight, mid - 40);
+        cur_angles[0] = mid;
+        cur_angles[1] = mid + 40;
+        cur_angles[2] = mid;
+        cur_angles[3] = mid - 40;
         osDelay(speed);
     }
 }
@@ -163,23 +170,29 @@ void Motion4DOF::actionWalkBackward()
         if (global_dog_action != VoiceCmd::BACKWARD)
             return;
 
-        // 【跳舞式后退 - Phase 1】：向左倾斜支撑
-        // 同时右侧放松的腿，给一个向后的轻微角度
-        servoDriver->setAngle(LegChanel::FrontLeft, mid - 40);
-        servoDriver->setAngle(LegChanel::RearLeft, mid + 40);
-        servoDriver->setAngle(LegChanel::FrontRight, mid + 20); // 往后拨
-        servoDriver->setAngle(LegChanel::RearRight, mid + 20);
+        // 【Phase 1】：左侧向后伸展，右侧直立支撑
+        servoDriver->setAngle(LegChanel::FrontLeft, mid + 40);
+        servoDriver->setAngle(LegChanel::RearLeft, mid - 40);
+        servoDriver->setAngle(LegChanel::FrontRight, mid);
+        servoDriver->setAngle(LegChanel::RearRight, mid);
+        cur_angles[0] = mid + 40;
+        cur_angles[1] = mid;
+        cur_angles[2] = mid - 40;
+        cur_angles[3] = mid;
         osDelay(speed);
 
         if (global_dog_action != VoiceCmd::BACKWARD)
             return;
 
-        // 【跳舞式后退 - Phase 2】：向右倾斜支撑
-        // 同时左侧放松的腿，给一个向后的轻微角度
-        servoDriver->setAngle(LegChanel::FrontLeft, mid + 20); // 往后拨
-        servoDriver->setAngle(LegChanel::RearLeft, mid + 20);
-        servoDriver->setAngle(LegChanel::FrontRight, mid + 40);
-        servoDriver->setAngle(LegChanel::RearRight, mid - 40);
+        // 【Phase 2】：左侧恢复直立(产生后退推力)，右侧向后伸展
+        servoDriver->setAngle(LegChanel::FrontLeft, mid);
+        servoDriver->setAngle(LegChanel::RearLeft, mid);
+        servoDriver->setAngle(LegChanel::FrontRight, mid - 40);
+        servoDriver->setAngle(LegChanel::RearRight, mid + 40);
+        cur_angles[0] = mid;
+        cur_angles[1] = mid - 40;
+        cur_angles[2] = mid;
+        cur_angles[3] = mid + 40;
         osDelay(speed);
     }
 }
@@ -192,21 +205,29 @@ void Motion4DOF::actionTurnLeft()
         if (global_dog_action != VoiceCmd::TURN_LEFT)
             return;
 
-        // 向左转：左倾支撑时，让右侧悬空的腿向前上跨
-        servoDriver->setAngle(LegChanel::FrontLeft, mid - 40);
-        servoDriver->setAngle(LegChanel::RearLeft, mid + 40);
-        servoDriver->setAngle(LegChanel::FrontRight, mid - 20);
-        servoDriver->setAngle(LegChanel::RearRight, mid + 20);
+        // 【原地左转 Phase 1】：左侧向后伸展 (准备向后划水)
+        servoDriver->setAngle(LegChanel::FrontLeft, mid + 40);
+        servoDriver->setAngle(LegChanel::RearLeft, mid - 40);
+        servoDriver->setAngle(LegChanel::FrontRight, mid);
+        servoDriver->setAngle(LegChanel::RearRight, mid);
+        cur_angles[0] = mid + 40;
+        cur_angles[1] = mid;
+        cur_angles[2] = mid - 40;
+        cur_angles[3] = mid;
         osDelay(speed);
 
         if (global_dog_action != VoiceCmd::TURN_LEFT)
             return;
 
-        // 向左转：右倾支撑时，让左侧悬空的腿向内后收
-        servoDriver->setAngle(LegChanel::FrontLeft, mid + 20);
-        servoDriver->setAngle(LegChanel::RearLeft, mid - 20);
+        // 【原地左转 Phase 2】：左侧收回产生倒车力，右侧向前伸展 (准备向前划水)
+        servoDriver->setAngle(LegChanel::FrontLeft, mid);
+        servoDriver->setAngle(LegChanel::RearLeft, mid);
         servoDriver->setAngle(LegChanel::FrontRight, mid + 40);
         servoDriver->setAngle(LegChanel::RearRight, mid - 40);
+        cur_angles[0] = mid;
+        cur_angles[1] = mid + 40;
+        cur_angles[2] = mid;
+        cur_angles[3] = mid - 40;
         osDelay(speed);
     }
 }
@@ -219,21 +240,29 @@ void Motion4DOF::actionTurnRight()
         if (global_dog_action != VoiceCmd::TURN_RIGHT)
             return;
 
-        // 向右转：左倾支撑时，让右侧悬空的腿向内后收
+        // 【原地右转 Phase 1】：左侧向前伸展 (准备向前划水)
         servoDriver->setAngle(LegChanel::FrontLeft, mid - 40);
         servoDriver->setAngle(LegChanel::RearLeft, mid + 40);
-        servoDriver->setAngle(LegChanel::FrontRight, mid + 20);
-        servoDriver->setAngle(LegChanel::RearRight, mid - 20);
+        servoDriver->setAngle(LegChanel::FrontRight, mid);
+        servoDriver->setAngle(LegChanel::RearRight, mid);
+        cur_angles[0] = mid - 40;
+        cur_angles[1] = mid;
+        cur_angles[2] = mid + 40;
+        cur_angles[3] = mid;
         osDelay(speed);
 
         if (global_dog_action != VoiceCmd::TURN_RIGHT)
             return;
 
-        // 向右转：右倾支撑时，让左侧悬空的腿向前上跨
-        servoDriver->setAngle(LegChanel::FrontLeft, mid - 20);
-        servoDriver->setAngle(LegChanel::RearLeft, mid + 20);
-        servoDriver->setAngle(LegChanel::FrontRight, mid + 40);
-        servoDriver->setAngle(LegChanel::RearRight, mid - 40);
+        // 【原地右转 Phase 2】：左侧收回产生前进力，右侧向后伸展 (准备向后划水)
+        servoDriver->setAngle(LegChanel::FrontLeft, mid);
+        servoDriver->setAngle(LegChanel::RearLeft, mid);
+        servoDriver->setAngle(LegChanel::FrontRight, mid - 40);
+        servoDriver->setAngle(LegChanel::RearRight, mid + 40);
+        cur_angles[0] = mid;
+        cur_angles[1] = mid - 40;
+        cur_angles[2] = mid;
+        cur_angles[3] = mid + 40;
         osDelay(speed);
     }
 }
