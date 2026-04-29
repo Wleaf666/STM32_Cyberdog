@@ -47,7 +47,9 @@ public:
 
 private:
     PCA9685 *servoDriver;
-    float cur_angles[5];
+    float cur_angles[4];
+
+    void applyPosture(float fl, float fr, float rl, float rr);
 
     // 基础运动参数
     const float amp = 25.0f; // 步幅

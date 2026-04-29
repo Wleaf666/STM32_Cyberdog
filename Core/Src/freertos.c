@@ -120,11 +120,6 @@ void StartDefaultTask(void *argument)
   // 2. App_Main 执行完并成功派发了系统初始化任务后，这个默认任务就没有用了
   // 直接销毁它，把内存和 CPU 时间全让给你的机器狗任务！
   osThreadExit();
-  /* Infinite loop */
-  for(;;)
-  {
-    osDelay(1);
-  }
   /* USER CODE END StartDefaultTask */
 }
 

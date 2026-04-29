@@ -6,13 +6,12 @@
 class MPU6050
 {
 private:
-    I2C_HandleTypeDef *hi2c; 
-    uint16_t deviceAddress;  
+    I2C_HandleTypeDef *hi2c;
 
     float accelX, accelY, accelZ;
     float gyroX, gyroY, gyroZ;
 
-    float temptreture;
+    float temperature;
 
     float pitch, roll, yaw;
 
@@ -31,5 +30,5 @@ public:
 
     float GetPitch() const { return pitch; }
     float GetRoll() const { return roll; }
-    float Getyaw() const { return yaw; }
+    float GetYaw() const { return yaw; }
 };

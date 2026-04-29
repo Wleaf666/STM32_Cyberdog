@@ -51,13 +51,9 @@ target_link_directories(${CMAKE_PROJECT_NAME} PRIVATE
 )
 
 # Add sources to executable
-# target_sources(${CMAKE_PROJECT_NAME} PRIVATE
-#     Core/Src/arena.cpp   # 你的静态内存分配器
-#     Core/Src/app.cpp     # 🌟 新建的：机器狗的 C++ 真正大脑
-# )
 
-# 让 CMake 自动把 usercode/src/ 下面所有的 .cpp 文件收集起来，放进 USER_SOURCES 变量里
-file(GLOB_RECURSE USER_SOURCES "usercode/src/*.cpp")
+# 让 CMake 自动把 usercode/Src/ 下面所有的 .cpp 文件收集起来，放进 USER_SOURCES 变量里
+file(GLOB_RECURSE USER_SOURCES "usercode/Src/*.cpp")
 
 # 直接把这一包文件全塞给工程
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE

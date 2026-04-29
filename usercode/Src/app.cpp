@@ -9,26 +9,26 @@
 #include "stdio.h"
 #include "su03t.hpp"
 #include "pca9685.hpp"
-#include "motion_4dof.hpp" 
-#include "adc.h"           
+#include "motion_4dof.hpp"
+#include "adc.h"
 
 volatile VoiceCmd global_dog_action = VoiceCmd::WAKE_UP;
 char last_voice_cmd[32] = "Voice: None";
 
-osMessageQueueId_t my_hc05_queue=nullptr;
+osMessageQueueId_t my_hc05_queue = nullptr;
 osMessageQueueId_t my_su03t_queue = nullptr;
-
 
 osMutexId_t i2c1_mutex = nullptr;
 osMutexId_t uart_mutex = nullptr;
-osMutexId_t uart2_mutex = nullptr; 
+osMutexId_t uart2_mutex = nullptr;
+osMutexId_t dog_action_mutex = nullptr;
 
 MPU6050 *dogImu = nullptr;
 HC05 *blueTooth = nullptr;
 SSD1306 *oled = nullptr;
 SU03T *voiceModule = nullptr;
 PCA9685 *pca9685 = nullptr;
-Motion4DOF *motionBrain = nullptr; 
+Motion4DOF *motionBrain = nullptr;
 
 uint8_t MapCmdToHex(VoiceCmd cmd)
 {
@@ -82,6 +82,38 @@ uint8_t MapCmdToHex(VoiceCmd cmd)
         return 0x35;
     default:
         return 0xFF; // 未知动作不发送
+    }
+}
+
+VoiceCmd HexToVoiceCmd(uint8_t hex)
+{
+    switch (hex)
+    {
+    case 0x01: return VoiceCmd::WAKE_UP;
+    case 0x02: return VoiceCmd::SLEEP;
+    case 0x03: return VoiceCmd::REPORT_BAT;
+    case 0x10: return VoiceCmd::FORWARD;
+    case 0x11: return VoiceCmd::BACKWARD;
+    case 0x12: return VoiceCmd::TURN_LEFT;
+    case 0x13: return VoiceCmd::TURN_RIGHT;
+    case 0x14: return VoiceCmd::SHIFT_LEFT;
+    case 0x15: return VoiceCmd::SHIFT_RIGHT;
+    case 0x16: return VoiceCmd::STOP_MOVE;
+    case 0x20: return VoiceCmd::STAND_UP;
+    case 0x21: return VoiceCmd::SIT_DOWN;
+    case 0x22: return VoiceCmd::LIE_DOWN;
+    case 0x23: return VoiceCmd::LOOK_UP;
+    case 0x24: return VoiceCmd::LOOK_DOWN;
+    case 0x25: return VoiceCmd::LEAN_LEFT;
+    case 0x26: return VoiceCmd::LEAN_RIGHT;
+    case 0x30: return VoiceCmd::SHAKE_HAND_L;
+    case 0x31: return VoiceCmd::SHAKE_HAND_R;
+    case 0x32: return VoiceCmd::GREETING;
+    case 0x33: return VoiceCmd::STRETCH;
+    case 0x34: return VoiceCmd::DANCE;
+    case 0x35: return VoiceCmd::ATTACK_MODE;
+    case 0x00: return VoiceCmd::SIT_DOWN;
+    default:  return VoiceCmd::NONE;
     }
 }
 
@@ -142,14 +174,14 @@ uint8_t GetBatteryPercentage()
 
         // 计算电量百分比
         // 满电 8.4V = 8400mV，没电 6.4V = 6400mV
-        // 原始浮点: (V - 6.4) / 2.0 * 100
-        // 整数化简: (mV - 6400) * 100 / (8400 - 6400) = (mV - 6400) / 20
-        int percent = (int)(filtered_mv - 6400) / 20;
+        // 防止 unsigned 下溢：先做范围检查
+        if (filtered_mv <= 6400)
+            return 0;
+        uint32_t diff_mv = filtered_mv - 6400;
+        int percent = (int)(diff_mv / 20);
 
         if (percent > 100)
             percent = 100;
-        if (percent < 0)
-            percent = 0;
 
         return (uint8_t)percent;
     }
@@ -298,8 +330,11 @@ void task_voice_handler(void *argument)
 
         if (cmd != VoiceCmd::NONE)
         {
-            // 【关键】：把听到的指令直接挂载到全局动作上！
+            if (dog_action_mutex != nullptr)
+                osMutexAcquire(dog_action_mutex, osWaitForever);
             global_dog_action = cmd;
+            if (dog_action_mutex != nullptr)
+                osMutexRelease(dog_action_mutex);
 
             switch (cmd)
             {
@@ -340,114 +375,28 @@ void task_bluetooth_test(void *argument)
             // 【语音接轨】：收到手机指令时，让语音模块“滴”一声作为确认反馈（需确保SU03T固件支持该串口指令）
             voiceModule->playVoice(VoicePlay::BEEP);
 
-            // 【全动作精确映射】将手机 Hex 控制码完全匹配到系统的 VoiceCmd 枚举
-            switch (cmd.cmd_type)
+            VoiceCmd mapped_cmd = HexToVoiceCmd(cmd.cmd_type);
+            if (mapped_cmd != VoiceCmd::NONE)
             {
-            case 0x01:
-                global_dog_action = VoiceCmd::WAKE_UP;
-                blueTooth->sendString("ACK: WAKE_UP\r\n");
-                break;
-            case 0x02:
-                global_dog_action = VoiceCmd::SLEEP;
-                blueTooth->sendString("ACK: SLEEP\r\n");
-                break;
-            case 0x03:
-                global_dog_action = VoiceCmd::REPORT_BAT;
-                char bat_msg[32];
-                sprintf(bat_msg, "Battery: %d%%\r\n", GetBatteryPercentage());
-                blueTooth->sendString(bat_msg);
-                break;
-
-            case 0x10:
-                global_dog_action = VoiceCmd::FORWARD;
-                blueTooth->sendString("ACK: FORWARD\r\n");
-                break;
-            case 0x11:
-                global_dog_action = VoiceCmd::BACKWARD;
-                blueTooth->sendString("ACK: BACKWARD\r\n");
-                break;
-            case 0x12:
-                global_dog_action = VoiceCmd::TURN_LEFT;
-                blueTooth->sendString("ACK: TURN_L\r\n");
-                break;
-            case 0x13:
-                global_dog_action = VoiceCmd::TURN_RIGHT;
-                blueTooth->sendString("ACK: TURN_R\r\n");
-                break;
-            case 0x14:
-                global_dog_action = VoiceCmd::SHIFT_LEFT;
-                blueTooth->sendString("ACK: SHIFT_L\r\n");
-                break;
-            case 0x15:
-                global_dog_action = VoiceCmd::SHIFT_RIGHT;
-                blueTooth->sendString("ACK: SHIFT_R\r\n");
-                break;
-            case 0x16:
-                global_dog_action = VoiceCmd::STOP_MOVE;
-                blueTooth->sendString("ACK: STOP\r\n");
-                break;
-
-            case 0x20:
-                global_dog_action = VoiceCmd::STAND_UP;
-                blueTooth->sendString("ACK: STAND\r\n");
-                break;
-            case 0x21:
-                global_dog_action = VoiceCmd::SIT_DOWN;
-                blueTooth->sendString("ACK: SIT\r\n");
-                break;
-            case 0x22:
-                global_dog_action = VoiceCmd::LIE_DOWN;
-                blueTooth->sendString("ACK: LIE\r\n");
-                break;
-            case 0x23:
-                global_dog_action = VoiceCmd::LOOK_UP;
-                blueTooth->sendString("ACK: LOOK_UP\r\n");
-                break;
-            case 0x24:
-                global_dog_action = VoiceCmd::LOOK_DOWN;
-                blueTooth->sendString("ACK: LOOK_DN\r\n");
-                break;
-            case 0x25:
-                global_dog_action = VoiceCmd::LEAN_LEFT;
-                blueTooth->sendString("ACK: LEAN_L\r\n");
-                break;
-            case 0x26:
-                global_dog_action = VoiceCmd::LEAN_RIGHT;
-                blueTooth->sendString("ACK: LEAN_R\r\n");
-                break;
-
-            case 0x30:
-                global_dog_action = VoiceCmd::SHAKE_HAND_L;
-                blueTooth->sendString("ACK: HAND_L\r\n");
-                break;
-            case 0x31:
-                global_dog_action = VoiceCmd::SHAKE_HAND_R;
-                blueTooth->sendString("ACK: HAND_R\r\n");
-                break;
-            case 0x32:
-                global_dog_action = VoiceCmd::GREETING;
-                blueTooth->sendString("ACK: GREET\r\n");
-                break;
-            case 0x33:
-                global_dog_action = VoiceCmd::STRETCH;
-                blueTooth->sendString("ACK: STRETCH\r\n");
-                break;
-            case 0x34:
-                global_dog_action = VoiceCmd::DANCE;
-                blueTooth->sendString("ACK: DANCE\r\n");
-                break;
-            case 0x35:
-                global_dog_action = VoiceCmd::ATTACK_MODE;
-                blueTooth->sendString("ACK: ATTACK\r\n");
-                break;
-
-            case 0x00:
-                global_dog_action = VoiceCmd::SIT_DOWN;
-                blueTooth->sendString("ACK: STOP(LEGACY)\r\n");
-                break;
-            default:
+                if (mapped_cmd == VoiceCmd::REPORT_BAT)
+                {
+                    char bat_msg[32];
+                    sprintf(bat_msg, "Battery: %d%%\r\n", GetBatteryPercentage());
+                    blueTooth->sendString(bat_msg);
+                }
+                else
+                {
+                    blueTooth->sendString("ACK\r\n");
+                }
+                if (dog_action_mutex != nullptr)
+                    osMutexAcquire(dog_action_mutex, osWaitForever);
+                global_dog_action = mapped_cmd;
+                if (dog_action_mutex != nullptr)
+                    osMutexRelease(dog_action_mutex);
+            }
+            else
+            {
                 blueTooth->sendString("ACK: UNKNOWN CMD\r\n");
-                break;
             }
         }
         // 关键：不阻塞其它系统进程
@@ -495,8 +444,13 @@ void task_motion_control(void *argument)
 
     for (;;)
     {
-        // 锁定当前周期的指令
-        VoiceCmd current_cmd = global_dog_action;
+        // 原子读取当前周期的指令
+        VoiceCmd current_cmd;
+        if (dog_action_mutex != nullptr)
+            osMutexAcquire(dog_action_mutex, osWaitForever);
+        current_cmd = global_dog_action;
+        if (dog_action_mutex != nullptr)
+            osMutexRelease(dog_action_mutex);
 
         // ===============================================
         // 【关键新增】：动作发生切换瞬间，向 SU03T 发送反馈包
@@ -515,27 +469,39 @@ void task_motion_control(void *argument)
         // 驱动底层舵机矩阵计算
         motionBrain->ExecuteCommand(current_cmd);
 
-        // 如果执行完整个动作周期后，外部没有发来新指令：
-        if (global_dog_action == current_cmd)
+        // 如果执行完整个动作周期后，外部没有发来新指令，自动复位为待机
         {
-            // 对“动态位移”和“一次性表演”进行状态复位。静态姿态绝不复位。
-            if (current_cmd == VoiceCmd::FORWARD ||
-                current_cmd == VoiceCmd::BACKWARD ||
-                current_cmd == VoiceCmd::TURN_LEFT ||
-                current_cmd == VoiceCmd::TURN_RIGHT ||
-                current_cmd == VoiceCmd::SHIFT_LEFT ||
-                current_cmd == VoiceCmd::SHIFT_RIGHT ||
-                current_cmd == VoiceCmd::SHAKE_HAND_L ||
-                current_cmd == VoiceCmd::SHAKE_HAND_R ||
-                current_cmd == VoiceCmd::GREETING ||
-                current_cmd == VoiceCmd::STRETCH ||
-                current_cmd == VoiceCmd::DANCE ||
-                current_cmd == VoiceCmd::ATTACK_MODE)
+            bool should_reset = false;
+            if (dog_action_mutex != nullptr)
+                osMutexAcquire(dog_action_mutex, osWaitForever);
+            if (global_dog_action == current_cmd)
             {
-                // 动作做完后自动切回待机状态
-                // （注意：切回待机时，下一个循环检测到状态变为了 WAKE_UP，
-                // 也会向语音模块发送一次 AA 01 55 的包，表示动作结束/狗已站稳）
-                global_dog_action = VoiceCmd::WAKE_UP;
+                if (current_cmd == VoiceCmd::FORWARD ||
+                    current_cmd == VoiceCmd::BACKWARD ||
+                    current_cmd == VoiceCmd::TURN_LEFT ||
+                    current_cmd == VoiceCmd::TURN_RIGHT ||
+                    current_cmd == VoiceCmd::SHIFT_LEFT ||
+                    current_cmd == VoiceCmd::SHIFT_RIGHT ||
+                    current_cmd == VoiceCmd::SHAKE_HAND_L ||
+                    current_cmd == VoiceCmd::SHAKE_HAND_R ||
+                    current_cmd == VoiceCmd::GREETING ||
+                    current_cmd == VoiceCmd::STRETCH ||
+                    current_cmd == VoiceCmd::DANCE ||
+                    current_cmd == VoiceCmd::ATTACK_MODE)
+                {
+                    global_dog_action = VoiceCmd::WAKE_UP;
+                    should_reset = true;
+                }
+            }
+            if (dog_action_mutex != nullptr)
+                osMutexRelease(dog_action_mutex);
+
+            // 复位后发送反馈包（放在 mutex 外避免长时间持锁）
+            if (should_reset)
+            {
+                uint8_t hex_code = MapCmdToHex(VoiceCmd::WAKE_UP);
+                if (hex_code != 0xFF)
+                    voiceModule->sendPacket(hex_code);
             }
         }
 
@@ -559,7 +525,6 @@ void task_tail_control(void *argument)
         {
             uint32_t tick = osKernelGetTickCount();
 
-      
             int phase = tick % 1000;
             float tail_offset = (phase < 500) ? (phase * 70.0f / 500.0f - 35.0f) : ((1000 - phase) * 70.0f / 500.0f - 35.0f);
 
@@ -611,13 +576,14 @@ void App_Main()
     i2c1_mutex = osMutexNew(NULL);
     uart_mutex = osMutexNew(NULL);
     uart2_mutex = osMutexNew(NULL);
+    dog_action_mutex = osMutexNew(NULL);
 
     oled = new SSD1306(&hi2c1, i2c1_mutex);
     voiceModule = new SU03T(&huart2, uart2_mutex);
     dogImu = new MPU6050(&hi2c1, i2c1_mutex);
     blueTooth = new HC05(&huart1, uart_mutex);
     pca9685 = new PCA9685(&hi2c1, 0x80, i2c1_mutex);
-    motionBrain = new Motion4DOF(pca9685); 
+    motionBrain = new Motion4DOF(pca9685);
 
     my_hc05_queue = osMessageQueueNew(64, sizeof(uint8_t), NULL);
     my_su03t_queue = osMessageQueueNew(32, sizeof(uint8_t), NULL);

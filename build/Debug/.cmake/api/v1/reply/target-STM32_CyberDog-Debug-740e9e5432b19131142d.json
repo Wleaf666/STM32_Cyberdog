@@ -43,13 +43,13 @@
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 82,
+				"line" : 78,
 				"parent" : 0
 			},
 			{
 				"command" : 2,
 				"file" : 0,
-				"line" : 68,
+				"line" : 64,
 				"parent" : 0
 			},
 			{
@@ -61,7 +61,7 @@
 			{
 				"command" : 3,
 				"file" : 0,
-				"line" : 63,
+				"line" : 59,
 				"parent" : 0
 			}
 		]
@@ -548,49 +548,49 @@
 		{
 			"backtrace" : 7,
 			"compileGroupIndex" : 2,
-			"path" : "usercode/src/app.cpp",
+			"path" : "usercode/Src/app.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 7,
 			"compileGroupIndex" : 2,
-			"path" : "usercode/src/arena.cpp",
+			"path" : "usercode/Src/arena.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 7,
 			"compileGroupIndex" : 2,
-			"path" : "usercode/src/hc05.cpp",
+			"path" : "usercode/Src/hc05.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 7,
 			"compileGroupIndex" : 2,
-			"path" : "usercode/src/motion_4dof.cpp",
+			"path" : "usercode/Src/motion_4dof.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 7,
 			"compileGroupIndex" : 2,
-			"path" : "usercode/src/mpu6050.cpp",
+			"path" : "usercode/Src/mpu6050.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 7,
 			"compileGroupIndex" : 2,
-			"path" : "usercode/src/pca9685.cpp",
+			"path" : "usercode/Src/pca9685.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 7,
 			"compileGroupIndex" : 2,
-			"path" : "usercode/src/ssd1306.cpp",
+			"path" : "usercode/Src/ssd1306.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 7,
 			"compileGroupIndex" : 2,
-			"path" : "usercode/src/su03t.cpp",
+			"path" : "usercode/Src/su03t.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{

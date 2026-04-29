@@ -19,7 +19,21 @@ void *operator new(const std::size_t size)
     return ptr;
 }
 
-void operator delete(void *p) noexcept {}
+// 调试用：检测内存使用情况
+extern "C" bool arena_is_full()
+{
+    return g_boot_arena.used() >= g_boot_arena.capacity();
+}
+
+extern "C" void arena_reset()
+{
+    g_boot_arena.reset();
+}
+
+void operator delete(void *p) noexcept
+{
+    (void)p; // 静态 arena 不支持单独释放，此函数仅为链接器提供符号
+}
 
 void *operator new[](const std::size_t size)
 {

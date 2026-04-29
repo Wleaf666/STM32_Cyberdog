@@ -89,7 +89,7 @@ void MPU6050::Update()
     this->gyroY = RawGyroY / 32.8f;
     this->gyroZ = RawGyroZ / 32.8f;
 
-    this->temptreture = RawTemperature / 340.0f + 35;
+    this->temperature = RawTemperature / 340.0f + 35;
 
     float accelPitch = atan2(this->accelX, sqrt(this->accelY * this->accelY + this->accelZ * this->accelZ)) * 57.29578f;
     float accelRoll = atan2(this->accelY, this->accelZ) * 57.29578f;

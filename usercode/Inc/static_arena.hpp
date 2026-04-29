@@ -22,4 +22,13 @@ public:
         }
         return nullptr; // 内存不足
     }
+
+    // 紧急重置：仅在系统复位/重启时调用，用于回收所有内存
+    void reset()
+    {
+        offset = 0;
+    }
+
+    std::size_t used() const { return offset; }
+    std::size_t capacity() const { return Size; }
 };

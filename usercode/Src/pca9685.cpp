@@ -61,22 +61,28 @@ void PCA9685::setPWM(uint8_t channel,uint16_t on_tick,uint16_t off_tick)
                        static_cast<uint8_t>(off_tick >> 8)};
     if (i2cMutex != nullptr && osMutexAcquire(i2cMutex, osWaitForever) == osOK)
     {
-        uint8_t retry = 3; // 【新增】：最多重试 3 次！
+        uint8_t retry = 3;
 
         while (retry > 0)
         {
-            // 尝试发送数据
             if (HAL_I2C_Mem_Write(hi2c, address, reg, 1, data, 4, 10) == HAL_OK)
             {
-                break; // 【关键】：一旦发送成功，立刻跳出重试循环！
+                break;
             }
 
-            // ⚠️ 发送失败（遇到电磁干扰）
-            // 暴力复苏 I2C 外设
-            HAL_I2C_DeInit(hi2c);
-            HAL_I2C_Init(hi2c);
+            // I2C 错误恢复：仅清除 pending 标志并复位 BUSY，不重新初始化整个外设
+            // 避免影响同一总线上的 OLED、MPU6050 等设备
+            hi2c->State = HAL_I2C_STATE_READY;
+            hi2c->ErrorCode = HAL_I2C_ERROR_NONE;
+            __HAL_I2C_CLEAR_FLAG(hi2c, I2C_FLAG_BERR | I2C_FLAG_ARLO | I2C_FLAG_AF);
+            if (__HAL_I2C_GET_FLAG(hi2c, I2C_FLAG_BUSY))
+            {
+                // 软件复位 I2C 外设（不丢失其他设备状态）
+                hi2c->Instance->CR1 |= I2C_CR1_SWRST;
+                hi2c->Instance->CR1 &= ~I2C_CR1_SWRST;
+            }
 
-            retry--; // 扣除一次重试机会，继续死磕！
+            retry--;
         }
 
         osMutexRelease(i2cMutex);
